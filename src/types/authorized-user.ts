@@ -11,4 +11,4 @@ type Authorization = {
 
 type AuthorizedUser = Authorization & User;
 
-export type { AuthorizedUser, User };
+export type { AuthorizedUser, User, Authorization };

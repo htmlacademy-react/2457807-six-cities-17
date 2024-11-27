@@ -1,6 +1,8 @@
 import { HeaderLogoAttributes } from '../../constans';
+import User from '../../mock/users';
 import HeaderNavigation from '../header-navigation/header-navigation';
 import Logo from '../logo/logo';
+import { offers } from '../../list-offer';
 
 
 function Header(): JSX.Element {
@@ -11,11 +13,10 @@ function Header(): JSX.Element {
           <div className="header__left">
             <Logo logoAttributes = {HeaderLogoAttributes} />
           </div>
-          {/* <HeaderNavigation
-            isLoggedIn
-            userName={'Oliver.conner@gmail.com'}
-            favoriteCount={3}
-          /> */}
+          <HeaderNavigation
+            User={User}
+            Offers = {offers}
+          />
         </div>
       </div>
     </header>

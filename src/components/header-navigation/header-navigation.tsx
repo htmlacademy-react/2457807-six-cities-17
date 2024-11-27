@@ -1,16 +1,19 @@
-import { AuthorizedUser } from '../../types/authorized-user';
-import User from '../../mock/users';
-import { offers } from '../../mock/list-offers';
+import { Authorization} from '../../types/authorized-user';
 import { ListOffer } from '../../types/list-offer';
 
-function UserAuthorized({token, userName}:AuthorizedUser, listOffers:ListOffer[]): JSX.Element {
+type headerNavigationProps = {
+  User: Authorization;
+  Offers: ListOffer[];
+}
 
+function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
+  const {token, email} = User;
   if (token) {
     return (
       <>
         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-        <span className="header__user-name user__name">{userName}</span>
-        <span className="header__favorite-count">{listOffers.filter((offer) => offer.isFavorite).length}</span>
+        <span className="header__user-name user__name">{email}</span>
+        <span className="header__favorite-count">{Offers.filter((offer) => offer.isFavorite).length}</span>
       </>
     );
   }
@@ -32,16 +35,16 @@ function Item(): JSX.Element {
   );
 }
 
-function HeaderNavigation({token, userName}:AuthorizedUser, listOffers:ListOffer[]):JSX.Element{
+function HeaderNavigation({User, Offers}:headerNavigationProps):JSX.Element{
+  const {token} = User;
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
           <a className="header__nav-link header__nav-link--profile" href="#">
             <UserAuthorized
-              token={token}
-              userName={userName}
-              listOffers={listOffers}
+              User={User}
+              Offers = {Offers}
             />
           </a>
         </li>

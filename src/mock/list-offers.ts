@@ -1,6 +1,7 @@
 import { getRandomArrayElement, getRandomInteger} from '../utils';
 import { ListOffer } from '../types/list-offer';
 import { CITY_NAMES, APARTMENT_TYPES, TITLE, previewImage, coordinates} from '../constans';
+const OFFERS_NUMBER = 10;
 
 const getRandomListOffer = () : ListOffer => ({
   id: crypto.randomUUID(),
@@ -27,7 +28,5 @@ const getRandomListOffer = () : ListOffer => ({
 }
 );
 
-const EVENTS_NUMBER = 10;
-const offers = Array.from({length: EVENTS_NUMBER}, getRandomListOffer);
-
+const offers = Array.from({length: OFFERS_NUMBER}, getRandomListOffer);
 export {offers};

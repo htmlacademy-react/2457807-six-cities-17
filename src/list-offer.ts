@@ -1,7 +1,7 @@
-import { getRandomArrayElement, getRandomInteger} from '../utils';
-import { ListOffer } from '../types/list-offer';
-import { CITY_NAMES, APARTMENT_TYPES, TITLE, previewImage, coordinates} from '../constans';
-
+import { getRandomArrayElement, getRandomInteger } from './utils';
+import { ListOffer } from './types/list-offer';
+import { CITY_NAMES, APARTMENT_TYPES, TITLE, previewImage, coordinates } from './constans';
+const OFFERS_NUMBER = 10;
 const getRandomListOffer = () : ListOffer => ({
   id: crypto.randomUUID(),
   title: getRandomArrayElement(TITLE),
@@ -27,7 +27,7 @@ const getRandomListOffer = () : ListOffer => ({
 }
 );
 
-const EVENTS_NUMBER = 10;
-const events = Array.from({length: EVENTS_NUMBER}, getRandomListOffer);
-console.log(events);
-export {getRandomListOffer};
+
+const offers = Array.from({length: OFFERS_NUMBER}, getRandomListOffer);
+
+export {offers};

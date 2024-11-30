@@ -1,3 +1,4 @@
+import { BookmarkAttributesType, RatingAttributesType } from './types/offer';
 const previewImage: string = 'https//16.design.htmlacademy.pro/static/hotel/';
 const galleryImages: string = 'img/apartment-';
 
@@ -5,6 +6,53 @@ const HeaderLogoAttributes = {
   className: 'header__logo-link',
   width: 81,
   height: 41,
+} as const;
+
+const PlaceCardAttributes = {
+  'cities': {
+    width: 260,
+    height: 200,
+  },
+  'near-places': {
+    width: 260,
+    height: 200,
+  },
+  'favorites': {
+    width: 150,
+    height: 110,
+  },
+} as const;
+
+const BookmarkAttributes:BookmarkAttributesType = {
+  'place-card': {
+    width: 18,
+    height: 19,
+  },
+  'offer': {
+    width: 31,
+    height: 33,
+  },
+} as const;
+
+const RatingAttributes: RatingAttributesType = {
+  'offer': {
+    style: {
+      width: '80%'
+    },
+    ratingVisibility: true
+  },
+  'reviews': {
+    style: {
+      width: '80%'
+    },
+    ratingVisibility: false
+  },
+  'place-card': {
+    style: {
+      width: '100%'
+    },
+    ratingVisibility: false
+  }
 } as const;
 
 const PageNames = {
@@ -95,4 +143,5 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   CommentLengthLimit, TITLE, previewImage, galleryImages,
   coordinates, HeaderLogoAttributes,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
-  SortOptions};
+  SortOptions, PlaceCardAttributes, BookmarkAttributes,
+  RatingAttributes};

@@ -11,4 +11,15 @@ type OfferType = {
 'maxAdults': number;
   };
 
-export type {OfferType};
+  type BookmarkAttributesType = {
+    [key: string]: {width: number; height: number};
+  }
+  type StyleType ={
+    width: string;
+  }
+
+  type RatingAttributesType = {
+    [key: string]: {style: StyleType; ratingVisibility: boolean};
+  }
+
+export type {OfferType, BookmarkAttributesType, RatingAttributesType};

@@ -7,12 +7,22 @@ const HeaderLogoAttributes = {
   height: 41,
 } as const;
 
-const CITY_NAMES: Array<string> = [
+const PageNames = {
+  Main: 'cities',
+  Offer: 'near-places',
+  Favorites: 'favorites',
+  Login: 'login',
+} as const;
+
+const LOCATIONS: Array<string> = [
   'Paris', 'Cologne', 'Brussels',
   'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
 
-const APARTMENT_TYPES: Array<string> = [
+const DEFAULT_ACTIVE_LOCATION = LOCATIONS[0];
+
+
+const APARTMENT_NAMES: Array<string> = [
   'room',	 'house',
   'hotel',	 'apartment',
 ] as const;
@@ -23,6 +33,8 @@ const PLACES_OPTIONS: Array<string> = [
   'Price: high to low',
   'Top rated first',
 ] as const;
+
+const DEFAULT_PLACES_OPTIONS = PLACES_OPTIONS[0];
 
 const CommentLengthLimit = {
   MIN: 50,
@@ -72,4 +84,7 @@ const coordinates = [[ 48.85661, 2.351499],	[ 48.868610000000004, 2.342499],	[ 4
   [ 51.241402, 6.7853140000000005],	[ 51.235402, 6.791314],	[ 51.237402, 6.764314000000001],
 ];
 
-export {CITY_NAMES, APARTMENT_TYPES, PLACES_OPTIONS, CommentLengthLimit, TITLE, previewImage, galleryImages, coordinates, HeaderLogoAttributes};
+export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
+  CommentLengthLimit, TITLE, previewImage, galleryImages,
+  coordinates, HeaderLogoAttributes,
+  DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames};

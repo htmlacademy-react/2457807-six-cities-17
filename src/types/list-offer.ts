@@ -1,29 +1,29 @@
 type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
 
-type Location = {
+type LocationType = {
     'latitude': number;
     'longitude': number;
     'zoom': number;
   };
 
-  type City = {
+  type CityType = {
     'name': string;
-    'location': Location;
+    'location': LocationType;
   };
 
-  type ListOffer = {
+  type ListOfferType = {
     'id': string;
     'title': string;
     'type': string;
     'price': number;
-    'city':City;
-    'location': Location;
+    'city':CityType;
+    'location': LocationType;
     'isFavorite': boolean;
     'isPremium': boolean;
     'rating': number;
     'previewImage'?: string;
   };
 
-export type { ListOffer, City, Location, OfferType };
+export type { ListOfferType, CityType, LocationType, OfferType };
 
 

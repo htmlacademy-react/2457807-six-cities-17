@@ -1,14 +1,14 @@
-import { ListOffer } from './list-offer';
-import { User } from './authorized-user';
+import { ListOfferType } from './list-offer';
+import { UserType } from './authorized-user';
 
-type Offer = {
-    'listOffer' : ListOffer;
+type OfferType = {
+    'listOffer' : ListOfferType;
     'description': string;
 'bedrooms': number;
 'goods': string[];
-'host': User;
+'host': UserType;
 'images': string[];
 'maxAdults': number;
   };
 
-export type {Offer};
+export type {OfferType};

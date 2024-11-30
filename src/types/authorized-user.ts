@@ -1,14 +1,14 @@
-type User = {
+type UserType = {
     'userName': string;
     'avatarUrl': string;
     'isPro': boolean;
   };
 
-type Authorization = {
+type AuthorizationType = {
   'email': string;
   'token': string;
 };
 
-type AuthorizedUser = Authorization & User;
+type AuthorizedUserType = AuthorizationType & UserType;
 
-export type { AuthorizedUser, User, Authorization };
+export type { AuthorizedUserType, UserType, AuthorizationType };

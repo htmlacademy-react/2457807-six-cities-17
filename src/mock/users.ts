@@ -1,6 +1,6 @@
-import { AuthorizedUser } from '../types/authorized-user';
+import { AuthorizedUserType } from '../types/authorized-user';
 
-const User: AuthorizedUser = {
+const User: AuthorizedUserType = {
   userName: 'Oliver Conner',
   avatarUrl: 'https://url-to-image/image.png',
   isPro: false,

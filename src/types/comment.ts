@@ -1,11 +1,11 @@
-import { User } from './authorized-user';
+import { UserType } from './authorized-user';
 
-type Comment = {
+type CommentType = {
     'id': string;
     'date': string;
-    'user' : User;
+    'user' : UserType;
     'comment' : 'string';
     'rating' : number;
   };
 
-export type { Comment };
+export type { CommentType };

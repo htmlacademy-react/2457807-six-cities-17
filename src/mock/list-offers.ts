@@ -1,15 +1,15 @@
 import { getRandomArrayElement, getRandomInteger} from '../utils';
-import { ListOffer } from '../types/list-offer';
-import { CITY_NAMES, APARTMENT_TYPES, TITLE, previewImage, coordinates} from '../constans';
+import { ListOfferType } from '../types/list-offer';
+import { LOCATIONS, APARTMENT_NAMES, TITLE, previewImage, coordinates} from '../constans';
 const OFFERS_NUMBER = 10;
 
-const getRandomListOffer = () : ListOffer => ({
+const getRandomListOffer = () : ListOfferType => ({
   id: crypto.randomUUID(),
   title: getRandomArrayElement(TITLE),
-  type: getRandomArrayElement(APARTMENT_TYPES),
+  type: getRandomArrayElement(APARTMENT_NAMES),
   price : getRandomInteger(1000, 5000),
   city: {
-    name : getRandomArrayElement(CITY_NAMES),
+    name : getRandomArrayElement(LOCATIONS),
     location: {
       latitude : getRandomArrayElement(coordinates)[0],
       longitude : getRandomArrayElement(coordinates)[1],

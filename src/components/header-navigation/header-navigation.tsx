@@ -1,9 +1,9 @@
-import { Authorization} from '../../types/authorized-user';
-import { ListOffer } from '../../types/list-offer';
+import { AuthorizationType} from '../../types/authorized-user';
+import { ListOfferType } from '../../types/list-offer';
 
 type headerNavigationProps = {
-  User: Authorization;
-  Offers: ListOffer[];
+  User: AuthorizationType;
+  Offers: ListOfferType[];
 }
 
 function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {

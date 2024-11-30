@@ -1,10 +1,10 @@
-type LogoAttributes = {
+type LogoAttributesType = {
   className: string;
    width: number;
    height: number;
     };
     type LogoProps = {
-      logoAttributes: LogoAttributes;
+      logoAttributes: LogoAttributesType;
     }
 
 

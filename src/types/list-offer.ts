@@ -1,4 +1,8 @@
+import { LOCATIONS, PageNames } from '../constans';
+
 type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
+// type CitiesType = 'Paris' | 'Cologne' | 'Brussels' |
+// 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
 type LocationType = {
     'latitude': number;
@@ -10,6 +14,9 @@ type LocationType = {
     'name': string;
     'location': LocationType;
   };
+
+  type CitiesType = typeof LOCATIONS;
+  type TypesPage = (typeof PageNames)[keyof typeof PageNames];
 
   type ListOfferType = {
     'id': string;
@@ -24,6 +31,7 @@ type LocationType = {
     'previewImage'?: string;
   };
 
-export type { ListOfferType, CityType, LocationType, OfferType };
+export type { ListOfferType, CityType, CitiesType,
+  LocationType, TypesPage, OfferType };
 
 

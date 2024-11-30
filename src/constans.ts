@@ -36,6 +36,13 @@ const PLACES_OPTIONS: Array<string> = [
 
 const DEFAULT_PLACES_OPTIONS = PLACES_OPTIONS[0];
 
+const SortOptions = {
+  Popular: 'Popular',
+  LowToHigh:'Price: low to high',
+  HighToLow:'Price: high to low',
+  TopRated:'Top rated first',
+} as const;
+
 const CommentLengthLimit = {
   MIN: 50,
   MAX: 300
@@ -87,4 +94,5 @@ const coordinates = [[ 48.85661, 2.351499],	[ 48.868610000000004, 2.342499],	[ 4
 export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   CommentLengthLimit, TITLE, previewImage, galleryImages,
   coordinates, HeaderLogoAttributes,
-  DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames};
+  DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
+  SortOptions};

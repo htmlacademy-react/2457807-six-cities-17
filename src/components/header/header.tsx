@@ -2,7 +2,7 @@ import { HeaderLogoAttributes } from '../../constans';
 import User from '../../mock/users';
 import HeaderNavigation from '../header-navigation/header-navigation';
 import Logo from '../logo/logo';
-import { offers } from '../../list-offer';
+import { offers } from '../../mock/list-offers';
 
 
 function Header(): JSX.Element {

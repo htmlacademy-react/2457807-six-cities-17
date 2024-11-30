@@ -1,10 +1,9 @@
 import { PageNames } from '../../constans';
-import { TypesPage } from '../../types/list-offer';
 
 
 type LocationLinkProps = {
   location: string;
-  typesPage: TypesPage;
+  typesPage: string;
   isActive?: boolean;
 };
 

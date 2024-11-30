@@ -114,6 +114,8 @@ const TITLE: Array<string> = [
   'The Joshua Tree House',
 ] as const;
 
+const APARTMENTS_IMAGE_PLACE_CARD = ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg'];
+
 const coordinates = [[ 48.85661, 2.351499],	[ 48.868610000000004, 2.342499],	[ 48.858610000000006, 2.330499],
   [ 48.834610000000005, 2.335499],	[ 48.85761, 2.358499],	[ 48.87561, 2.375499],	[ 48.87961000000001, 2.353499],
   [ 48.837610000000005, 2.364499],	[ 48.84761, 2.3454990000000002],	[ 48.862610000000004, 2.356499],	[ 48.83861, 2.369499],
@@ -146,4 +148,4 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   coordinates, HeaderLogoAttributes,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes};
+  RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD};

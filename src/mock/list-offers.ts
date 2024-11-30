@@ -1,6 +1,8 @@
 import { getRandomArrayElement, getRandomInteger} from '../utils';
 import { ListOfferType } from '../types/list-offer';
-import { LOCATIONS, APARTMENT_NAMES, TITLE, previewImage, coordinates} from '../constans';
+import { LOCATIONS, APARTMENT_NAMES, TITLE, coordinates} from '../constans';
+import { APARTMENTS_IMAGE_PLACE_CARD } from '../constans';
+
 const OFFERS_NUMBER = 10;
 
 const getRandomListOffer = () : ListOfferType => ({
@@ -24,7 +26,7 @@ const getRandomListOffer = () : ListOfferType => ({
   isFavorite: Boolean(getRandomInteger(0, 1)),
   isPremium: Boolean(getRandomInteger(0, 1)),
   rating: Number((getRandomInteger(0, 50) * 0.1).toFixed(1)),
-  previewImage: `${previewImage + String(getRandomInteger(1, 20))}.jpg`
+  previewImage: getRandomArrayElement(APARTMENTS_IMAGE_PLACE_CARD),
 }
 );
 

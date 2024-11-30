@@ -1,4 +1,4 @@
-import { LOCATIONS, PageNames } from '../constans';
+import { LOCATIONS } from '../constans';
 
 type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
 // type CitiesType = 'Paris' | 'Cologne' | 'Brussels' |
@@ -16,7 +16,13 @@ type LocationType = {
   };
 
   type CitiesType = typeof LOCATIONS;
-  type TypesPage = (typeof PageNames)[keyof typeof PageNames];
+
+  type TypesPage = {
+    'Main': string;
+    'Offer': string;
+    'Favorites': string;
+    'Login': string;
+  };
 
   type ListOfferType = {
     'id': string;

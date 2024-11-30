@@ -1,4 +1,6 @@
 import { BookmarkAttributesType, RatingAttributesType } from './types/offer';
+import { TypesPage } from './types/list-offer';
+
 const previewImage: string = 'https//16.design.htmlacademy.pro/static/hotel/';
 const galleryImages: string = 'img/apartment-';
 
@@ -55,7 +57,7 @@ const RatingAttributes: RatingAttributesType = {
   }
 } as const;
 
-const PageNames = {
+const PageNames:TypesPage = {
   Main: 'cities',
   Offer: 'near-places',
   Favorites: 'favorites',

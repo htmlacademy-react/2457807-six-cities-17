@@ -56,7 +56,7 @@ function MainPage(): JSX.Element {
                   </span>
                   <SortOffersList />
                 </form>
-                <PlaceCardsList />
+                <PlaceCardsList offers = {offers} pageNames= {PageNames.Main}/>
               </section>
               <div className="cities__right-section">
                 <Map mapClass='cities'/>
@@ -65,7 +65,6 @@ function MainPage(): JSX.Element {
         </div>
       </main>
     </div>
-
   );
 }
 

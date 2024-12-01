@@ -5,9 +5,15 @@ const previewImage: string = 'https//16.design.htmlacademy.pro/static/hotel/';
 const galleryImages: string = 'img/apartment-';
 
 const HeaderLogoAttributes = {
-  className: 'header__logo-link',
+  className: 'header__logo',
   width: 81,
   height: 41,
+} as const;
+
+const FooterLogoAttributes = {
+  className: 'footer__logo',
+  width: 64,
+  height: 33,
 } as const;
 
 const PlaceCardAttributes = {
@@ -148,4 +154,4 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   coordinates, HeaderLogoAttributes,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD};
+  RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD, FooterLogoAttributes};

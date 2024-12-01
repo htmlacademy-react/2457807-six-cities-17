@@ -10,8 +10,8 @@ type headerProps = {
 }
 
 function Header({pageNames }:headerProps): JSX.Element {
-  const headerNavigationEmpty = pageNames !== 'login' ?
-    <HeaderNavigation User={User} Offers = {offers}/> : '';
+  const headerNavigationEmpty = (pageNames === 'login') ?
+    '' : <HeaderNavigation User={User} Offers = {offers}/>;
   return (
     <header className="header">
       <div className="container">

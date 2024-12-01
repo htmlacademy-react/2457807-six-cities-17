@@ -19,7 +19,7 @@ function LocationsItem(props: LocationItemProps): JSX.Element {
     <li className="locations__item">
       <LocationsItemLink
         location={location}
-        typesPage={pageNames.Main}
+        pageNames={pageNames.Main}
         isActive={isActive}
       />
     </li>

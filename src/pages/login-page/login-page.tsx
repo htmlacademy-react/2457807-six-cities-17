@@ -18,7 +18,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <LocationsItemLink location={location} typesPage={pageNames} />
+              <LocationsItemLink location={location} pageNames={pageNames} />
             </div>
           </section>
         </div>

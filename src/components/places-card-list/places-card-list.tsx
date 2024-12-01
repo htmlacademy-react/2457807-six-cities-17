@@ -1,11 +1,17 @@
 import PlaceCardItem from '../places-card-item/places-card-item';
-import { offers } from '../../mock/list-offers';
+import { ListOfferType } from '../../types/list-offer';
 
 
-function PlaceCardsList(): JSX.Element {
-  const cardsList = offers.map((offer) => (
+type placeCardProps = {
+  pageNames: string;
+  offers: ListOfferType[];
+}
+
+function PlaceCardsList({pageNames, offers}:placeCardProps): JSX.Element {
+  const cardsList = offers.filter((offer) => offer.city.name === 'Amsterdam').map((offer) => (
     <PlaceCardItem
       cardPlace={offer}
+      pageNames = {pageNames}
       key={crypto.randomUUID()}
     />));
   return (

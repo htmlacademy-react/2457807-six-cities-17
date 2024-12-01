@@ -3,7 +3,7 @@ import { ListOfferType } from '../types/list-offer';
 import { LOCATIONS, APARTMENT_NAMES, TITLE, coordinates} from '../constans';
 import { APARTMENTS_IMAGE_PLACE_CARD } from '../constans';
 
-const OFFERS_NUMBER = 10;
+const OFFERS_NUMBER = 20;
 
 const getRandomListOffer = () : ListOfferType => ({
   id: crypto.randomUUID(),

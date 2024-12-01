@@ -10,7 +10,7 @@ type LocationLinkProps = {
 function LocationsItemLink(props: LocationLinkProps): JSX.Element {
   const { location, typesPage, isActive } = props;
   return (
-    <a className = {`locations__item-link ${typesPage === PageNames.Main ? 'tabs__item' : '' }${isActive ? 'tabs__item--active' : ''}`} href="#">
+    <a className = {`locations__item-link ${typesPage === PageNames.Main ? 'tabs__item' : '' } ${isActive ? 'tabs__item--active' : ''}`} href="#">
       <span>{location}</span>
     </a>
   );

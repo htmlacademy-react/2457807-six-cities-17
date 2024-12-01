@@ -6,6 +6,7 @@ import Map from '../../components/map/map';
 import { LOCATIONS, PageNames } from '../../constans';
 import { offers } from '../../mock/list-offers';
 
+
 type MainEmptyProps = {
     location: string;
   };
@@ -31,7 +32,7 @@ function MainPage(): JSX.Element {
   const offersCount = offers.filter((offer) => offer.city.name === 'Amsterdam').length;
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header pageNames= {PageNames.Main}/>
       <main className={offersCount === 0 ? 'page__main page__main--index page__main--index-empty' : 'page__main page__main--index'}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

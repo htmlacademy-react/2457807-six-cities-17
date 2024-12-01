@@ -5,7 +5,13 @@ import Logo from '../logo/logo';
 import { offers } from '../../mock/list-offers';
 
 
-function Header(): JSX.Element {
+type headerProps = {
+  pageNames: string;
+}
+
+function Header({pageNames }:headerProps): JSX.Element {
+  const headerNavigationEmpty = pageNames !== 'login' ?
+    <HeaderNavigation User={User} Offers = {offers}/> : '';
   return (
     <header className="header">
       <div className="container">
@@ -13,10 +19,7 @@ function Header(): JSX.Element {
           <div className="header__left">
             <Logo logoAttributes = {HeaderLogoAttributes} />
           </div>
-          <HeaderNavigation
-            User={User}
-            Offers = {offers}
-          />
+          {headerNavigationEmpty}
         </div>
       </div>
     </header>

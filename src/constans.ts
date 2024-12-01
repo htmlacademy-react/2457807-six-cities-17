@@ -69,7 +69,7 @@ const LOCATIONS: Array<string> = [
   'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
 
-const DEFAULT_ACTIVE_LOCATION = LOCATIONS[0];
+const DEFAULT_ACTIVE_LOCATION = LOCATIONS[3];
 
 
 const APARTMENT_NAMES: Array<string> = [

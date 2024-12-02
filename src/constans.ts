@@ -65,7 +65,7 @@ const RatingAttributes: RatingAttributesType = {
 
 const PageNames:TypesPage = {
   Main: 'cities',
-  Offer: 'near-places',
+  Offer: 'offer',
   Favorites: 'favorites',
   Login: 'login',
 } as const;

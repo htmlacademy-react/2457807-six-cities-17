@@ -1,9 +1,8 @@
 import { ListOfferType } from './list-offer';
 import { UserType } from './authorized-user';
 
-type OfferType = {
-    'listOffer' : ListOfferType;
-    'description': string;
+type FullOfferType = ListOfferType&{
+'description': string;
 'bedrooms': number;
 'goods': string[];
 'host': UserType;
@@ -22,4 +21,4 @@ type OfferType = {
     [key: string]: {style: StyleType; ratingVisibility: boolean};
   }
 
-export type {OfferType, BookmarkAttributesType, RatingAttributesType};
+export type {FullOfferType, BookmarkAttributesType, RatingAttributesType};

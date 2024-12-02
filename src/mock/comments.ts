@@ -1,14 +1,26 @@
 const offerComments = [
   {
-    id: 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
-    date: '2019-05-08T14:13:56.569Z',
+    id: '40d941a5-e381-4bbc-9835-8be1142e6822',
+    comment: 'We loved it so much, the house, the veiw, the location just great.. Highly reccomend :)',
+    date: '2024-11-11T21:00:00.471Z',
+    rating: 1,
     user: {
-      name: 'Max',
-      avatarUrl: 'img/avatar-max.jpg',
+      name: 'Christina',
+      avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/9.jpg',
+      isPro: true
+    }
+  },
+  {
+    id: '76d0e170-6454-4216-8a6c-ded830b66167',
+    comment: 'The room was spacious and clean. The pool looked nothing like the photos and desparately needs a clean. The sauna and spa were closed for lunar new year holiday.',
+    date: '2024-11-08T21:00:00.471Z',
+    rating: 3,
+    user: {
+      name: 'Isaac',
+      avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/9.jpg',
       isPro: false
-    },
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    rating: 4
-  }];
+    }
+  }
+];
 
 export default offerComments;

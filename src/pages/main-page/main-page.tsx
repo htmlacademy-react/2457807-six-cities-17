@@ -56,7 +56,7 @@ function MainPage(): JSX.Element {
                   </span>
                   <SortOffersList />
                 </form>
-                <PlaceCardsList offers = {offers} pageNames= {PageNames.Main}/>
+                <PlaceCardsList offers = {offers.slice(0,2)} pageNames= {PageNames.Main}/>
               </section>
               <div className="cities__right-section">
                 <Map mapClass='cities'/>

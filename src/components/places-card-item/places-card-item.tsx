@@ -1,10 +1,10 @@
 // import BookmarkButton from '../../bookmark-button/bookmark-button';
 // import Mark from '../../common/mark/mark';
 // import Rating from '../../common/rating/rating';
-import { PlaceCardAttributes, RatingAttributes } from '../../constans';
+import { PlaceCardAttributes } from '../../constans';
 import { ListOfferType } from '../../types/list-offer';
 import BookmarkButton from '../bookmark-button/bookmark-button';
-
+import Rating from '../rating/rating';
 
 type PlaceCardItemProps = {
     cardPlace: ListOfferType;
@@ -13,23 +13,7 @@ type PlaceCardItemProps = {
 type MarkProps ={
     markClass: string;
   }
-  type RatingProps = {
-    ratingClass: string;
-    ratingValue: number;
-  }
 
-function Rating({ratingClass, ratingValue}: RatingProps):JSX.Element{
-  return (
-    <div className={`${ratingClass}__rating rating`}>
-      <div className={`${ratingClass}__stars rating__stars`}>
-        <span style={{width: ratingValue * 10 * 2}} />
-        <span className="visually-hidden">Rating</span>
-      </div>
-      {RatingAttributes[ratingClass].ratingVisibility &&
-        <span className="offer__rating-value rating__value">{ratingValue}</span>}
-    </div>
-  );
-}
 
 function Mark({markClass}: MarkProps):JSX.Element{
   return(
@@ -74,3 +58,4 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
   );
 }
 export default PlaceCardItem;
+

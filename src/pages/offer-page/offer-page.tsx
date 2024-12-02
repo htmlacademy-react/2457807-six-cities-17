@@ -165,7 +165,7 @@ function OfferPage(): JSX.Element{
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardsList offers = {offers} pageNames= {PageNames.Main}/>
+              <PlaceCardsList offers = {offers} pageNames= {PageNames.Offer}/>
             </div>
           </section>
         </div>

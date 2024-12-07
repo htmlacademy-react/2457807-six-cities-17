@@ -8,10 +8,10 @@ const OFFERS_NUMBER = 20;
 const getRandomListOffer = () : ListOfferType => ({
   id: crypto.randomUUID(),
   title: getRandomArrayElement(TITLE),
-  type: getRandomArrayElement(APARTMENT_NAMES),
+  type: getRandomArrayElement([...APARTMENT_NAMES]),
   price : getRandomInteger(1000, 5000),
   city: {
-    name : getRandomArrayElement(LOCATIONS),
+    name : getRandomArrayElement([...LOCATIONS]),
     location: {
       latitude : getRandomArrayElement(coordinates)[0],
       longitude : getRandomArrayElement(coordinates)[1],

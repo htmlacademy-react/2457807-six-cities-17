@@ -1,5 +1,6 @@
 import PlaceCardItem from '../places-card-item/places-card-item';
 import { ListOfferType } from '../../types/list-offer';
+import { PageNames } from '../../constans';
 
 
 type placeCardProps = {
@@ -15,7 +16,7 @@ function PlaceCardsList({pageNames, offers}:placeCardProps): JSX.Element {
       key={crypto.randomUUID()}
     />));
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={`${pageNames === PageNames.Main ? 'cities__places-list places__list tabs__content' : 'favorites__places'}`}>
       {cardsList}
     </div>
   );

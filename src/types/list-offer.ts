@@ -1,5 +1,14 @@
 import { LOCATIONS } from '../constans';
 
+declare global {
+  interface ObjectConstructor {
+    groupBy<T, K extends PropertyKey>(
+      array: T[],
+      keyGetter: (item: T) => K
+    ): Record<K, T[]>;
+  }
+}
+
 type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
 // type CitiesType = 'Paris' | 'Cologne' | 'Brussels' |
 // 'Amsterdam' | 'Hamburg' | 'Dusseldorf';

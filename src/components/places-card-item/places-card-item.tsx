@@ -44,7 +44,7 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
             <b className='place-card__price-value'>&euro;{cardPlace.price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <BookmarkButton bookmarkClass='place-card' />
+          <BookmarkButton bookmarkClass='place-card' cardPlace = {cardPlace}/>
         </div>
         <Rating
           ratingClass='place-card'

@@ -1,4 +1,5 @@
-import { PageNames } from '../../constans';
+import { Link } from 'react-router-dom';
+import { AppRoute, PageNames } from '../../constans';
 
 
 type LocationLinkProps = {
@@ -10,9 +11,9 @@ type LocationLinkProps = {
 function LocationsItemLink(props: LocationLinkProps): JSX.Element {
   const { location, pageNames, isActive } = props;
   return (
-    <a className = {`locations__item-link ${pageNames === PageNames.Main ? 'tabs__item' : '' } ${isActive ? 'tabs__item--active' : ''}`} href="#">
+    <Link className = {`locations__item-link ${pageNames === PageNames.Main ? 'tabs__item' : '' } ${isActive ? 'tabs__item--active' : ''}`} to={AppRoute.Root}>
       <span>{location}</span>
-    </a>
+    </Link>
   );
 }
 

@@ -1,6 +1,7 @@
 import { BookmarkAttributesType, RatingAttributesType } from './types/offer';
 import { TypesPage } from './types/list-offer';
 
+
 const previewImage: string = 'https//16.design.htmlacademy.pro/static/hotel/';
 const galleryImages: string = 'img/apartment-';
 
@@ -63,6 +64,14 @@ const RatingAttributes: RatingAttributesType = {
   }
 } as const;
 
+const AppRoute = {
+  Root: '/',
+  Login: '/login',
+  Favorites: '/favorites',
+  Offer: '/offer/:offerId',
+  NotFound: '*',
+} as const;
+
 const PageNames:TypesPage = {
   Main: 'cities',
   Offer: 'offer',
@@ -70,7 +79,13 @@ const PageNames:TypesPage = {
   Login: 'login',
 } as const;
 
-const LOCATIONS: Array<string> = [
+const AuthorizationStatus = {
+  Auth: 'auth',
+  NoAuth: 'no-auth',
+  Unknown: 'unknown',
+} as const;
+
+const LOCATIONS = [
   'Paris', 'Cologne', 'Brussels',
   'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
@@ -78,12 +93,12 @@ const LOCATIONS: Array<string> = [
 const DEFAULT_ACTIVE_LOCATION = LOCATIONS[3];
 
 
-const APARTMENT_NAMES: Array<string> = [
+const APARTMENT_NAMES = [
   'room',	 'house',
   'hotel',	 'apartment',
 ] as const;
 
-const PLACES_OPTIONS: Array<string> = [
+const PLACES_OPTIONS = [
   'Popular',
   'Price: low to high',
   'Price: high to low',
@@ -154,4 +169,5 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   coordinates, HeaderLogoAttributes,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD, FooterLogoAttributes};
+  RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD, FooterLogoAttributes,
+  AppRoute, AuthorizationStatus};

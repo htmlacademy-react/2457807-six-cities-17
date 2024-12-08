@@ -1,0 +1,46 @@
+
+.backgroundImageContainer{  
+  margin: 0 auto;
+  background-image: url("https://static-sl.insales.ru/images/products/1/7353/453229753/3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-size: contain;
+  display: flex;
+  height: 60vh;
+  align-self: center;
+  justify-content: center;
+  margin: auto;
+ 
+}
+
+.wrapper {
+  text-align: center; 
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: #4583C0;
+  margin-bottom: 50px;
+  
+  text-shadow: 1px 1px 0px #89acd0,
+               1px 2px 0px #89acd0,
+               1px 3px 0px #89acd0,
+               1px 4px 0px #89acd0,
+               1px 5px 0px #89acd0,
+               1px 6px 0px #89acd0,
+               1px 10px 5px rgba(16, 16, 16, 0.5),
+               1px 15px 10px rgba(16, 16, 16, 0.4),
+               1px 20px 30px rgba(16, 16, 16, 0.3),
+               1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+.link {
+  font-size: 2rem;
+  padding: 16px 20px 13px;
+  color:white;  
+  background-color:#4481c3;
+  border-radius: 10px;  
+}

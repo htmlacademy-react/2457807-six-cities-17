@@ -1,7 +1,8 @@
 // import BookmarkButton from '../../bookmark-button/bookmark-button';
 // import Mark from '../../common/mark/mark';
 // import Rating from '../../common/rating/rating';
-import { PlaceCardAttributes } from '../../constans';
+import { Link } from 'react-router-dom';
+import { AppRoute, PlaceCardAttributes } from '../../constans';
 import { ListOfferType } from '../../types/list-offer';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Rating from '../rating/rating';
@@ -29,13 +30,13 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
     <article className={`${pageNames}__card place-card`}>
       {cardPlace.isPremium && <Mark markClass='place-card' />}
       <div className={`${pageNames}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={AppRoute.Offer}>
           <img className='place-card__image' src={cardPlace.previewImage}
             width={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].width : PlaceCardAttributes['cities'].width}
             height={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].height : PlaceCardAttributes['cities'].height}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className={`${cardPlace.isFavorite ? 'favorites__card-info' : ''}place-card__info`}>
         <div className='place-card__price-wrapper'>
@@ -50,7 +51,7 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
           ratingValue = {cardPlace.rating}
         />
         <h2 className='place-card__name'>
-          <a href="#">{cardPlace.title}</a>
+          <Link to={AppRoute.Offer}>{cardPlace.title}</Link>
         </h2>
         <p className='place-card__type'>{cardPlace.type}</p>
       </div>

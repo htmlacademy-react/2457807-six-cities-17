@@ -1,4 +1,4 @@
-
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -8,6 +8,7 @@ import { PageNames } from '../../constans';
 import { fullOffer } from '../../mock/full-offer';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import { offers } from '../../mock/list-offers';
+
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -42,6 +43,9 @@ function FormRatingStars({index}:indexRatingStars):JSX.Element{
 function OfferPage(): JSX.Element{
   return (
     <div className="page">
+      <Helmet>
+        <title>Страница предложения</title>
+      </Helmet>
       <Header pageNames={PageNames.Offer} />
       <main className="page__main page__main--offer">
         <section className="offer">

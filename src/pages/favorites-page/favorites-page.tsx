@@ -5,6 +5,7 @@ import { PageNames } from '../../constans';
 import FavoritesList from '../../components/favorites-list/favorites-card-list';
 import { FooterLogoAttributes } from '../../constans';
 import { offers } from '../../mock/list-offers';
+import { Helmet } from 'react-helmet-async';
 
 function FavoriteEmpty(): JSX.Element {
   return (
@@ -28,6 +29,9 @@ function FavoritesPage(): JSX.Element{
   const offersFavoriteCount = offersFavorite.length;
   return (
     <div className= {offersFavoriteCount !== 0 ? 'page' : 'page page--favorites-empty'}>
+      <Helmet>
+        <title>Апартаменты на которые вы обратили внимание где можно остановиться</title>
+      </Helmet>
       <Header pageNames={pageNames}/>
       {
         offersFavoriteCount === 0 ? <FavoriteEmpty/> :

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../constans';
 import { AuthorizationType} from '../../types/authorized-user';
 import { ListOfferType } from '../../types/list-offer';
 
@@ -28,9 +30,9 @@ function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
 function Item(): JSX.Element {
   return (
     <li className="header__nav-item">
-      <a className="header__nav-link" href="#">
+      <Link className="header__nav-link" to={AppRoute.Root}>
         <span className="header__signout">Sign out</span>
-      </a>
+      </Link>
     </li>
   );
 }
@@ -41,12 +43,12 @@ function HeaderNavigation({User, Offers}:headerNavigationProps):JSX.Element{
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <a className="header__nav-link header__nav-link--profile" href="#">
+          <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Root}>
             <UserAuthorized
               User={User}
               Offers = {Offers}
             />
-          </a>
+          </Link>
         </li>
         {token && Item()}
       </ul>

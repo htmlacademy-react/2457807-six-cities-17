@@ -2,6 +2,7 @@ import Header from '../../components/header/header';
 import LocationsItemLink from '../../components/locations-item-link/locations-item-link';
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
 import { PageNames } from '../../constans';
+import { Helmet } from 'react-helmet-async';
 
 
 function LoginPage(): JSX.Element {
@@ -9,6 +10,9 @@ function LoginPage(): JSX.Element {
   const pageNames:string = PageNames.Login;
   return (
     <div className="page page--gray page--login">
+      <Helmet>
+        <title>Страница авторизации</title>
+      </Helmet>
       <Header pageNames={pageNames} />
       <main className="page__main page__main--login">
         <div className="page__login-container container">

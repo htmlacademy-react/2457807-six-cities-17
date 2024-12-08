@@ -119,7 +119,7 @@ const CommentLengthLimit = {
   MAX: 300
 } as const;
 
-const TITLE: Array<string> = [
+const TITLE = [
   'House in countryside',
   'Nice, cozy, warm big bed apartment',
   'Wood and stone place',

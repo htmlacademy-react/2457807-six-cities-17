@@ -7,7 +7,7 @@ const OFFERS_NUMBER = 20;
 
 const getRandomListOffer = () : ListOfferType => ({
   id: crypto.randomUUID(),
-  title: getRandomArrayElement(TITLE),
+  title: getRandomArrayElement([...TITLE]),
   type: getRandomArrayElement([...APARTMENT_NAMES]),
   price : getRandomInteger(1000, 5000),
   city: {

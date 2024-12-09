@@ -4,7 +4,7 @@ import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import PlaceCardsList from '../../components/places-card-list/places-card-list';
-import { PageNames } from '../../constans';
+import { PageNames, starsTitle } from '../../constans';
 import { fullOffer } from '../../mock/full-offer';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import { offers } from '../../mock/list-offers';
@@ -30,7 +30,7 @@ function FormRatingStars({index}:indexRatingStars):JSX.Element{
   return(
     <>
       <input className="form__rating-input visually-hidden" name="rating" value={index} id= {`${index}-stars`} type="radio"/>
-      <label htmlFor={`${index}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
+      <label htmlFor={`${index}-stars`} className="reviews__rating-label form__rating-label" title={starsTitle[index - 1]}>
         <svg className="form__star-image" width="37" height="33">
           <use xlinkHref="#icon-star"></use>
         </svg>

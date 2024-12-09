@@ -64,6 +64,10 @@ const RatingAttributes: RatingAttributesType = {
   }
 } as const;
 
+const starsTitle = [
+  'terrible','badly', 'not bad', 'good', 'perfect'
+] as const;
+
 const AppRoute = {
   Root: '/',
   Login: '/login',
@@ -170,4 +174,4 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, PlaceCardAttributes, BookmarkAttributes,
   RatingAttributes, APARTMENTS_IMAGE_PLACE_CARD, FooterLogoAttributes,
-  AppRoute, AuthorizationStatus};
+  AppRoute, AuthorizationStatus, starsTitle};

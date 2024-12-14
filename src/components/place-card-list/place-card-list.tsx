@@ -13,7 +13,7 @@ function PlaceCardsList({pageNames, offers}:placeCardProps): JSX.Element {
     <PlaceCardItem
       cardPlace={offer}
       pageNames = {pageNames}
-      key={crypto.randomUUID()}
+      key={offer.id}
     />));
   return (
     <div className={`${pageNames === PageNames.Main ? 'cities__places-list places__list tabs__content' : 'favorites__places'}`}>

@@ -1,4 +1,5 @@
 
+import { getRandomInteger} from '../utils';
 import { FullOfferType } from '../types/full-offer';
 import { offers } from './offers';
 
@@ -45,15 +46,15 @@ const fullOffer:FullOfferType = {
     'Dishwasher'
   ],
   host: {
-    isPro: true,
+    isPro: Boolean(getRandomInteger(0, 1)),
     userName: 'Измученный Антон',
     avatarUrl: 'https://16.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
   },
-  isPremium: true,
-  isFavorite: false,
-  rating: 1.4,
-  bedrooms: 4,
-  maxAdults: 8
+  isPremium: Boolean(getRandomInteger(0, 1)),
+  isFavorite: Boolean(getRandomInteger(0, 1)),
+  rating: Number((getRandomInteger(0, 50) * 0.1).toFixed(1)),
+  bedrooms: getRandomInteger(1, 5),
+  maxAdults: getRandomInteger(1, 10)
 };
 
 export {fullOffer};

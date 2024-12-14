@@ -13,6 +13,11 @@ type FullOfferType = ListOfferType&{
   type BookmarkAttributesType = {
     [key: string]: {width: number; height: number};
   }
+
+  type UserProfileType = {
+    [key: string]: {className: string; width: number; height: number};
+  }
+
   type StyleType ={
     width: string;
   }
@@ -21,4 +26,5 @@ type FullOfferType = ListOfferType&{
     [key: string]: {style: StyleType; ratingVisibility: boolean};
   }
 
-export type {FullOfferType, BookmarkAttributesType, RatingAttributesType};
+export type {FullOfferType, BookmarkAttributesType,
+  RatingAttributesType, UserProfileType};

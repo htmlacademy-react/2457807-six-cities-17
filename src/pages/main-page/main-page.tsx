@@ -30,7 +30,7 @@ function MainPage({offers}:MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+                <b className="places__found">{offersCount} {offersCount > 1 ? 'places' : 'place'} to stay in Amsterdam</b>
                 <SortForm />
                 <PlaceCardsList offers = {offers} pageNames= {PageNames.Main}/>
               </section>

@@ -1,4 +1,4 @@
-import { BookmarkAttributesType, RatingAttributesType } from './types/full-offer';
+import { BookmarkAttributesType, RatingAttributesType, UserProfileType } from './types/full-offer';
 
 const HeaderLogoAttributes = {
   className: 'header__logo',
@@ -59,5 +59,18 @@ const RatingAttributes: RatingAttributesType = {
   }
 } as const;
 
+const UserProfileAttributes:UserProfileType = {
+  'host': {
+    className: 'host',
+    width: 74,
+    height: 74
+  },
+  'reviews': {
+    className: 'reviews',
+    width: 54,
+    height: 54
+  }
+} as const;
+
 export { HeaderLogoAttributes, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes, FooterLogoAttributes };
+  RatingAttributes, FooterLogoAttributes, UserProfileAttributes };

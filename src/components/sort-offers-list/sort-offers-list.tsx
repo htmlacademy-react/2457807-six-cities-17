@@ -1,5 +1,5 @@
 import SortOffersItem from '../sort-offers-item/sort-offers-item';
-import { PLACES_OPTIONS } from '../../constans';
+import { PLACES_OPTIONS } from '../../constants';
 
 function SortOffersList(): JSX.Element {
   const sortOptionsList = PLACES_OPTIONS.map(

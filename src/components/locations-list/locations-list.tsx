@@ -1,6 +1,6 @@
 
-import { CitiesType, TypesPage } from '../../types/list-offer';
-import { DEFAULT_ACTIVE_LOCATION } from '../../constans';
+import { CitiesType, TypesPage } from '../../types/offers';
+import { DEFAULT_ACTIVE_LOCATION } from '../../constants';
 import LocationsItemLink from '../locations-item-link/locations-item-link';
 
 type LocationsProps = {

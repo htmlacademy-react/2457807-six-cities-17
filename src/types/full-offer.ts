@@ -1,4 +1,4 @@
-import { ListOfferType } from './list-offer';
+import { ListOfferType } from './offers';
 import { UserType } from './authorized-user';
 
 type FullOfferType = ListOfferType&{

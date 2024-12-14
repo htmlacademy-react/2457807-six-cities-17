@@ -1,9 +1,7 @@
-// import BookmarkButton from '../../bookmark-button/bookmark-button';
-// import Mark from '../../common/mark/mark';
-// import Rating from '../../common/rating/rating';
 import { Link } from 'react-router-dom';
-import { AppRoute, PlaceCardAttributes } from '../../constans';
-import { ListOfferType } from '../../types/list-offer';
+import { AppRoute } from '../../constants';
+import { PlaceCardAttributes } from '../../style-options';
+import { ListOfferType } from '../../types/offers';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Rating from '../rating/rating';
 

@@ -1,16 +1,17 @@
-import { HeaderLogoAttributes } from '../../constans';
+import {PageNames } from '../../constants';
+import { HeaderLogoAttributes } from '../../style-options';
 import User from '../../mock/users';
 import HeaderNavigation from '../header-navigation/header-navigation';
 import Logo from '../logo/logo';
-import { offers } from '../../mock/list-offers';
+import { offers } from '../../mock/offers';
 
 
-type headerProps = {
+type HeaderProps = {
   pageNames: string;
 }
 
-function Header({pageNames }:headerProps): JSX.Element {
-  const headerNavigationEmpty = (pageNames === 'login') ?
+function Header({pageNames }:HeaderProps): JSX.Element {
+  const headerNavigationEmpty = pageNames === PageNames.Login ?
     '' : <HeaderNavigation User={User} Offers = {offers}/>;
   return (
     <header className="header">

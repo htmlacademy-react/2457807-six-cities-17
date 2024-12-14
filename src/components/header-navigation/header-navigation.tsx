@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../constans';
+import { AppRoute } from '../../constants';
 import { AuthorizationType} from '../../types/authorized-user';
-import { ListOfferType } from '../../types/list-offer';
+import { ListOfferType } from '../../types/offers';
 
 type headerNavigationProps = {
   User: AuthorizationType;
@@ -14,15 +14,19 @@ function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
     return (
       <>
         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-        <span className="header__user-name user__name">{email}</span>
-        <span className="header__favorite-count">{Offers.filter((offer) => offer.isFavorite).length}</span>
+        <Link className="header__nav-link" to={AppRoute.Favorites}>
+          <span className="header__user-name user__name">{email}</span>
+          <span className="header__favorite-count">{Offers.filter((offer) => offer.isFavorite).length}</span>
+        </Link>
       </>
     );
   }
   return (
     <>
       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-      <span className="header__login">Sign in</span>
+      <Link className="header__nav-link" to={AppRoute.Login}>
+        <span className="header__login">Sign in</span>
+      </Link>
     </>
   );
 }
@@ -30,7 +34,7 @@ function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
 function Item(): JSX.Element {
   return (
     <li className="header__nav-item">
-      <Link className="header__nav-link" to={AppRoute.Root}>
+      <Link className="header__nav-link" to={AppRoute.Login}>
         <span className="header__signout">Sign out</span>
       </Link>
     </li>

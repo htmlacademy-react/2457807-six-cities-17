@@ -1,6 +1,6 @@
 import PlaceCardItem from '../places-card-item/places-card-item';
-import { ListOfferType } from '../../types/list-offer';
-import { PageNames } from '../../constans';
+import { ListOfferType } from '../../types/offers';
+import { PageNames } from '../../constants';
 
 
 type placeCardProps = {

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, PageNames } from '../../constans';
+import { AppRoute, PageNames } from '../../constants';
 
 
 type LocationLinkProps = {
   location: string;
-  pageNames: string;
+  pageNames: typeof PageNames[keyof typeof PageNames];
   isActive?: boolean;
 };
 

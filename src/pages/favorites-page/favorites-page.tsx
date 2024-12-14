@@ -1,10 +1,10 @@
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { PageNames } from '../../constans';
-import FavoritesList from '../../components/favorites-list/favorites-card-list';
-import { FooterLogoAttributes } from '../../constans';
-import { offers } from '../../mock/list-offers';
+import { PageNames } from '../../constants';
+import FavoritesList from '../../components/favorites-card-list/favorites-card-list';
+import { FooterLogoAttributes } from '../../style-options';
+import { offers } from '../../mock/offers';
 import { Helmet } from 'react-helmet-async';
 
 function FavoriteEmpty(): JSX.Element {
@@ -25,7 +25,7 @@ function FavoriteEmpty(): JSX.Element {
 
 function FavoritesPage(): JSX.Element{
   const pageNames:string = PageNames.Favorites;
-  const offersFavorite = offers.filter((offer) => offer.isFavorite === true);
+  const offersFavorite = offers.filter((offer) => offer.isFavorite);
   const offersFavoriteCount = offersFavorite.length;
   return (
     <div className= {offersFavoriteCount !== 0 ? 'page' : 'page page--favorites-empty'}>

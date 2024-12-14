@@ -1,9 +1,9 @@
 import { getRandomArrayElement, getRandomInteger} from '../utils';
-import { ListOfferType } from '../types/list-offer';
-import { LOCATIONS, APARTMENT_NAMES, TITLE, coordinates} from '../constans';
-import { APARTMENTS_IMAGE_PLACE_CARD } from '../constans';
+import { ListOfferType } from '../types/offers';
+import { LOCATIONS, APARTMENT_NAMES, TITLE, coordinates} from '../constants';
+import { APARTMENTS_IMAGE_PLACE_CARD } from '../constants';
 
-const OFFERS_NUMBER = 100;
+const OFFERS_NUMBER = 30;
 
 const getRandomListOffer = () : ListOfferType => ({
   id: crypto.randomUUID(),

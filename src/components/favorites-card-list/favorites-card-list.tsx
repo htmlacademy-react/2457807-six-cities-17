@@ -1,5 +1,5 @@
-import FavoritesCardItem from '../favorites-item/favorites-card-item';
-import { ListOfferType } from '../../types/list-offer';
+import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
+import { ListOfferType } from '../../types/offers';
 
 
 type OffersFavoriteProps = {

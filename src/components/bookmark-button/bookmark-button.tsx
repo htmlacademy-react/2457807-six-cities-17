@@ -1,5 +1,5 @@
-import { BookmarkAttributes } from '../../constans';
-import { ListOfferType } from '../../types/list-offer';
+import { BookmarkAttributes } from '../../style-options';
+import { ListOfferType } from '../../types/offers';
 
 
 type BookmarkButtonProps = {
@@ -8,9 +8,9 @@ type BookmarkButtonProps = {
 }
 
 function BookmarkButton({bookmarkClass, cardPlace}: BookmarkButtonProps): JSX.Element{
-  const isActive = cardPlace?.isFavorite;
+  const isSelectedFavorite = cardPlace?.isFavorite;
   return (
-    <button className={`${bookmarkClass}__bookmark-button ${isActive ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
+    <button className={`${bookmarkClass}__bookmark-button ${isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
       <svg className={`${bookmarkClass}__bookmark-icon`} width={BookmarkAttributes[bookmarkClass].width} height={BookmarkAttributes[bookmarkClass].height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

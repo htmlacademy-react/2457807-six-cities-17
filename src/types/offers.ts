@@ -1,4 +1,4 @@
-import { LOCATIONS } from '../constans';
+import { LOCATIONS } from '../constants';
 
 declare global {
   interface ObjectConstructor {
@@ -10,8 +10,6 @@ declare global {
 }
 
 type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
-// type CitiesType = 'Paris' | 'Cologne' | 'Brussels' |
-// 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
 type LocationType = {
     'latitude': number;

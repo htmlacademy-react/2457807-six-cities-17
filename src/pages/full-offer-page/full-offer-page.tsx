@@ -3,11 +3,11 @@ import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
-import PlaceCardsList from '../../components/places-card-list/places-card-list';
-import { PageNames, starsTitle } from '../../constans';
+import PlaceCardsList from '../../components/place-card-list/place-card-list';
+import { PageNames, starsTitle } from '../../constants';
 import { fullOffer } from '../../mock/full-offer';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
-import { offers } from '../../mock/list-offers';
+import { offers } from '../../mock/offers';
 
 
 type OfferGoodItemProps = {
@@ -22,11 +22,11 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
   );
 }
 
-type indexRatingStars = {
+type IndexRatingStars = {
   index: number;
 }
 
-function FormRatingStars({index}:indexRatingStars):JSX.Element{
+function FormRatingStars({index}:IndexRatingStars):JSX.Element{
   return(
     <>
       <input className="form__rating-input visually-hidden" name="rating" value={index} id= {`${index}-stars`} type="radio"/>
@@ -40,7 +40,7 @@ function FormRatingStars({index}:indexRatingStars):JSX.Element{
 }
 
 
-function OfferPage(): JSX.Element{
+function FullOfferPage(): JSX.Element{
   return (
     <div className="page">
       <Helmet>
@@ -178,4 +178,4 @@ function OfferPage(): JSX.Element{
   );
 }
 
-export default OfferPage;
+export default FullOfferPage;

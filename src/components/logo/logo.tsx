@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../constans';
+import { AppRoute } from '../../constants';
 
 type LogoAttributesType = {
   className: string;
    width: number;
    height: number;
     };
+
     type LogoProps = {
       logoAttributes: LogoAttributesType;
     }

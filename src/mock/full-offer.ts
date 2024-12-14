@@ -1,6 +1,6 @@
 
-import { FullOfferType } from '../types/offer';
-import { offers } from './list-offers';
+import { FullOfferType } from '../types/full-offer';
+import { offers } from './offers';
 
 const fullOffer:FullOfferType = {
   id: offers[0].id,

@@ -1,4 +1,4 @@
-import { RatingAttributes } from '../../constans';
+import { RatingAttributes } from '../../style-options';
 type RatingProps = {
     ratingClass: string;
     ratingValue: number;

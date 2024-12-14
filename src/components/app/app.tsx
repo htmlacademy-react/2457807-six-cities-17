@@ -1,12 +1,12 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../constans';
+import { AppRoute, AuthorizationStatus } from '../../constants';
 import MainPage from '../../pages/main-page/main-page';
-import OfferPage from '../../pages/offer-page/offer-page';
+import FullOfferPage from '../../pages/full-offer-page/full-offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute, NoPrivateRoute } from '../private-route/private-route';
-import { offers } from '../../mock/list-offers';
+import { offers } from '../../mock/offers';
 import User from '../../mock/users';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -31,7 +31,7 @@ function App(): JSX.Element {
           />
           <Route
             path = {AppRoute.Offer}
-            element = {<OfferPage />}
+            element = {<FullOfferPage />}
           />
           <Route
             path = {AppRoute.Login}

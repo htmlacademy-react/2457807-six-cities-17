@@ -107,8 +107,18 @@ const coordinates = [[ 48.85661, 2.351499],	[ 48.868610000000004, 2.342499],	[ 4
   [ 51.241402, 6.7853140000000005],	[ 51.235402, 6.791314],	[ 51.237402, 6.764314000000001],
 ];
 
+const DateFormat = {
+  DATE_FORMATE: 'MMMM YYYY',
+  TIME_FORMAT: 'HH:mm',
+  DATE_FORMATE_FORM: 'DD/MM/YY HH:mm',
+  DATE_FORMATE_TRIP_INFO: 'DD MMM YYYY',
+};
+
+const DATE_NOW = new Date().toISOString();
+
 export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   CommentLengthLimit, TITLE, previewImage, galleryImages,
   coordinates, DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, APARTMENTS_IMAGE_PLACE_CARD,
-  AppRoute, AuthorizationStatus, starsTitle};
+  AppRoute, AuthorizationStatus, starsTitle,
+  DateFormat, DATE_NOW};

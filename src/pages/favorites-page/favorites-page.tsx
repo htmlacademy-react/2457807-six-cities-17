@@ -25,7 +25,7 @@ function FavoriteEmpty(): JSX.Element {
 
 function FavoritesPage(): JSX.Element{
   const pageNames:string = PageNames.Favorites;
-  const offersFavorite = offers.filter((offer) => offer.isFavorite);
+  const offersFavorite = offers.filter((offer) => offer.isFavorite).sort((firsCity, secondCity) => firsCity.city.name.localeCompare(secondCity.city.name));
   const offersFavoriteCount = offersFavorite.length;
   return (
     <div className= {offersFavoriteCount !== 0 ? 'page' : 'page page--favorites-empty'}>

@@ -1,5 +1,5 @@
-import fullOfferComments from '../../mock/full-offer-comments';
 import ReviewsItem from '../reviews-item/reviews-item';
+import fullOfferComments from '../../mock/full-offer-comments';
 
 function ReviewsList():JSX.Element{
   const fullSortComments = [...fullOfferComments.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())];

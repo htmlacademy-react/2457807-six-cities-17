@@ -1,17 +1,15 @@
+import { LOCATIONS, PageNames } from '../../constants';
+import { ListOfferType } from '../../types/offers';
+import MainPageEmpty from '../main-empty-page/main-empty-page';
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
 import SortForm from '../../components/sort-form/sort-form';
 import PlaceCardsList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
-import { LOCATIONS, PageNames } from '../../constants';
-import { ListOfferType } from '../../types/offers';
-import MainPageEmpty from '../main-empty-page/main-empty-page';
-
 
 type MainProps = {
 offers: ListOfferType[];
 };
-
 
 function MainPage({offers}:MainProps): JSX.Element {
   const offersCount = offers.filter((offer) => offer.city.name === 'Amsterdam').length;

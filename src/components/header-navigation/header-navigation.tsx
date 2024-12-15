@@ -59,3 +59,4 @@ function HeaderNavigation({User, Offers}:headerNavigationProps):JSX.Element{
 }
 
 export default HeaderNavigation;
+

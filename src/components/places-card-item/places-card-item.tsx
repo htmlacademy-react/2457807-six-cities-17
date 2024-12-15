@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { ListOfferType } from '../../types/offers';
 import { AppRoute } from '../../constants';
 import { PlaceCardAttributes } from '../../style-options';
-import { ListOfferType } from '../../types/offers';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Rating from '../rating/rating';
 
@@ -57,4 +57,5 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
   );
 }
 export default PlaceCardItem;
+
 

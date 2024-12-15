@@ -1,6 +1,6 @@
-import PlaceCardItem from '../places-card-item/places-card-item';
 import { ListOfferType } from '../../types/offers';
 import { PageNames } from '../../constants';
+import PlaceCardItem from '../places-card-item/places-card-item';
 
 type placeCardProps = {
   pageNames: string;
@@ -22,3 +22,4 @@ function PlaceCardsList({pageNames, offers}:placeCardProps): JSX.Element {
 }
 
 export default PlaceCardsList;
+

@@ -1,5 +1,5 @@
-import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
 import { ListOfferType } from '../../types/offers';
+import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
 
 
 type OffersFavoriteProps = {
@@ -23,10 +23,6 @@ function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.
           offersFavorite = {groupByList[key]}
           pageNames = {pageNames}
         />))}
-      {/* <FavoritesCardItem
-        offersFavorite = {offersFavorite}
-        pageNames = {pageNames}
-      /> */}
     </ul>
   );
 }

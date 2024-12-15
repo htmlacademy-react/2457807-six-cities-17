@@ -15,3 +15,4 @@ function OfferGallery({imageGallery}:OfferGalleryProps):JSX.Element{
 }
 
 export default OfferGallery;
+

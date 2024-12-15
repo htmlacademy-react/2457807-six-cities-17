@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
+import { UserProfileAttributes } from '../../style-options';
+import { PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import PlaceCardsList from '../../components/place-card-list/place-card-list';
-import { PageNames } from '../../constants';
-import { fullOffer } from '../../mock/full-offer';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
-import { offers } from '../../mock/offers';
 import FormReviews from '../../components/form-reviews/form-reviews';
 import UserProfile from '../../components/user-profile/user-profile';
-import { UserProfileAttributes } from '../../style-options';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import { fullOffer } from '../../mock/full-offer';
+import { offers } from '../../mock/offers';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;

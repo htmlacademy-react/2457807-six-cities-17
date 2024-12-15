@@ -1,11 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+import { PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { PageNames } from '../../constants';
 import FavoritesList from '../../components/favorites-card-list/favorites-card-list';
 import { FooterLogoAttributes } from '../../style-options';
 import { offers } from '../../mock/offers';
-import { Helmet } from 'react-helmet-async';
+
 
 function FavoriteEmpty(): JSX.Element {
   return (

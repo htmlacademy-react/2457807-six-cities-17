@@ -9,3 +9,4 @@ function Map({mapClass}: MapProps):JSX.Element {
 }
 
 export default Map;
+

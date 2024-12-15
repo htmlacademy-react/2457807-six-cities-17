@@ -5,7 +5,7 @@ const User: AuthorizedUserType = {
   avatarUrl: 'https://url-to-image/image.png',
   isPro: false,
   email: 'Oliver.conner@gmail.com',
-  token: ''
+  token: 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
 };
 
 export default User;

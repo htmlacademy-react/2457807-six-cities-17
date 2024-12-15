@@ -2,14 +2,13 @@ import PlaceCardItem from '../places-card-item/places-card-item';
 import { ListOfferType } from '../../types/offers';
 import { PageNames } from '../../constants';
 
-
 type placeCardProps = {
   pageNames: string;
   offers: ListOfferType[];
 }
 
 function PlaceCardsList({pageNames, offers}:placeCardProps): JSX.Element {
-  const cardsList = offers.filter((offer) => offer.city.name === 'Amsterdam').map((offer) => (
+  const cardsList = offers.map((offer) => (
     <PlaceCardItem
       cardPlace={offer}
       pageNames = {pageNames}

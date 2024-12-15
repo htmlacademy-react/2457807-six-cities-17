@@ -47,12 +47,10 @@ function HeaderNavigation({User, Offers}:headerNavigationProps):JSX.Element{
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Root}>
-            <UserAuthorized
-              User={User}
-              Offers = {Offers}
-            />
-          </Link>
+          <UserAuthorized
+            User={User}
+            Offers = {Offers}
+          />
         </li>
         {token && Item()}
       </ul>

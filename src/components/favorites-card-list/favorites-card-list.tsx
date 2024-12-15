@@ -7,14 +7,26 @@ type OffersFavoriteProps = {
   pageNames: string;
 }
 
-
 function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.Element {
+  const groupByList = Object.groupBy(offersFavorite, ({city}) => city.name);
+  Object.keys(groupByList).map((cityName) => (
+    <FavoritesCardItem
+      key = {crypto.randomUUID()}
+      offersFavorite = {groupByList[cityName]}
+      pageNames = {pageNames}
+    />));
   return (
     <ul className="favorites__list">
-      <FavoritesCardItem
+      {Object.keys(groupByList).map((key) => (
+        <FavoritesCardItem
+          key = {crypto.randomUUID()}
+          offersFavorite = {groupByList[key]}
+          pageNames = {pageNames}
+        />))}
+      {/* <FavoritesCardItem
         offersFavorite = {offersFavorite}
         pageNames = {pageNames}
-      />
+      /> */}
     </ul>
   );
 }

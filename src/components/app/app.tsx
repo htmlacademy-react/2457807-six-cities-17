@@ -5,7 +5,7 @@ import FullOfferPage from '../../pages/full-offer-page/full-offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { PrivateRoute, NoPrivateRoute } from '../private-route/private-route';
+import { PrivateRoute } from '../private-route/private-route';
 import { offers } from '../../mock/offers';
 import User from '../../mock/users';
 import { HelmetProvider } from 'react-helmet-async';
@@ -24,7 +24,7 @@ function App(): JSX.Element {
           <Route
             path = {AppRoute.Favorites}
             element = {
-              <PrivateRoute authorizationStatus= {authorizationStatus}>
+              <PrivateRoute appRoute = {AppRoute.Favorites} authorizationStatus= {authorizationStatus}>
                 <FavoritesPage />
               </PrivateRoute>
             }
@@ -36,9 +36,9 @@ function App(): JSX.Element {
           <Route
             path = {AppRoute.Login}
             element = {
-              <NoPrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute appRoute = {AppRoute.Login} authorizationStatus={authorizationStatus}>
                 <LoginPage />
-              </NoPrivateRoute>
+              </PrivateRoute>
             }
           />
           <Route

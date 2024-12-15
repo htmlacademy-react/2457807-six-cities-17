@@ -36,7 +36,7 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
           />
         </Link>
       </div>
-      <div className={`${cardPlace.isFavorite ? 'favorites__card-info' : ''}place-card__info`}>
+      <div className={`${cardPlace.isFavorite ? 'favorites__card-info' : ''} place-card__info`}>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
             <b className='place-card__price-value'>&euro;{cardPlace.price}</b>

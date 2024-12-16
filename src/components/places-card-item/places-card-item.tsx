@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import { ListOfferType } from '../../types/offers';
 import { AppRoute } from '../../constants';
 import { PlaceCardAttributes } from '../../style-options';
@@ -8,6 +8,7 @@ import Rating from '../rating/rating';
 type PlaceCardItemProps = {
     cardPlace: ListOfferType;
     pageNames: string;
+    onHandleActiveOfferChange?: (id: string | null) => void;
 }
 type MarkProps ={
     markClass: string;
@@ -22,13 +23,18 @@ function Mark({markClass}: MarkProps):JSX.Element{
   );
 }
 
-function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Element {
+function PlaceCardItem({ cardPlace, pageNames, onHandleActiveOfferChange}: PlaceCardItemProps): JSX.Element {
 
   return (
-    <article className={`${pageNames}__card place-card`}>
+    <article
+      className={`${pageNames}__card place-card`}
+      onMouseEnter = {() => onHandleActiveOfferChange && onHandleActiveOfferChange(cardPlace.id)}
+      onMouseLeave = {() => onHandleActiveOfferChange && onHandleActiveOfferChange(null)}
+    >
+
       {cardPlace.isPremium && <Mark markClass='place-card' />}
       <div className={`${pageNames}__image-wrapper place-card__image-wrapper`}>
-        <Link to={AppRoute.Offer}>
+        <Link to={generatePath(AppRoute.Offer, {offerId: cardPlace.id})}>
           <img className='place-card__image' src={cardPlace.previewImage}
             width={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].width : PlaceCardAttributes['cities'].width}
             height={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].height : PlaceCardAttributes['cities'].height}
@@ -49,7 +55,7 @@ function PlaceCardItem({ cardPlace, pageNames }: PlaceCardItemProps): JSX.Elemen
           ratingValue = {cardPlace.rating}
         />
         <h2 className='place-card__name'>
-          <Link to={AppRoute.Offer}>{cardPlace.title}</Link>
+          <Link to={generatePath(AppRoute.Offer, {offerId: cardPlace.id})}>{cardPlace.title}</Link>
         </h2>
         <p className='place-card__type'>{cardPlace.type}</p>
       </div>

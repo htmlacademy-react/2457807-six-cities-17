@@ -20,6 +20,7 @@ const PageNames:TypesPage = {
   Offer: 'offer',
   Favorites: 'favorites',
   Login: 'login',
+  NearPlaces: 'near-places',
 } as const;
 
 const AuthorizationStatus = {

@@ -8,7 +8,7 @@ function NotFoundPage(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>Нет такой страницы неудачники!</title>
+        <title>Вернись на главную страницу и никому не рассказывай что был на этой!</title>
       </Helmet>
       <Header pageNames = {PageNames.Login}/>
 

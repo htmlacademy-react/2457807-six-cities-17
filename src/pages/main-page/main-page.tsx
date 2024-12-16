@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { LOCATIONS, PageNames } from '../../constants';
 import { ListOfferType } from '../../types/offers';
 import MainPageEmpty from '../main-empty-page/main-empty-page';
@@ -12,6 +13,10 @@ offers: ListOfferType[];
 };
 
 function MainPage({offers}:MainProps): JSX.Element {
+  const [isActiveOffer, setiIsActiveOffer] = useState<string | null>(null);
+  const handleActiveOfferChange = (id:string | null) =>{
+    setiIsActiveOffer(id);
+  };
   const offersCount = offers.filter((offer) => offer.city.name === 'Amsterdam').length;
   return (
     <div className="page page--gray page--main">
@@ -30,7 +35,13 @@ function MainPage({offers}:MainProps): JSX.Element {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersCount} {offersCount > 1 ? 'places' : 'place'} to stay in Amsterdam</b>
                 <SortForm />
-                <PlaceCardsList offers = {offers} pageNames= {PageNames.Main}/>
+                <div className={'cities__places-list places__list tabs__content'}>
+                  <PlaceCardsList
+                    onHandleActiveOfferChange = {handleActiveOfferChange}
+                    offers = {offers}
+                    pageNames= {PageNames.Main}
+                  />
+                </div>
               </section>
               <div className="cities__right-section">
                 <Map mapClass='cities'/>

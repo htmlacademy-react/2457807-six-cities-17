@@ -29,6 +29,7 @@ type LocationType = {
     'Offer': string;
     'Favorites': string;
     'Login': string;
+     'NearPlaces': string;
   };
 
   type ListOfferType = {

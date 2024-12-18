@@ -24,7 +24,8 @@ function MainPage({offers}:MainProps): JSX.Element {
     }
     setCurrentCity(city);
   };
-  const offersCount = offers.filter((offer) => offer.city.name === currentCity).length;
+  const filteredOfferByCity = offers.filter((offer) => offer.city.name === currentCity);
+  const offersCount = filteredOfferByCity.length;
   return (
     <div className="page page--gray page--main">
       <Header pageNames= {PageNames.Main} />
@@ -50,7 +51,7 @@ function MainPage({offers}:MainProps): JSX.Element {
                 <div className={'cities__places-list places__list tabs__content'}>
                   <PlaceCardsList
                     onHandleActiveOfferChange = {handleActiveOfferChange}
-                    offers = {offers}
+                    offers = {filteredOfferByCity}
                     pageNames= {PageNames.Main}
                   />
                 </div>

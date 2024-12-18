@@ -1,22 +1,25 @@
 
-import { CitiesType, TypesPage } from '../../types/offers';
-import { DEFAULT_ACTIVE_LOCATION } from '../../constants';
+import { CitiesType, CityKeys, TypesPage } from '../../types/offers';
 import LocationsItemLink from '../locations-item-link/locations-item-link';
 
-type LocationsProps = {
+type LocationsListProps = {
   locations: CitiesType;
   pageNames: TypesPage;
+  onCurrentCityChange: (city: CityKeys) => void;
+   currentCity: CityKeys;
 };
 
 type LocationItemProps = {
-   location: string;
+   location: CityKeys;
    pageNames: TypesPage;
-   isActive: boolean;};
+   isActive: boolean;
+   onCurrentCityChange: (city: CityKeys) => void;
+  };
 
 function LocationsItem(props: LocationItemProps): JSX.Element {
-  const { location, isActive, pageNames } = props;
+  const { location, isActive, pageNames, onCurrentCityChange } = props;
   return (
-    <li className="locations__item">
+    <li className="locations__item" onClick = {() => onCurrentCityChange(location)}>
       <LocationsItemLink
         location={location}
         pageNames={pageNames.Main}
@@ -26,16 +29,17 @@ function LocationsItem(props: LocationItemProps): JSX.Element {
   );
 }
 
-function LocationsList({locations, pageNames}:LocationsProps): JSX.Element {
+function LocationsList({locations, pageNames, currentCity, onCurrentCityChange}:LocationsListProps): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {
-        locations.map((location:string) => (
+        locations.map((location) => (
           <LocationsItem
             key={crypto.randomUUID()}
             pageNames={pageNames}
             location={location}
-            isActive={location === DEFAULT_ACTIVE_LOCATION}
+            isActive={location === currentCity}
+            onCurrentCityChange={onCurrentCityChange}
           />
         ))
       }

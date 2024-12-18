@@ -1,8 +1,9 @@
-import { UserProfileAttributes } from '../../style-options';
 import { CommentType } from '../../types/comment';
+import { UserProfileAttributes } from '../../style-options';
+import { formatDate } from '../../date';
 import Rating from '../rating/rating';
 import UserProfile from '../user-profile/user-profile';
-import { formatDate } from '../../date';
+
 
 type ReviewsItemProps = {
     comment: CommentType;

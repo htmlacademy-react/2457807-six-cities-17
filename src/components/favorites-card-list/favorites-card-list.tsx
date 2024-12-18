@@ -1,5 +1,5 @@
-import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
 import { ListOfferType } from '../../types/offers';
+import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
 
 
 type OffersFavoriteProps = {
@@ -9,12 +9,6 @@ type OffersFavoriteProps = {
 
 function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.Element {
   const groupByList = Object.groupBy(offersFavorite, ({city}) => city.name);
-  Object.keys(groupByList).map((cityName) => (
-    <FavoritesCardItem
-      key = {crypto.randomUUID()}
-      offersFavorite = {groupByList[cityName]}
-      pageNames = {pageNames}
-    />));
   return (
     <ul className="favorites__list">
       {Object.keys(groupByList).map((key) => (
@@ -23,10 +17,6 @@ function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.
           offersFavorite = {groupByList[key]}
           pageNames = {pageNames}
         />))}
-      {/* <FavoritesCardItem
-        offersFavorite = {offersFavorite}
-        pageNames = {pageNames}
-      /> */}
     </ul>
   );
 }

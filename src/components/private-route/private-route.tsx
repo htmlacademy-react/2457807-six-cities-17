@@ -25,3 +25,4 @@ function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 }
 
 export { PrivateRoute};
+

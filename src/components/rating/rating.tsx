@@ -1,4 +1,5 @@
 import { RatingAttributes } from '../../style-options';
+
 type RatingProps = {
     ratingClass: string;
     ratingValue: number;
@@ -17,3 +18,4 @@ function Rating({ratingClass, ratingValue}: RatingProps):JSX.Element{
   );
 }
 export default Rating;
+

@@ -1,6 +1,7 @@
+import { ListOfferType } from '../../types/offers';
 import LocationsItemLink from '../locations-item-link/locations-item-link';
 import PlaceCardsList from '../place-card-list/place-card-list';
-import { ListOfferType } from '../../types/offers';
+
 
 type OffersFavoriteItemProps = {
   offersFavorite: ListOfferType[];

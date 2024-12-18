@@ -17,12 +17,13 @@ type LocationType = {
     'zoom': number;
   };
 
+  type CitiesType = typeof LOCATIONS;
+  type CityKeys = CitiesType[number];
+
   type CityType = {
     'name': string;
     'location': LocationType;
   };
-
-  type CitiesType = typeof LOCATIONS;
 
   type TypesPage = {
     'Main': string;
@@ -45,7 +46,7 @@ type LocationType = {
     'previewImage'?: string;
   };
 
-export type { ListOfferType, CityType, CitiesType,
+export type { ListOfferType, CityType, CitiesType, CityKeys,
   LocationType, TypesPage, OfferType };
 
 

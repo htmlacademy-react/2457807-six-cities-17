@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { LOCATIONS, PageNames } from '../../constants';
-import { ListOfferType } from '../../types/offers';
+import { DEFAULT_ACTIVE_LOCATION, LOCATIONS, PageNames } from '../../constants';
+import { CityKeys, ListOfferType } from '../../types/offers';
 import MainPageEmpty from '../main-empty-page/main-empty-page';
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
@@ -14,10 +14,17 @@ offers: ListOfferType[];
 
 function MainPage({offers}:MainProps): JSX.Element {
   const [isActiveOffer, setiIsActiveOffer] = useState<string | null>(null);
+  const [currentCity, setCurrentCity] = useState<CityKeys>(DEFAULT_ACTIVE_LOCATION);
   const handleActiveOfferChange = (id:string | null) =>{
     setiIsActiveOffer(id);
   };
-  const offersCount = offers.filter((offer) => offer.city.name === 'Amsterdam').length;
+  const handleCurrentCityChange = (city:CityKeys):void =>{
+    if(city === currentCity) {
+      return;
+    }
+    setCurrentCity(city);
+  };
+  const offersCount = offers.filter((offer) => offer.city.name === currentCity).length;
   return (
     <div className="page page--gray page--main">
       <Header pageNames= {PageNames.Main} />
@@ -25,15 +32,20 @@ function MainPage({offers}:MainProps): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationsList locations={LOCATIONS} pageNames={PageNames} />
+            <LocationsList
+              locations={LOCATIONS}
+              pageNames={PageNames}
+              onCurrentCityChange={handleCurrentCityChange}
+              currentCity={currentCity}
+            />
           </section>
         </div>
         <div className="cities">
-          {offersCount === 0 ? <MainPageEmpty location={LOCATIONS[3]}/> :
+          {offersCount === 0 ? <MainPageEmpty location={currentCity}/> :
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersCount} {offersCount > 1 ? 'places' : 'place'} to stay in Amsterdam</b>
+                <b className="places__found">{offersCount} {offersCount > 1 ? 'places' : 'place'} to stay in {currentCity}</b>
                 <SortForm />
                 <div className={'cities__places-list places__list tabs__content'}>
                   <PlaceCardsList

@@ -34,7 +34,7 @@ const LOCATIONS = [
   'Amsterdam', 'Hamburg', 'Dusseldorf'
 ] as const;
 
-const DEFAULT_ACTIVE_LOCATION = LOCATIONS[3];
+const DEFAULT_ACTIVE_LOCATION = LOCATIONS[0];
 
 
 const APARTMENT_NAMES = [

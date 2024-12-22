@@ -8,7 +8,6 @@ const OFFERS_NUMBER = 30;
 const getRandomListOffer = () : ListOfferType => {
   const cityName = getRandomArrayElement([...LOCATIONS]);
   const cityCoordinate = getRandomArrayElement(CityCoordinate[cityName]);
-  console.log(cityName, cityCoordinate);
   return{
     id: crypto.randomUUID(),
     title: getRandomArrayElement([...TITLE]),

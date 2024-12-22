@@ -12,6 +12,7 @@ import UserProfile from '../../components/user-profile/user-profile';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { fullOffer } from '../../mock/full-offer';
 import { offers } from '../../mock/offers';
+import User from '../../mock/users';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -90,7 +91,7 @@ function FullOfferPage(): JSX.Element{
             </div>
             <section className="offer__reviews reviews">
               <ReviewsList/>
-              <FormReviews/>
+              {User.token ? <FormReviews/> : ''}
             </section>
           </div>
           <Map mapClass={PageNames.Offer}/>

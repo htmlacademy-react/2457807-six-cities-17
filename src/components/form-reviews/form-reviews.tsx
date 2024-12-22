@@ -1,6 +1,7 @@
 import { ChangeEvent} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
+import { CommentLengthLimit } from '../../constants';
 
 type FormDataType = {
   rating: 1 | 2 | 3 | 4 | 5 | null;
@@ -25,7 +26,7 @@ function FormReviews():JSX.Element{
       [target.name]:
         target.name === 'review' ? target.value : Number(target.value),
     }));
-    if (formData.review.length > 50 && formData.review.length <= 300 && formData.rating !== null){
+    if (formData.review.length > CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating !== null){
       setIsButtonSubmetDisabled(false);
     }
   };

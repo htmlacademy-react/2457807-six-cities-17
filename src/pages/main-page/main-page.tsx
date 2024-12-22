@@ -57,6 +57,7 @@ function MainPage({offers}:MainProps): JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
+                {isActiveOffer ? '' : ''}
                 <Map mapClass='cities'/>
               </div>
             </div> }

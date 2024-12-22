@@ -94,7 +94,7 @@ function FullOfferPage(): JSX.Element{
               {User.token ? <FormReviews/> : ''}
             </section>
           </div>
-          <Map mapClass={PageNames.Offer}/>
+          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {offers}/>
         </section>
         <div className="container">
           <section className="near-places places">

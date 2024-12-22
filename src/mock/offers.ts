@@ -16,8 +16,8 @@ const getRandomListOffer = () : ListOfferType => {
     city: {
       name : cityName,
       location: {
-        latitude : Number(CityCoordinate[cityName][0]),
-        longitude : Number(CityCoordinate[cityName][1]),
+        latitude : CityCoordinate[cityName][0][0],
+        longitude : CityCoordinate[cityName][0][1],
         zoom : 13
       }
     },

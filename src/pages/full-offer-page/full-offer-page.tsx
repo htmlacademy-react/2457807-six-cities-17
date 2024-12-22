@@ -27,6 +27,7 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
+  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,3);
   return (
     <div className="page">
       <Helmet>
@@ -94,7 +95,7 @@ function FullOfferPage(): JSX.Element{
               {User.token ? <FormReviews/> : ''}
             </section>
           </div>
-          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {offers}/>
+          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {filteredOfferByCity}/>
         </section>
         <div className="container">
           <section className="near-places places">

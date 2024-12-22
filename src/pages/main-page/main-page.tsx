@@ -58,7 +58,7 @@ function MainPage({offers}:MainProps): JSX.Element {
               </section>
               <div className="cities__right-section">
                 {isActiveOffer ? '' : ''}
-                <Map mapClass={PageNames.Main} city = {currentCity} selectedPointId = {isActiveOffer} offers = {offers} />
+                <Map mapClass={PageNames.Main} city = {currentCity} selectedPointId = {isActiveOffer} offers = {filteredOfferByCity} />
               </div>
             </div> }
         </div>

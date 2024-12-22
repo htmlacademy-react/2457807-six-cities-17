@@ -1,5 +1,5 @@
 import {useRef, useEffect} from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import {Icon, LayerGroup, Marker, layerGroup} from 'leaflet';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 import { ListOfferType } from '../../types/offers';
@@ -28,15 +28,29 @@ const currentCustomIcon = new Icon({
 
 function Map(props: MapProps): JSX.Element {
   const {city, offers, selectedPointId, mapClass} = props;
-  const filtredPoints = offers.filter((offer) => offer.city.name === city);
+  // const offers = offers.filter((offer) => offer.city.name === city);
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city, filtredPoints[0]);
+  const map = useMap(mapRef, city, offers[0]);
+
+  const markerLayerNew = useRef<LayerGroup>(layerGroup());
+
+  useEffect(() => {
+    if (map) {
+      map.setView(
+        [offers[0].city.location.latitude,
+          offers[0].city.location.longitude],
+        offers[0].city.location.zoom
+      );
+      markerLayerNew.current.addTo(map);
+      markerLayerNew.current.clearLayers();
+    }
+  }, [offers, map]);
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      filtredPoints.forEach((filtredPoint) => {
+      offers.forEach((filtredPoint) => {
         const marker = new Marker({
           lat: filtredPoint.location.latitude,
           lng: filtredPoint.location.longitude
@@ -54,7 +68,7 @@ function Map(props: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, filtredPoints, selectedPointId]);
+  }, [map, offers, selectedPointId]);
 
   return (
     <section

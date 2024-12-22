@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { ListOfferType } from '../../types/offers';
 import { Pin } from '../../style-options';
 import { MapSize } from '../../style-options';
+import { PageNames } from '../../constants';
 
 type MapProps = {
   mapClass: string;
@@ -55,7 +56,13 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, filtredPoints, selectedPointId]);
 
-  return <div className = {mapClass} style={{height: `${mapClass === 'offer' ? MapSize.Offer : MapSize.MainPage}`}} ref={mapRef}></div>;
+  return (
+    <section
+      className = {mapClass}
+      style={{height: `${mapClass === PageNames.Offer ? MapSize.Offer : MapSize.MainPage}`}}
+      ref={mapRef}
+    >
+    </section>);
 }
 
 export default Map;

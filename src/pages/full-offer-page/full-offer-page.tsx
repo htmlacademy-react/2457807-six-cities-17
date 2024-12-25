@@ -27,7 +27,7 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
-  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,3);
+  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4);
   return (
     <div className="page">
       <Helmet>
@@ -47,7 +47,6 @@ function FullOfferPage(): JSX.Element{
               <div className="offer__mark">
                 <span>Premium</span>
               </div>}
-
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
               Beautiful & luxurious studio at great location

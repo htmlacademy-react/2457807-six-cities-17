@@ -3,7 +3,7 @@ import { ListOfferType } from '../types/offers';
 import { LOCATIONS, APARTMENT_NAMES, TITLE, CityCoordinate} from '../constants';
 import { APARTMENTS_IMAGE_PLACE_CARD } from '../constants';
 
-const OFFERS_NUMBER = 30;
+const OFFERS_NUMBER = 70;
 
 const getRandomListOffer = () : ListOfferType => {
   const cityName = getRandomArrayElement([...LOCATIONS]);

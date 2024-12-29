@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styles from './style.module.css';
-import { AppRoute } from '../../constants';
+import { PageNames, AppRoute } from '../../constants';
 import Header from '../../components/header/header';
-import { PageNames } from '../../constants';
 
 function NotFoundPage(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>Нет такой страницы неудачники!</title>
+        <title>Вернись на главную страницу и никому не рассказывай что был на этой!</title>
       </Helmet>
       <Header pageNames = {PageNames.Login}/>
 

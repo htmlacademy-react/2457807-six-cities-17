@@ -1,5 +1,23 @@
 import { BookmarkAttributesType, RatingAttributesType, UserProfileType } from './types/full-offer';
 
+const MapSize = {
+  MainPage: '100%',
+  Offer: '580px',
+} as const;
+
+const Layer = {
+  Url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+  Attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+} as const;
+
+const Pin = {
+  DefaultUrl: '/img/pin.svg',
+  CurrentUrl: '/img/pin-active.svg',
+  Size: [28, 40] as [number, number],
+  Anchor: [14, 40] as [number, number],
+} as const;
+
 const HeaderLogoAttributes = {
   className: 'header__logo',
   width: 81,
@@ -73,4 +91,5 @@ const UserProfileAttributes:UserProfileType = {
 } as const;
 
 export { HeaderLogoAttributes, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes, FooterLogoAttributes, UserProfileAttributes };
+  RatingAttributes, FooterLogoAttributes, UserProfileAttributes, Pin, Layer,
+  MapSize };

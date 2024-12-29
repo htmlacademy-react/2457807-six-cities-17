@@ -18,3 +18,4 @@ function LocationsItemLink(props: LocationLinkProps): JSX.Element {
 }
 
 export default LocationsItemLink;
+

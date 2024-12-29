@@ -1,9 +1,9 @@
 import {PageNames } from '../../constants';
 import { HeaderLogoAttributes } from '../../style-options';
-import User from '../../mock/users';
 import HeaderNavigation from '../header-navigation/header-navigation';
 import Logo from '../logo/logo';
 import { offers } from '../../mock/offers';
+import User from '../../mock/users';
 
 
 type HeaderProps = {
@@ -28,3 +28,4 @@ function Header({pageNames }:HeaderProps): JSX.Element {
 }
 
 export default Header;
+

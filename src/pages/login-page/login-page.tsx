@@ -1,9 +1,8 @@
+import { Helmet } from 'react-helmet-async';
+import { PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import LocationsItemLink from '../../components/locations-item-link/locations-item-link';
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
-import { PageNames } from '../../constants';
-import { Helmet } from 'react-helmet-async';
-
 
 function LoginPage(): JSX.Element {
   const location = 'Amsterdam';

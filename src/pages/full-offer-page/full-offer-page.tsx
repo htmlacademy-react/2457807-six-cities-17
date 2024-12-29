@@ -1,17 +1,18 @@
 import { Helmet } from 'react-helmet-async';
+import { UserProfileAttributes } from '../../style-options';
+import { PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import PlaceCardsList from '../../components/place-card-list/place-card-list';
-import { PageNames } from '../../constants';
-import { fullOffer } from '../../mock/full-offer';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
-import { offers } from '../../mock/offers';
 import FormReviews from '../../components/form-reviews/form-reviews';
 import UserProfile from '../../components/user-profile/user-profile';
-import { UserProfileAttributes } from '../../style-options';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import { fullOffer } from '../../mock/full-offer';
+import { offers } from '../../mock/offers';
+import User from '../../mock/users';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -26,6 +27,8 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
+  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4).
+    concat(offers.filter((offer) => offer.id === fullOffer.id));
   return (
     <div className="page">
       <Helmet>
@@ -45,7 +48,6 @@ function FullOfferPage(): JSX.Element{
               <div className="offer__mark">
                 <span>Premium</span>
               </div>}
-
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
               Beautiful & luxurious studio at great location
@@ -90,16 +92,16 @@ function FullOfferPage(): JSX.Element{
             </div>
             <section className="offer__reviews reviews">
               <ReviewsList/>
-              <FormReviews/>
+              {User.token ? <FormReviews/> : ''}
             </section>
           </div>
-          <Map mapClass={PageNames.Offer}/>
+          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {filteredOfferByCity}/>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardsList offers = {offers} pageNames= {PageNames.Offer}/>
+              <PlaceCardsList offers = {offers.slice(0, 3)} pageNames= {PageNames.NearPlaces}/>
             </div>
           </section>
         </div>

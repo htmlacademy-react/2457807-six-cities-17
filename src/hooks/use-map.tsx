@@ -10,15 +10,16 @@ function useMap(
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
+  const centerMap = centerPoint.city.location;
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: centerPoint.city.location.latitude,
-          lng: centerPoint.city.location.longitude
+          lat: centerMap.latitude,
+          lng: centerMap.longitude
         },
-        zoom: centerPoint.city.location.zoom
+        zoom: centerMap.zoom
       });
 
       const layer = new TileLayer(
@@ -34,7 +35,7 @@ function useMap(
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city, centerPoint]);
+  }, [mapRef, city, centerMap]);
 
   return map;
 }

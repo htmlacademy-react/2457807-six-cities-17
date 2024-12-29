@@ -4,15 +4,15 @@ import PlaceCardItem from '../places-card-item/places-card-item';
 type placeCardProps = {
   pageNames: string;
   offers: ListOfferType[];
-  onHandleActiveOfferChange?: (id: string | null) => void;
+  onActiveOfferChange?: (id: string | null) => void;
 }
 
-function PlaceCardsList({pageNames, offers, onHandleActiveOfferChange}:placeCardProps): JSX.Element {
+function PlaceCardsList({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element {
   return (
     <>
       {offers.map((offer) => (
         <PlaceCardItem
-          onHandleActiveOfferChange = {onHandleActiveOfferChange}
+          onActiveOfferChange = {onActiveOfferChange}
           cardPlace={offer}
           pageNames = {pageNames}
           key={offer.id}

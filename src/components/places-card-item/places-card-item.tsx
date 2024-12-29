@@ -8,7 +8,7 @@ import Rating from '../rating/rating';
 type PlaceCardItemProps = {
     cardPlace: ListOfferType;
     pageNames: string;
-    onHandleActiveOfferChange?: (id: string | null) => void;
+    onActiveOfferChange?: (id: string | null) => void;
 }
 type MarkProps ={
     markClass: string;
@@ -23,13 +23,13 @@ function Mark({markClass}: MarkProps):JSX.Element{
   );
 }
 
-function PlaceCardItem({ cardPlace, pageNames, onHandleActiveOfferChange}: PlaceCardItemProps): JSX.Element {
+function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardItemProps): JSX.Element {
 
   return (
     <article
       className={`${pageNames}__card place-card`}
-      onMouseEnter = {() => onHandleActiveOfferChange && onHandleActiveOfferChange(cardPlace.id)}
-      onMouseLeave = {() => onHandleActiveOfferChange && onHandleActiveOfferChange(null)}
+      onMouseEnter = {() => onActiveOfferChange && onActiveOfferChange(cardPlace.id)}
+      onMouseLeave = {() => onActiveOfferChange && onActiveOfferChange(null)}
     >
 
       {cardPlace.isPremium && <Mark markClass='place-card' />}

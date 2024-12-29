@@ -33,18 +33,19 @@ function Map(props: MapProps): JSX.Element {
   const map = useMap(mapRef, city, offers[0]);
 
   const markerLayerNew = useRef<LayerGroup>(layerGroup());
+  const location = offers[0].city.location;
 
   useEffect(() => {
     if (map) {
       map.setView(
-        [offers[0].city.location.latitude,
-          offers[0].city.location.longitude],
-        offers[0].city.location.zoom
+        [location.latitude,
+          location.longitude],
+        location.zoom
       );
       markerLayerNew.current.addTo(map);
       markerLayerNew.current.clearLayers();
     }
-  }, [offers, map]);
+  }, [location, map]);
 
   useEffect(() => {
     if (map) {

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
 
+const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
+
 type FormDataType = {
   rating: 1 | 2 | 3 | 4 | 5 | null;
   review: string;
@@ -15,8 +17,8 @@ const initialState: FormDataType = {
 
 function FormReviews():JSX.Element{
   const [formData, setFormData] = useState<FormDataType>(initialState);
-  const [isButtonSubmitDisabled, setIsButtonSubmetDisabled] = useState(true);
-  const handleChangeValueForm =
+  const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
+  const handleValueFormChange =
   ({
     target
   }: | ChangeEvent<HTMLTextAreaElement>
@@ -27,35 +29,34 @@ function FormReviews():JSX.Element{
         target.name === 'review' ? target.value : Number(target.value),
     }));
     if (formData.review.length > CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating !== null){
-      setIsButtonSubmetDisabled(false);
+      setIsButtonSubmitDisabled(false);
     }
   };
-  const handleSubmitForm = (evt:ChangeEvent<HTMLFormElement>) =>{
+  const handleFormSubmit = (evt:ChangeEvent<HTMLFormElement>) =>{
     evt.preventDefault();
     setFormData(initialState);
-    setIsButtonSubmetDisabled(true);
+    setIsButtonSubmitDisabled(true);
   };
   return(
     <form
-      onSubmit = {handleSubmitForm}
+      onSubmit = {handleFormSubmit}
       className="reviews__form form"
       action="#" method="post"
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {Array.from({length:5}).map((_, index) =>(
+        {RATING_VALUES.map((value, index) =>(
           <FormRatingStars
-            key={crypto.randomUUID()}
+            key={value}
             index = {5 - index}
-            onChange ={handleChangeValueForm}
-            rating = {formData.rating}
+            onRatingChange ={handleValueFormChange}
           />))}
       </div>
       <textarea
         className="reviews__textarea form__textarea"
         id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange = {handleChangeValueForm}
+        onChange = {handleValueFormChange}
         value = {formData.review}
       />
       <div className="reviews__button-wrapper">

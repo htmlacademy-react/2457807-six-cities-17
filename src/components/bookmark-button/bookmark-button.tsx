@@ -9,7 +9,7 @@ type BookmarkButtonProps = {
 
 function BookmarkButton({bookmarkClass, cardPlace}: BookmarkButtonProps): JSX.Element{
   const isSelectedFavorite = cardPlace?.isFavorite;
-  const handleButtonClick = (cardPlaceFavorite:ListOfferType|undefined):void =>{
+  const handleButtonBookmarkClick = (cardPlaceFavorite:ListOfferType|undefined):void =>{
     if(cardPlaceFavorite?.isFavorite) {
       cardPlaceFavorite.isFavorite = false;
     }
@@ -18,7 +18,7 @@ function BookmarkButton({bookmarkClass, cardPlace}: BookmarkButtonProps): JSX.El
     }
   };
   return (
-    <button onClick = {() => handleButtonClick(cardPlace)} className={`${bookmarkClass}__bookmark-button ${isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
+    <button onClick = {() => handleButtonBookmarkClick(cardPlace)} className={`${bookmarkClass}__bookmark-button ${isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
       <svg className={`${bookmarkClass}__bookmark-icon`} width={BookmarkAttributes[bookmarkClass].width} height={BookmarkAttributes[bookmarkClass].height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

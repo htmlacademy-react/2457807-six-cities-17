@@ -4,7 +4,7 @@ import { FullOfferType } from '../types/full-offer';
 import { offers } from './offers';
 
 const fullOffer:FullOfferType = {
-  id: offers[0].id,
+  id: offers.filter((offer) => offer.city.name === 'Paris')[0].id,
   title: 'Tile House',
   description: 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
   type: 'apartment',

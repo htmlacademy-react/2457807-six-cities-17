@@ -27,7 +27,8 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
-  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4);
+  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4).
+    concat(offers.filter((offer) => offer.id === fullOffer.id));
   return (
     <div className="page">
       <Helmet>

@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import { DEFAULT_ACTIVE_LOCATION, LOCATIONS, PageNames } from '../../constants';
-import { CityKeys, ListOfferType } from '../../types/offers';
+import { LOCATIONS, PageNames } from '../../constants';
+import { CityKeys } from '../../types/offers';
 import MainPageEmpty from '../main-empty-page/main-empty-page';
 import Header from '../../components/header/header';
 import LocationsList from '../../components/locations-list/locations-list';
 import SortForm from '../../components/sort-form/sort-form';
 import PlaceCardsList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { changeLocation } from '../../store/action';
 
-type MainProps = {
-offers: ListOfferType[];
-};
 
-function MainPage({offers}:MainProps): JSX.Element {
+function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const offers = useAppSelector((state) => state.offersList);
+  const currentCity = useAppSelector((state) => state.currentLocations);
   const [isActiveOffer, setiIsActiveOffer] = useState<string | null>(null);
-  const [currentCity, setCurrentCity] = useState<CityKeys>(DEFAULT_ACTIVE_LOCATION);
+
   const handleActiveOfferChange = (id:string | null) =>{
     setiIsActiveOffer(id);
   };
@@ -22,14 +24,14 @@ function MainPage({offers}:MainProps): JSX.Element {
     if(city === currentCity) {
       return;
     }
-    setCurrentCity(city);
+    dispatch(changeLocation(city));
   };
   const filteredOfferByCity = offers.filter((offer) => offer.city.name === currentCity);
   const offersCount = filteredOfferByCity.length;
   return (
     <div className="page page--gray page--main">
       <Header pageNames= {PageNames.Main} />
-      <main className={offersCount === 0 ? 'page__main page__main--index page__main--index-empty' : 'page__main page__main--index'}>
+      <main className={`page__main page__main--index${offersCount > 0 ? '' : ' page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">

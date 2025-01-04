@@ -15,6 +15,7 @@ function NotFoundPage(): JSX.Element {
       <div className={styles.backgroundImageContainer}>
       </div>
       <div className={styles.wrapper}>
+        <h1 className={styles.title}>Жираф - это лошадь выполненная по всем требованиям заказчика!</h1>
         <h1 className={styles.title}>404: С Днем потерянных страниц, сайтоделы!</h1>
         <Link
           className={styles.link}

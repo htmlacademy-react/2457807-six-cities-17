@@ -1,4 +1,3 @@
-
 import { CitiesType, CityKeys, TypesPage } from '../../types/offers';
 import LocationsItemLink from '../locations-item-link/locations-item-link';
 

@@ -8,7 +8,6 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
-import { offers } from '../../mock/offers';
 import User from '../../mock/users';
 
 
@@ -21,7 +20,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path = {AppRoute.Root}
-            element = {<MainPage offers={offers} />}
+            element = {<MainPage/>}
           />
           <Route
             path = {AppRoute.Favorites}

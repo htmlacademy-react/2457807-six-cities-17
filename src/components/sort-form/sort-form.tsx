@@ -16,7 +16,7 @@ function SortForm():JSX.Element{
     return () => {
       document.removeEventListener('click', hideSortList);
     };
-  });
+  }, []);
   return(
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>&nbsp;

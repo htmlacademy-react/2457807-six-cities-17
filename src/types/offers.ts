@@ -1,4 +1,4 @@
-import { LOCATIONS } from '../constants';
+import { LOCATIONS} from '../constants';
 
 declare global {
   interface ObjectConstructor {
@@ -19,6 +19,8 @@ type LocationType = {
 
   type CitiesType = typeof LOCATIONS;
   type CityKeys = CitiesType[number];
+
+  type SortOptionsType = 'Popular' | 'Price: low to high' | 'Price: high to low' | 'Top rated first';
 
   type CityType = {
     'name': string;
@@ -47,6 +49,6 @@ type LocationType = {
   };
 
 export type { ListOfferType, CityType, CitiesType, CityKeys,
-  LocationType, TypesPage, OfferType };
+  LocationType, TypesPage, OfferType, SortOptionsType };
 
 

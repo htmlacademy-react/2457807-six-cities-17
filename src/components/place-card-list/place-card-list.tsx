@@ -1,4 +1,6 @@
+import { useAppSelector } from '../../hooks';
 import { ListOfferType } from '../../types/offers';
+import { sortOffers } from '../../utils';
 import PlaceCardItem from '../places-card-item/places-card-item';
 
 type placeCardProps = {
@@ -8,9 +10,11 @@ type placeCardProps = {
 }
 
 function PlaceCardsList({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element {
+  const currentSort = useAppSelector((state) => state.currentSort);
+  const sortedOfferCards = sortOffers(offers, currentSort);
   return (
     <>
-      {offers.map((offer) => (
+      {sortedOfferCards.map((offer) => (
         <PlaceCardItem
           onActiveOfferChange = {onActiveOfferChange}
           cardPlace={offer}

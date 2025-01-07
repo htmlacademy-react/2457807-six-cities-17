@@ -5,10 +5,16 @@ type UserType = {
   };
 
 type AuthorizationType = {
+  id: number;
   'email': string;
   'token': string;
 };
 
 type AuthorizedUserType = AuthorizationType & UserType;
 
-export type { AuthorizedUserType, UserType, AuthorizationType };
+type AuthData = {
+  login: string;
+  password: string;
+}
+
+export type { AuthorizedUserType, UserType, AuthorizationType, AuthData };

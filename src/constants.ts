@@ -2,6 +2,7 @@ import { TypesPage } from './types/offers';
 
 const previewImage: string = 'https//16.design.htmlacademy.pro/static/hotel/';
 const galleryImages: string = 'img/apartment-';
+const TIMEOUT_SHOW_ERROR = 2000;
 
 const starsTitle = [
   'terrible','badly', 'not bad', 'good', 'perfect'
@@ -10,7 +11,9 @@ const starsTitle = [
 const AppRoute = {
   Root: '/',
   Login: '/login',
+  Logout: '/logout',
   Favorites: '/favorites',
+  Offers: 'offers',
   Offer: '/offer/:offerId',
   NotFound: '*',
 } as const;
@@ -127,4 +130,4 @@ export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, APARTMENTS_IMAGE_PLACE_CARD,
   AppRoute, AuthorizationStatus, starsTitle,
-  DateFormat, DATE_NOW, CityCoordinate};
+  DateFormat, DATE_NOW, CityCoordinate, TIMEOUT_SHOW_ERROR};

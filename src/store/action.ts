@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityKeys, ListOfferType, SortOptionsType } from '../types/offers';
-import { AuthorizationStatus } from '../constants';
+import { AuthorizationStatus, AppRoute } from '../constants';
 
 export const changeLocation = createAction<CityKeys>('app/changeLocation');
 
@@ -13,5 +13,7 @@ export const requireAuthorization = createAction<typeof AuthorizationStatus[keyo
 export const setError = createAction<string | null>('app/setError');
 
 export const setDataLoadingStatus = createAction<boolean>('app/setDataLoadingStatus');
+
+export const redirectToRoute = createAction<typeof AppRoute[keyof typeof AppRoute]>('app/redirectToRoute');
 
 

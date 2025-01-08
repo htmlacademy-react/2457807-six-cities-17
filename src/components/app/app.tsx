@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../constants';
@@ -11,6 +11,8 @@ import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
 // import User from '../../mock/users';
 import LoadingScreen from '../../pages/page-loading/page-loading';
 import { useAppSelector } from '../../hooks';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 // type Status = typeof AuthorizationStatus[keyof typeof AuthorizationStatus]
 
@@ -23,7 +25,7 @@ function App(): JSX.Element {
   }
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <ScrollToTop />
         <Routes>
           <Route
@@ -55,7 +57,7 @@ function App(): JSX.Element {
             element = {<NotFoundPage />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }

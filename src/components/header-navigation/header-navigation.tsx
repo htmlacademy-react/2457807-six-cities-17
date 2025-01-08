@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../constants';
 import { AuthorizationType} from '../../types/authorized-user';
 import { ListOfferType } from '../../types/offers';
+import { logoutAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks';
 
 type headerNavigationProps = {
   User: AuthorizationType;
@@ -32,9 +34,16 @@ function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
 }
 
 function Item(): JSX.Element {
+  const dispatch = useAppDispatch();
   return (
     <li className="header__nav-item">
-      <Link className="header__nav-link" to={AppRoute.Login}>
+      <Link
+        onClick={() => {
+          dispatch(logoutAction());
+        }}
+        className="header__nav-link"
+        to={AppRoute.Login}
+      >
         <span className="header__signout">Sign out</span>
       </Link>
     </li>

@@ -3,8 +3,8 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
-import { loadOfferList, requireAuthorization, setDataLoadingStatus, setError } from './action';
-import { AuthData, AuthorizationType} from '../types/authorized-user';
+import { loadOfferList, redirectToRoute, requireAuthorization, setDataLoadingStatus, setError } from './action';
+import { AuthData, AuthorizedUserType} from '../types/authorized-user';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
 
@@ -55,9 +55,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<AuthorizationType>(AppRoute.Login, {email, password});
+    const {data: {token}} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Root));
   },
 );
 

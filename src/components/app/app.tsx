@@ -8,18 +8,14 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
-// import User from '../../mock/users';
 import LoadingScreen from '../../pages/page-loading/page-loading';
 import { useAppSelector } from '../../hooks';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
-// type Status = typeof AuthorizationStatus[keyof typeof AuthorizationStatus]
-
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
-  // const authorizationStatus:Status = (User.token ? AuthorizationStatus.Auth : AuthorizationStatus.Unknown);
   if(authorizationStatus === AuthorizationStatus.Unknown || isDataLoading){
     return <LoadingScreen />;
   }

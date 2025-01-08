@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { UserProfileAttributes } from '../../style-options';
-import { PageNames } from '../../constants';
+import { AuthorizationStatus, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -12,7 +12,7 @@ import UserProfile from '../../components/user-profile/user-profile';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { fullOffer } from '../../mock/full-offer';
 import { offers } from '../../mock/offers';
-import User from '../../mock/users';
+import { useAppSelector } from '../../hooks';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -27,6 +27,7 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4).
     concat(offers.filter((offer) => offer.id === fullOffer.id));
   return (
@@ -92,7 +93,7 @@ function FullOfferPage(): JSX.Element{
             </div>
             <section className="offer__reviews reviews">
               <ReviewsList/>
-              {User.token ? <FormReviews/> : ''}
+              {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews/> : ''}
             </section>
           </div>
           <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {filteredOfferByCity}/>

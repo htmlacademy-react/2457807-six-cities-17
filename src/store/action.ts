@@ -16,4 +16,5 @@ export const setDataLoadingStatus = createAction<boolean>('app/setDataLoadingSta
 
 export const redirectToRoute = createAction<typeof AppRoute[keyof typeof AppRoute]>('app/redirectToRoute');
 
+export const setUserEmail = createAction<string | null>('app/setUserEmail');
 

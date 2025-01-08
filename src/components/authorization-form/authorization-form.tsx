@@ -32,8 +32,10 @@ function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationF
           className="login__input form__input"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Password > 5 символов и цифры"
           required
+          pattern=".{5,}"
+          title="5 символов минимум и обязательны цифры"
         />
       </div>
       <button className="login__submit form__submit button" type="submit">

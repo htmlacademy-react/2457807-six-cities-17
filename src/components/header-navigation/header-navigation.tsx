@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../constants';
-import { AuthorizationType} from '../../types/authorized-user';
+import { AppRoute, AuthorizationStatus } from '../../constants';
 import { ListOfferType } from '../../types/offers';
 import { logoutAction } from '../../store/api-actions';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type headerNavigationProps = {
-  User: AuthorizationType;
   Offers: ListOfferType[];
 }
 
-function UserAuthorized({User, Offers}:headerNavigationProps): JSX.Element {
-  const {token, email} = User;
-  if (token) {
+type UserAuthorizedProps = {
+  Offers: ListOfferType[];
+  authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+}
+
+function UserAuthorized({Offers, authorizationStatus}:UserAuthorizedProps): JSX.Element {
+  const email = useAppSelector((state) => state.email);
+  if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <>
         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
@@ -50,18 +53,18 @@ function Item(): JSX.Element {
   );
 }
 
-function HeaderNavigation({User, Offers}:headerNavigationProps):JSX.Element{
-  const {token} = User;
+function HeaderNavigation({Offers}:headerNavigationProps):JSX.Element{
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
           <UserAuthorized
-            User={User}
             Offers = {Offers}
+            authorizationStatus = {authorizationStatus}
           />
         </li>
-        {token && Item()}
+        {authorizationStatus === AuthorizationStatus.Auth && Item()}
       </ul>
     </nav>
   );

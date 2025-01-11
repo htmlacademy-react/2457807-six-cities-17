@@ -10,10 +10,10 @@ type BookmarkButtonProps = {
 function BookmarkButton({bookmarkClass, cardPlace}: BookmarkButtonProps): JSX.Element{
   const isSelectedFavorite = cardPlace?.isFavorite;
   const handleButtonBookmarkClick = (cardPlaceFavorite:ListOfferType|undefined):void =>{
-    if(cardPlaceFavorite?.isFavorite) {
+    if(cardPlaceFavorite !== undefined && cardPlaceFavorite?.isFavorite) {
       cardPlaceFavorite.isFavorite = false;
     }
-    if(!cardPlaceFavorite?.isFavorite === false){
+    if(cardPlaceFavorite !== undefined && !cardPlaceFavorite.isFavorite === false){
       cardPlaceFavorite.isFavorite = true;
     }
   };

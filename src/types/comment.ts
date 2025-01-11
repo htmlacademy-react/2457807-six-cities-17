@@ -1,6 +1,6 @@
 import { UserType } from './authorized-user';
 
-type CommentType = {
+export type CommentType = {
     'id': string;
     'comment' : string;
     'date': string;
@@ -8,6 +8,8 @@ type CommentType = {
     'user' : UserType;
   };
 
-export type { CommentType };
-
+export type OfferReviewType = {
+    offerId: string;
+    review: CommentType;
+  };
 

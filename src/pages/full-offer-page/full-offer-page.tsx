@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { UserProfileAttributes } from '../../style-options';
-import { AuthorizationStatus, PageNames } from '../../constants';
+import { AuthorizationStatus, NEAR_BY_OFFERS_LIMITED, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -10,8 +10,12 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import FormReviews from '../../components/form-reviews/form-reviews';
 import UserProfile from '../../components/user-profile/user-profile';
 import ReviewsList from '../../components/reviews-list/reviews-list';
-import { fullOffer } from '../../mock/full-offer';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useParams } from 'react-router-dom';
+import { selectFullOffer, selectNearByOffers, selectReviewList } from '../../store/selectors';
+import {fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffesNearAction } from '../../store/api-actions';
+import { useEffect } from 'react';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -26,10 +30,47 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 }
 
 function FullOfferPage(): JSX.Element{
+  const {offerId} = useParams() || null;
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const dispatch = useAppDispatch(); 
+  useEffect(() => {
+    if(offerId) {
+      console.log(fetchOfferInfoByIDAction(offerId));
+      dispatch(fetchOfferInfoByIDAction(offerId))
+        .then((response) => {
+          if(response.meta.requestStatus === 'fulfilled'){
+            dispatch(fetchOfferReviewListAction(offerId));
+            // dispatch(fetchOffesNearAction(offerId));
+          }
+        });
+    }
+  },[offerId, dispatch]);
   const offers = useAppSelector((state) => state.offersList);
-  const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4).
-    concat(offers.filter((offer) => offer.id === fullOffer.id));
+  const fullOffer = useAppSelector(selectFullOffer);
+  const nearByOffers = useAppSelector(selectNearByOffers).slice(
+    0,
+    NEAR_BY_OFFERS_LIMITED
+  );
+
+  const reviewList = useAppSelector(selectReviewList);
+  console.log(reviewList);
+  if(!fullOffer){
+    return <NotFoundPage/>;
+  }
+  const {
+    images,
+    isPremium,
+    title,
+    isFavorite,
+    rating,
+    type,
+    bedrooms,
+    maxAdults,
+    price,
+    goods,
+    description,
+    host,
+  } = fullOffer;
   return (
     <div className="page">
       <Helmet>
@@ -40,12 +81,12 @@ function FullOfferPage(): JSX.Element{
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {fullOffer.images.slice(0,6).map((imageGallery) => <OfferGallery key={crypto.randomUUID()} imageGallery={imageGallery}/>)}
+              {images.slice(0,6).map((imageGallery) => <OfferGallery key={crypto.randomUUID()} imageGallery={imageGallery}/>)}
             </div>
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              {fullOffer.isPremium &&
+              {isPremium &&
               <div className="offer__mark">
                 <span>Premium</span>
               </div>}
@@ -57,52 +98,52 @@ function FullOfferPage(): JSX.Element{
               </div>
               <Rating
                 ratingClass={'offer'}
-                ratingValue={fullOffer.rating}
+                ratingValue={rating}
               />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  {fullOffer.type}
+                  {type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  {fullOffer.bedrooms}
+                  {bedrooms}
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  Max {fullOffer.maxAdults} adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">€{fullOffer.price}</b>
+                <b className="offer__price-value">€{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
 
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&#39; inside</h2>
                 <ul className="offer__inside-list">
-                  {fullOffer.goods.map((offerGood) => <OfferGoodItem key={crypto.randomUUID()} offerGoodItem={offerGood}/>)}
+                  {goods.map((offerGood) => <OfferGoodItem key={crypto.randomUUID()} offerGoodItem={offerGood}/>)}
                 </ul>
               </div>
             </div>
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
-              <UserProfile userDate={fullOffer.host} userProfileStyle={UserProfileAttributes.host}/>
+              <UserProfile userDate={host} userProfileStyle={UserProfileAttributes.host}/>
               <div className="offer__description">
                 <p className="offer__text">
-                  {fullOffer.description}
+                  {description}
                 </p>
               </div>
             </div>
             <section className="offer__reviews reviews">
-              <ReviewsList/>
+              <ReviewsList fullOfferComments = {reviewList}/>
               {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews/> : ''}
             </section>
           </div>
-          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {filteredOfferByCity}/>
+          {/* <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {offers}/> */}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardsList offers = {offers.slice(0, 3)} pageNames= {PageNames.NearPlaces}/>
+              {/* <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/> */}
             </div>
           </section>
         </div>

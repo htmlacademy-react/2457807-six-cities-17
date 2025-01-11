@@ -1,17 +1,9 @@
 
 import { getRandomInteger} from '../utils';
 import { FullOfferType } from '../types/full-offer';
-import { offers } from './offers';
-import { ListOfferType } from '../types/offers';
-function idFullOffers (offersList:ListOfferType[]):string{
-  if(offersList.length === 0 || offersList === null || offersList === undefined) {
-    return crypto.randomUUID();
-  }
-  return offersList.filter((offer) => offer.city.name === 'Paris')[0].id;
-}
 
 const fullOffer:FullOfferType = {
-  id: idFullOffers(offers),
+  id: 'sfsasdfasfdsfsdfsd',
   title: 'Tile House',
   description: 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
   type: 'apartment',

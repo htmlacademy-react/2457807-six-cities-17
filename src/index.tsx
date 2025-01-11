@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
-// import { loadOfferList } from './store/action';
-// import { offers } from './mock/offers';
 import { checkAuthAction, fetchOffersAction } from './store/api-actions';
 
 

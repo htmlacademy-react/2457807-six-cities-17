@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
-import { loadOfferList, redirectToRoute, requireAuthorization, setDataLoadingStatus, setError, setUserEmail } from './action';
+import { loadOfferList, redirectToRoute, requireAuthorization, setDataLoadingStatus, setError, setUser, setUserEmail } from './action';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
@@ -18,7 +18,7 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<ListOfferType[], undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
@@ -29,6 +29,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<ListOfferType[]>(AppRoute.Offers);
     dispatch(setDataLoadingStatus(false));
     dispatch(loadOfferList(data));
+    return data;
   }
 );
 
@@ -55,9 +56,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
-    saveToken(token);
-    dispatch(setUserEmail(email));
+    const {data: User} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
+    saveToken(User.token);
+    dispatch(setUserEmail(User.email));
+    dispatch(setUser(User));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoute.Root));
   },
@@ -74,5 +76,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     dispatch(setUserEmail(null));
+    dispatch(setUser(null));
   }
 );

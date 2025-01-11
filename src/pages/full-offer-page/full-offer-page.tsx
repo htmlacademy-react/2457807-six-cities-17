@@ -11,7 +11,6 @@ import FormReviews from '../../components/form-reviews/form-reviews';
 import UserProfile from '../../components/user-profile/user-profile';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { fullOffer } from '../../mock/full-offer';
-import { offers } from '../../mock/offers';
 import { useAppSelector } from '../../hooks';
 
 type OfferGoodItemProps = {
@@ -28,6 +27,7 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 
 function FullOfferPage(): JSX.Element{
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector((state) => state.offersList);
   const filteredOfferByCity = offers.filter((offer) => offer.city.name === fullOffer.city.name).slice(0,4).
     concat(offers.filter((offer) => offer.id === fullOffer.id));
   return (

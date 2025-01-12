@@ -26,6 +26,13 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    // .addCase(fetchOffersAction.fulfilled, (state, action) => {
+    //   state.offersList = action.payload;
+    //   state.isDataLoading = true;
+    // })
+    .addCase(loadOfferList, (state, action) => {
+      state.offersList = action.payload;
+    })
     .addCase(loadFullOffer, (state, action) => {
       state.fullOffer = action.payload;
     })
@@ -55,13 +62,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUser, (state, action) => {
       state.user = action.payload;
-    })
-    // .addCase(fetchOffersAction.fulfilled, (state, action) => {
-    //   state.offersList = action.payload;
-    //   state.isDataLoading = true;
-    // });
-    .addCase(loadOfferList, (state, action) => {
-      state.offersList = action.payload;
     });
 });
 

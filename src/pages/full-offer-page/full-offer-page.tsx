@@ -35,15 +35,15 @@ function FullOfferPage(): JSX.Element{
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if(offerId) {
-      dispatch(fetchOfferInfoByIDAction(offerId))
-        .then((response) => {
-          if(response.meta.requestStatus === 'fulfilled'){
-            dispatch(fetchOfferReviewListAction(offerId));
-            dispatch(fetchOffesNearAction(offerId));
-          }
-        });
+    if (!offerId) {
+      return;
     }
+    dispatch(fetchOfferInfoByIDAction(offerId))
+      .unwrap()
+      .then(() => {
+        dispatch(fetchOfferReviewListAction(offerId));
+        dispatch(fetchOffesNearAction(offerId));
+      });
   },[offerId, dispatch]);
   const offers = useAppSelector((state) => state.offersList);
   const fullOffer = useAppSelector(selectFullOffer);

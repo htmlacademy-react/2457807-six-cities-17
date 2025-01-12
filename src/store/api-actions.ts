@@ -3,10 +3,9 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
-import { AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
-import { loadFullOffer, loadOfferList, loadOffersNear, loadReviewList, redirectToRoute, requireAuthorization, setDataLoadingStatus, setError, setUser, setUserEmail } from './action';
+import { AppRoute, AuthorizationStatus } from '../constants';
+import { loadFullOffer, loadOffersNear, loadReviewList, redirectToRoute, requireAuthorization, setUser, setUserEmail } from './action';
 import { dropToken, saveToken } from '../services/token';
-import { store } from '.';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
@@ -19,11 +18,8 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 
 export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
   'offers/fetchOffers',
-  async(_arg, {dispatch, extra: api}) => {
-    dispatch(setDataLoadingStatus(true));
+  async(_arg, { extra: api}) => {
     const {data} = await api.get<ListOfferType[]>(AppRoute.Offers);
-    dispatch(setDataLoadingStatus(false));
-    dispatch(loadOfferList(data));
     return data;
   }
 );
@@ -64,17 +60,6 @@ export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string 
     dispatch(loadOffersNear(data));
     return data;
   }
-);
-
-
-export const clearErrorAction = createAsyncThunk(
-  'app/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError(null)),
-      TIMEOUT_SHOW_ERROR,
-    );
-  },
 );
 
 export const checkAuthAction = createAppAsyncThunk<void, undefined>(

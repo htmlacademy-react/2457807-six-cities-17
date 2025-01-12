@@ -5,31 +5,56 @@ import { FullOfferType } from '../types/full-offer';
 import { CommentType } from '../types/comment';
 import { AuthorizationStatus, DEFAULT_ACTIVE_LOCATION, SortOptions } from '../constants';
 import { changeLocation, changeSorting, requireAuthorization, setDataLoadingStatus, setError, setUserEmail, setUser, loadOfferList, loadFullOffer, loadOffersNear, loadReviewList } from './action';
+import { fetchOffersAction } from './api-actions';
+
+type InitialState = {
+  currentLocations: CityKeys;
+  currentSort: SortOptionsType;
+  offersList: ListOfferType[];
+  authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+  error: null | string;
+  isDataLoading: boolean;
+  email:null | string;
+  user: null | AuthorizedUserType;
+  fullOffer: null | FullOfferType;
+  isFullOfferLoading: boolean;
+  nearByOffers: ListOfferType[];
+  isNearByOffersLoading: boolean;
+  reviewsList: CommentType[];
+  isReviewListLoading: boolean;
+}
 
 
-const initialState = {
-  currentLocations: DEFAULT_ACTIVE_LOCATION as CityKeys,
-  currentSort: SortOptions.Popular as SortOptionsType,
-  offersList: [] as ListOfferType[],
-  authorizationStatus: AuthorizationStatus.Unknown as typeof AuthorizationStatus[keyof typeof AuthorizationStatus],
-  error:  null as null | string,
-  isDataLoading: false as boolean,
-  email: null as null | string,
-  user: null as null | AuthorizedUserType,
-  fullOffer: null as null | FullOfferType,
-  isFullOfferLoading: false as boolean,
-  nearByOffers: [] as ListOfferType[],
-  isNearByOffersLoading: false as boolean,
-  reviewsList: [] as CommentType[],
-  isReviewListLoading: false as boolean,
+const initialState:InitialState = {
+  currentLocations: DEFAULT_ACTIVE_LOCATION,
+  currentSort: SortOptions.Popular,
+  offersList: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error:  null,
+  isDataLoading: false,
+  email: null,
+  user: null,
+  fullOffer: null,
+  isFullOfferLoading: false,
+  nearByOffers: [],
+  isNearByOffersLoading: false,
+  reviewsList: [],
+  isReviewListLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    // .addCase(fetchOffersAction.fulfilled, (state, action) => {
-    //   state.offersList = action.payload;
-    //   state.isDataLoading = true;
-    // })
+    .addCase(fetchOffersAction.pending, (state) => {
+      state.isDataLoading = true;
+    })
+    .addCase(fetchOffersAction.fulfilled, (state, action) => {
+      state.offersList = action.payload;
+      state.isDataLoading = false;
+    })
+    .addCase(fetchOffersAction.rejected, (state) => {
+      state.offersList = [];
+      state.isDataLoading = false;
+    })
     .addCase(loadOfferList, (state, action) => {
       state.offersList = action.payload;
     })

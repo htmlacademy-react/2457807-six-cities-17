@@ -2,6 +2,8 @@ import { ChangeEvent} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
+import { useAppDispatch } from '../../hooks';
+import { submitToOfferReviewAction } from '../../store/api-actions';
 
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
@@ -14,10 +16,14 @@ const initialState: FormDataType = {
   rating: null,
   review: ''
 };
+type FormReviewsProps = {
+  offerId: string | null;
+}
 
-function FormReviews():JSX.Element{
+function FormReviews({offerId}:FormReviewsProps):JSX.Element{
   const [formData, setFormData] = useState<FormDataType>(initialState);
   const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
+  const dispatch = useAppDispatch();
   const handleValueFormChange =
   ({
     target
@@ -36,6 +42,14 @@ function FormReviews():JSX.Element{
     evt.preventDefault();
     setFormData(initialState);
     setIsButtonSubmitDisabled(true);
+    dispatch(
+      submitToOfferReviewAction({
+        offerId,
+        comment: formData.review,
+        rating: formData.rating,
+      })
+    );
+    setFormData(initialState);
   };
   return(
     <form

@@ -4,12 +4,13 @@ export type CommentType = {
     'id': string;
     'comment' : string;
     'date': string;
-    'rating' : number;
+    'rating' : number | null;
     'user' : UserType;
   };
 
 export type OfferReviewType = {
-    offerId: string;
-    review: CommentType;
+    offerId: string | null;
+    rating: number | null;
+    comment: string;
   };
 

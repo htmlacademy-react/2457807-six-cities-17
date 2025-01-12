@@ -15,7 +15,8 @@ import { useParams } from 'react-router-dom';
 import { selectFullOffer, selectNearByOffers, selectReviewList } from '../../store/selectors';
 import {fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffesNearAction } from '../../store/api-actions';
 import { useEffect } from 'react';
-import NotFoundPage from '../not-found-page/not-found-page';
+// import NotFoundPage from '../not-found-page/not-found-page';
+import LoadingScreen from '../page-loading/page-loading';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -50,13 +51,11 @@ function FullOfferPage(): JSX.Element{
     0,
     NEAR_BY_OFFERS_LIMITED
   );
-  // console.log();
   const mapMarkOffersNearBy = [...nearByOffers].concat(offers.filter((offer) => offer.id === offerId));
-
   const reviewList = useAppSelector(selectReviewList);
 
   if(!fullOffer){
-    return <NotFoundPage/>;
+    return <LoadingScreen/>;
   }
   const {
     images,
@@ -132,8 +131,8 @@ function FullOfferPage(): JSX.Element{
               </div>
             </div>
             <section className="offer__reviews reviews">
-              <ReviewsList fullOfferComments = {reviewList}/>
-              {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews/> : ''}
+              {reviewList.length !== 0 && <ReviewsList fullOfferComments = {reviewList}/>}
+              {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews offerId = {offerId === undefined ? null : offerId}/> : ''}
             </section>
           </div>
           <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {mapMarkOffersNearBy}/>
@@ -142,7 +141,7 @@ function FullOfferPage(): JSX.Element{
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/>
+              {nearByOffers.length !== 0 && <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/>}
             </div>
           </section>
         </div>

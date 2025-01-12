@@ -17,7 +17,7 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
   extra: AxiosInstance;
 }>();
 
-export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], null>(
+export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
   'offers/fetchOffers',
   async(_arg, {dispatch, extra: api}) => {
     dispatch(setDataLoadingStatus(true));
@@ -38,7 +38,7 @@ export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, strin
   }
 );
 
-export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string>(
+export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string | null>(
   'offer/fetchOfferReviewList',
   async(id, {dispatch, extra: api}) => {
     const path = generatePath(AppRoute.Comments, {offerId: id});

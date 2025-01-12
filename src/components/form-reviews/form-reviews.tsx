@@ -3,7 +3,8 @@ import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
 import { useAppDispatch } from '../../hooks';
-import { submitToOfferReviewAction } from '../../store/api-actions';
+import {fetchOfferReviewListAction, submitToOfferReviewAction } from '../../store/api-actions';
+
 
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
@@ -40,7 +41,6 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
   };
   const handleFormSubmit = (evt:ChangeEvent<HTMLFormElement>) =>{
     evt.preventDefault();
-    setFormData(initialState);
     setIsButtonSubmitDisabled(true);
     dispatch(
       submitToOfferReviewAction({
@@ -50,6 +50,8 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
       })
     );
     setFormData(initialState);
+    dispatch(fetchOfferReviewListAction(offerId));
+
   };
   return(
     <form

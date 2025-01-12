@@ -1,10 +1,11 @@
 import { createReducer} from '@reduxjs/toolkit';
 import { CityKeys, ListOfferType, SortOptionsType} from '../types/offers';
 import { AuthorizedUserType } from '../types/authorized-user';
-import { changeLocation, changeSorting, requireAuthorization, setDataLoadingStatus, setError, setUserEmail, setUser, loadOfferList, loadFullOffer, loadOffersNear, loadReviewList } from './action';
-import { AuthorizationStatus, DEFAULT_ACTIVE_LOCATION, SortOptions } from '../constants';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType } from '../types/comment';
+import { AuthorizationStatus, DEFAULT_ACTIVE_LOCATION, SortOptions } from '../constants';
+import { changeLocation, changeSorting, requireAuthorization, setDataLoadingStatus, setError, setUserEmail, setUser, loadOfferList, loadFullOffer, loadOffersNear, loadReviewList } from './action';
+
 
 const initialState = {
   currentLocations: DEFAULT_ACTIVE_LOCATION as CityKeys,
@@ -16,8 +17,11 @@ const initialState = {
   email: null as null | string,
   user: null as null | AuthorizedUserType,
   fullOffer: null as null | FullOfferType,
+  isFullOfferLoading: false as boolean,
   nearByOffers: [] as ListOfferType[],
+  isNearByOffersLoading: false as boolean,
   reviewsList: [] as CommentType[],
+  isReviewListLoading: false as boolean,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -52,10 +56,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setUser, (state, action) => {
       state.user = action.payload;
     })
-    // .addCase(fetchOffersAction.pending, (state, action) => {
-    //   // state.offersList = action.payload;
+    // .addCase(fetchOffersAction.fulfilled, (state, action) => {
+    //   state.offersList = action.payload;
     //   state.isDataLoading = true;
-    // })
+    // });
     .addCase(loadOfferList, (state, action) => {
       state.offersList = action.payload;
     });

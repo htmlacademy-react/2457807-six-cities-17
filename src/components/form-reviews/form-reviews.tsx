@@ -65,6 +65,7 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
           <FormRatingStars
             key={value}
             index = {5 - index}
+            rating = {formData.rating}
             onRatingChange ={handleValueFormChange}
           />))}
       </div>

@@ -7,7 +7,7 @@ type commentListProps = {
 
 function ReviewsList({fullOfferComments}:commentListProps):JSX.Element{
 
-  const fullSortComments =fullOfferComments.slice()
+  const fullSortComments = fullOfferComments.slice()
     .sort((firstComment, secondComment) => new Date(secondComment.date).getTime() - new Date(firstComment.date).getTime())
     .slice(0, 10);
 

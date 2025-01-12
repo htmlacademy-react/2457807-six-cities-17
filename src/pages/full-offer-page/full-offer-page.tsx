@@ -32,36 +32,35 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 function FullOfferPage(): JSX.Element{
   const {offerId} = useParams() || null;
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const dispatch = useAppDispatch(); 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if(offerId) {
-      console.log(fetchOfferInfoByIDAction(offerId));
       dispatch(fetchOfferInfoByIDAction(offerId))
         .then((response) => {
           if(response.meta.requestStatus === 'fulfilled'){
             dispatch(fetchOfferReviewListAction(offerId));
-            // dispatch(fetchOffesNearAction(offerId));
+            dispatch(fetchOffesNearAction(offerId));
           }
         });
     }
   },[offerId, dispatch]);
   const offers = useAppSelector((state) => state.offersList);
   const fullOffer = useAppSelector(selectFullOffer);
-  const nearByOffers = useAppSelector(selectNearByOffers).slice(
+  const nearByOffers = useAppSelector(selectNearByOffers).slice().slice(
     0,
     NEAR_BY_OFFERS_LIMITED
   );
+  // console.log();
+  const mapMarkOffersNearBy = [...nearByOffers].concat(offers.filter((offer) => offer.id === offerId));
 
   const reviewList = useAppSelector(selectReviewList);
-  console.log(reviewList);
+
   if(!fullOffer){
     return <NotFoundPage/>;
   }
   const {
     images,
     isPremium,
-    title,
-    isFavorite,
     rating,
     type,
     bedrooms,
@@ -137,13 +136,13 @@ function FullOfferPage(): JSX.Element{
               {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews/> : ''}
             </section>
           </div>
-          {/* <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {offers}/> */}
+          <Map mapClass={PageNames.Offer} city = {fullOffer.city.name} selectedPointId = {fullOffer.id} offers = {mapMarkOffersNearBy}/>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/* <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/> */}
+              <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/>
             </div>
           </section>
         </div>

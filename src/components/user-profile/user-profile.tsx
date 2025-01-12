@@ -10,7 +10,7 @@ type UserProfileProps = {
 function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
   const {name, avatarUrl, isPro} = userDate;
   const {className, width, height} = userProfileStyle;
-  const classNameType = className === 'reviews' ? 'reviews' : 'offer';  
+  const classNameType = className === 'reviews' ? 'reviews' : 'offer';
   return(
     <div className={`${className === 'reviews' ? 'reviews__' : 'offer__host-'}user user`}>
       <div className={`${classNameType}__avatar-wrapper ${classNameType}__avatar-wrapper${isPro ? '--pro' : ''} user__avatar-wrapper`}>

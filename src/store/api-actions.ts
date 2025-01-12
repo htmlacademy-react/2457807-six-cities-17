@@ -30,46 +30,38 @@ export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>
 
 export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, string | null>(
   'offer/fetchOfferInfo',
-  async(id, {dispatch, extra: api}) => {
-    // dispatch(setDataLoadingStatus(true));
+  async(id, {dispatch, extra: api}) => {    
     const path = generatePath(AppRoute.Offer, {offerId: id});
     const {data} = await api.get<FullOfferType>(path);
     dispatch(loadFullOffer(data));
-    // dispatch(setDataLoadingStatus(false));
     return data;
   }
 );
 
 export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string>(
   'offer/fetchOfferReviewList',
-  async(id, {dispatch, extra: api}) => {
-    // dispatch(setDataLoadingStatus(true));
+  async(id, {dispatch, extra: api}) => {    
     const path = generatePath(AppRoute.Comments, {offerId: id});
     const {data} = await api.get<CommentType[]>(path);
     dispatch(loadReviewList(data));
-    // dispatch(setDataLoadingStatus(false));
     return data;
   }
 );
 
 export const submitToOfferReviewAction = createAppAsyncThunk<CommentType, OfferReviewType>(
   'offer/postOfferReview',
-  async({offerId: id, review: {comment, rating}}, {dispatch, extra: api}) => {
-    dispatch(setDataLoadingStatus(true));
+  async({offerId: id, review: {comment, rating}}, {dispatch, extra: api}) => {    
     const path = generatePath(AppRoute.Comments, {offerId: id});
     const {data} = await api.post<CommentType>(path, {comment, rating});
-    dispatch(setDataLoadingStatus(false));
     return data;
   }
 );
 export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string>(
   'offer/fetchOffersNear',
-  async(id, {dispatch, extra: api}) => {
-    dispatch(setDataLoadingStatus(true));
-    const path = generatePath(AppRoute.Comments, {offerId: id});
+  async(id, {dispatch, extra: api}) => {    
+    const path = generatePath(AppRoute.NearbyOffers, {offerId: id});
     const {data} = await api.get<ListOfferType[]>(path);
-    dispatch(loadOffersNear(data));
-    dispatch(setDataLoadingStatus(false));
+    dispatch(loadOffersNear(data));    
     return data;
   }
 );

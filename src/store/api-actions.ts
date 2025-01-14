@@ -3,8 +3,8 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
-import { AppRoute, AuthorizationStatus } from '../constants';
-import { redirectToRoute, requireAuthorization, setUser, setUserEmail } from './action';
+import { AppRoute} from '../constants';
+import { redirectToRoute} from './action';
 import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
@@ -33,6 +33,15 @@ export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, strin
   }
 );
 
+export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string | null>(
+  'offer/fetchOffersNear',
+  async(id, { extra: api}) => {
+    const path = generatePath(AppRoute.NearbyOffers, {offerId: id});
+    const {data} = await api.get<ListOfferType[]>(path);
+    return data;
+  }
+);
+
 export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string | null>(
   'offer/fetchOfferReviewList',
   async(id, { extra: api}) => {
@@ -50,48 +59,32 @@ export const submitToOfferReviewAction = createAppAsyncThunk<CommentType, OfferR
     return data;
   }
 );
-export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string | null>(
-  'offer/fetchOffersNear',
-  async(id, { extra: api}) => {
-    const path = generatePath(AppRoute.NearbyOffers, {offerId: id});
-    const {data} = await api.get<ListOfferType[]>(path);
+
+export const checkAuthAction = createAppAsyncThunk<AuthorizedUserType, undefined>(
+  'user/checkAuth',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<AuthorizedUserType>(AppRoute.Login);
     return data;
   }
 );
 
-export const checkAuthAction = createAppAsyncThunk<void, undefined>(
-  'user/checkAuth',
-  async(_arg, {dispatch, extra: api}) => {
-    try{
-      await api.get(AppRoute.Login);
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    } catch{
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    }
-  }
-);
-
-export const loginAction = createAppAsyncThunk<void, AuthData>(
+export const logInAction = createAppAsyncThunk<AuthorizedUserType, AuthData>(
   'user/login',
   async({login: email, password}, {dispatch, extra: api}) => {
 
-    const {data: User} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
-    saveToken(User.token);
-    dispatch(setUserEmail(User.email));
-    dispatch(setUser(User));
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    const {data: user} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
+    saveToken(user.token);
     dispatch(redirectToRoute(AppRoute.Root));
+    return user;
 
   }
 );
 
-export const logoutAction = createAppAsyncThunk<void, undefined>(
+export const logOutAction = createAppAsyncThunk<void, undefined>(
   'user/logout',
   async(_arg, {dispatch, extra: api}) => {
     await api.delete(AppRoute.Logout);
     dropToken();
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    dispatch(setUserEmail(null));
-    dispatch(setUser(null));
+    dispatch(redirectToRoute(AppRoute.Login));
   }
 );

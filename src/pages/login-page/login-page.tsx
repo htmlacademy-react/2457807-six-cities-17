@@ -5,7 +5,7 @@ import LocationsItemLink from '../../components/locations-item-link/locations-it
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useRef } from 'react';
-import { loginAction } from '../../store/api-actions';
+import { logInAction } from '../../store/api-actions';
 
 function LoginPage(): JSX.Element {
   const location = useAppSelector((state) => state.currentLocations);
@@ -17,7 +17,7 @@ function LoginPage(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
+      dispatch(logInAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }));

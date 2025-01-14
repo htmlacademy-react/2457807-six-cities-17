@@ -5,7 +5,7 @@ import { FullOfferType } from '../types/full-offer';
 import { CommentType } from '../types/comment';
 import { AuthorizationStatus, DEFAULT_ACTIVE_LOCATION, SortOptions } from '../constants';
 import { changeLocation, changeSorting, requireAuthorization, setDataLoadingStatus, setError, setUserEmail, setUser, loadOfferList, loadFullOffer, loadOffersNear, loadReviewList } from './action';
-import { fetchOffersAction } from './api-actions';
+import { fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction, fetchOffesNearAction, submitToOfferReviewAction } from './api-actions';
 
 type InitialState = {
   currentLocations: CityKeys;
@@ -21,7 +21,7 @@ type InitialState = {
   nearByOffers: ListOfferType[];
   isNearByOffersLoading: boolean;
   reviewsList: CommentType[];
-  isReviewListLoading: boolean;
+  isReviewsListLoading: boolean;
 }
 
 
@@ -39,11 +39,53 @@ const initialState:InitialState = {
   nearByOffers: [],
   isNearByOffersLoading: false,
   reviewsList: [],
-  isReviewListLoading: false,
+  isReviewsListLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(submitToOfferReviewAction.pending, (state) => {
+      state.isReviewsListLoading = true;
+    })
+    .addCase(submitToOfferReviewAction.fulfilled, (state, action) => {
+      state.reviewsList = [...state.reviewsList, action.payload];
+      state.isReviewsListLoading = false;
+    })
+    .addCase(submitToOfferReviewAction.rejected, (state) => {
+      state.isReviewsListLoading = false;
+    })
+    .addCase(fetchOfferReviewListAction.pending, (state) => {
+      state.isReviewsListLoading = true;
+    })
+    .addCase(fetchOfferReviewListAction.fulfilled, (state, action) => {
+      state.reviewsList = action.payload;
+      state.isReviewsListLoading = false;
+    })
+    .addCase(fetchOfferReviewListAction.rejected, (state) => {
+      state.reviewsList = [];
+      state.isReviewsListLoading = false;
+    })
+    .addCase(fetchOffesNearAction.pending, (state) => {
+      state.isNearByOffersLoading = true;
+    })
+    .addCase(fetchOffesNearAction.fulfilled, (state, action) => {
+      state.nearByOffers = action.payload;
+      state.isNearByOffersLoading = false;
+    })
+    .addCase(fetchOffesNearAction.rejected, (state) => {
+      state.nearByOffers = [];
+      state.isNearByOffersLoading = false;
+    })
+    .addCase(fetchOfferInfoByIDAction.pending, (state) => {
+      state.isFullOfferLoading = true;
+    })
+    .addCase(fetchOfferInfoByIDAction.fulfilled, (state, action) => {
+      state.fullOffer = action.payload;
+      state.isFullOfferLoading = false;
+    })
+    .addCase(fetchOfferInfoByIDAction.rejected, (state) => {
+      state.isFullOfferLoading = false;
+    })
     .addCase(fetchOffersAction.pending, (state) => {
       state.isDataLoading = true;
     })

@@ -4,7 +4,7 @@ import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
 import { AppRoute, AuthorizationStatus } from '../constants';
-import { loadFullOffer, loadOffersNear, loadReviewList, redirectToRoute, requireAuthorization, setUser, setUserEmail } from './action';
+import { redirectToRoute, requireAuthorization, setUser, setUserEmail } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
@@ -26,20 +26,18 @@ export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>
 
 export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, string | null>(
   'offer/fetchOfferInfo',
-  async(id, {dispatch, extra: api}) => {
+  async(id, {extra: api}) => {
     const path = generatePath(AppRoute.Offer, {offerId: id});
     const {data} = await api.get<FullOfferType>(path);
-    dispatch(loadFullOffer(data));
     return data;
   }
 );
 
 export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string | null>(
   'offer/fetchOfferReviewList',
-  async(id, {dispatch, extra: api}) => {
+  async(id, { extra: api}) => {
     const path = generatePath(AppRoute.Comments, {offerId: id});
     const {data} = await api.get<CommentType[]>(path);
-    dispatch(loadReviewList(data));
     return data;
   }
 );
@@ -54,10 +52,9 @@ export const submitToOfferReviewAction = createAppAsyncThunk<CommentType, OfferR
 );
 export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string | null>(
   'offer/fetchOffersNear',
-  async(id, {dispatch, extra: api}) => {
+  async(id, { extra: api}) => {
     const path = generatePath(AppRoute.NearbyOffers, {offerId: id});
     const {data} = await api.get<ListOfferType[]>(path);
-    dispatch(loadOffersNear(data));
     return data;
   }
 );

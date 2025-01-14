@@ -1,5 +1,5 @@
 type UserType = {
-    'userName': string;
+    'name': string;
     'avatarUrl': string;
     'isPro': boolean;
   };

@@ -5,8 +5,7 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import FavoritesList from '../../components/favorites-card-list/favorites-card-list';
 import { FooterLogoAttributes } from '../../style-options';
-import { offers } from '../../mock/offers';
-
+import { useAppSelector } from '../../hooks';
 
 function FavoriteEmpty(): JSX.Element {
   return (
@@ -26,6 +25,7 @@ function FavoriteEmpty(): JSX.Element {
 
 function FavoritesPage(): JSX.Element{
   const pageNames:string = PageNames.Favorites;
+  const offers = useAppSelector((state) => state.offersList);
   const offersFavorite = offers.filter((offer) => offer.isFavorite).sort((firsCity, secondCity) => firsCity.city.name.localeCompare(secondCity.city.name));
   const offersFavoriteCount = offersFavorite.length;
   return (

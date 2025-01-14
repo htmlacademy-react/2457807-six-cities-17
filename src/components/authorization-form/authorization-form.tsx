@@ -32,10 +32,10 @@ function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationF
           className="login__input form__input"
           type="password"
           name="password"
-          placeholder="Password > 5 символов и цифры"
+          placeholder="Password:  минимум 1 буква латиницей и 1 цифра"
           required
-          pattern=".{5,}"
-          title="5 символов минимум и обязательны цифры"
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d).*$'
+          title="2 символa минимум: в том числе 1 буква латиницей  и 1 цифра"
         />
       </div>
       <button className="login__submit form__submit button" type="submit">

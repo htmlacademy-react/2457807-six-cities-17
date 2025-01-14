@@ -1,13 +1,16 @@
 import { UserType } from './authorized-user';
 
-type CommentType = {
+export type CommentType = {
     'id': string;
     'comment' : string;
     'date': string;
-    'rating' : number;
+    'rating' : number | null;
     'user' : UserType;
   };
 
-export type { CommentType };
-
+export type OfferReviewType = {
+    offerId: string | null;
+    rating: number | null;
+    comment: string;
+  };
 

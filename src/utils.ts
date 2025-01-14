@@ -1,5 +1,8 @@
+import { toast } from 'react-toastify';
 import { SortOptions } from './constants';
 import { ListOfferType, SortOptionsType } from './types/offers';
+
+const notify = (message: string) => toast.warn(message);
 
 const getRandomArrayElement = <T>(items : T[]) : T => items[Math.floor(Math.random() * items.length)];
 
@@ -19,4 +22,4 @@ const sortBy = {
 };
 const sortOffers = (offers:ListOfferType[], sortOptionsType:SortOptionsType) => sortBy[sortOptionsType](offers);
 
-export {getRandomArrayElement, getRandomInteger, getRandomDate, sortOffers};
+export {getRandomArrayElement, getRandomInteger, getRandomDate, sortOffers, notify};

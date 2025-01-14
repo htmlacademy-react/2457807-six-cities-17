@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useRef } from 'react';
 import { logInAction } from '../../store/api-actions';
 
+
 function LoginPage(): JSX.Element {
   const location = useAppSelector((state) => state.currentLocations);
   const pageNames:string = PageNames.Login;
@@ -23,6 +24,7 @@ function LoginPage(): JSX.Element {
       }));
     }
   };
+
   return (
     <div className="page page--gray page--login">
       <Helmet>

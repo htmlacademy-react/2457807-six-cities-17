@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import { selectFullOffer, selectNearByOffers, selectReviewList } from '../../store/selectors';
 import {fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffesNearAction } from '../../store/api-actions';
 import { useEffect } from 'react';
-// import NotFoundPage from '../not-found-page/not-found-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 import LoadingScreen from '../page-loading/page-loading';
 
 type OfferGoodItemProps = {
@@ -47,15 +47,21 @@ function FullOfferPage(): JSX.Element{
   },[offerId, dispatch]);
   const offers = useAppSelector((state) => state.offersList);
   const fullOffer = useAppSelector(selectFullOffer);
+  const isFullOfferLoading = useAppSelector((state) => state.isFullOfferLoading);
   const nearByOffers = useAppSelector(selectNearByOffers).slice().slice(
     0,
     NEAR_BY_OFFERS_LIMITED
   );
+  const isNearByOffersLoading = useAppSelector((state) => state.isNearByOffersLoading);
   const mapMarkOffersNearBy = [...nearByOffers].concat(offers.filter((offer) => offer.id === offerId));
   const reviewList = useAppSelector(selectReviewList);
+  const isReviewsListLoading = useAppSelector((state) => state.isReviewsListLoading);
 
-  if(!fullOffer){
+  if(isFullOfferLoading || isNearByOffersLoading || isReviewsListLoading){
     return <LoadingScreen/>;
+  }
+  if(!fullOffer){
+    return <NotFoundPage/>;
   }
   const {
     images,

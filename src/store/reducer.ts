@@ -11,10 +11,7 @@ type InitialState = {
   currentLocations: CityKeys;
   currentSort: SortOptionsType;
   offersList: ListOfferType[];
-  authorizationStatus: AuthorizationStatusType;
-  error: null | string;
   isDataLoading: boolean;
-  user: null | AuthorizedUserType;
   fullOffer: null | FullOfferType;
   isFullOfferLoading: boolean;
   nearByOffers: ListOfferType[];
@@ -22,7 +19,10 @@ type InitialState = {
   reviewsList: CommentType[];
   isReviewsListLoading: boolean;
   isSubmitReviewLoading: boolean;
+  authorizationStatus: AuthorizationStatusType;
+  user: null | AuthorizedUserType;
   isError: boolean;
+  error: null | string;
   errorMessage: string;
 }
 
@@ -31,10 +31,7 @@ const initialState:InitialState = {
   currentLocations: DEFAULT_ACTIVE_LOCATION,
   currentSort: SortOptions.Popular,
   offersList: [],
-  authorizationStatus: AuthorizationStatus.Unknown,
-  error:  null,
   isDataLoading: false,
-  user: null,
   fullOffer: null,
   isFullOfferLoading: false,
   nearByOffers: [],
@@ -42,6 +39,9 @@ const initialState:InitialState = {
   reviewsList: [],
   isReviewsListLoading: false,
   isSubmitReviewLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error:  null,
+  user: null,
   isError: false,
   errorMessage: '',
 };

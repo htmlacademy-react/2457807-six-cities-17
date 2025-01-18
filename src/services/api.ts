@@ -15,7 +15,7 @@ type DetailMessageType = {
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.UNAUTHORIZED]: false,
   [StatusCodes.NOT_FOUND]: true
 };
 
@@ -45,12 +45,12 @@ export const createAPI = () : AxiosInstance => {
       if(!error.response){
         toast.warn(`${error.message}: Ошибка интернета`);
         processErrorHandle(error.message);
-      }
-      if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response?.data);
-        processErrorHandle(detailMessage.message);
-        toast.warn(detailMessage.message);
-      }
+      }else
+        if (error.response && shouldDisplayError(error.response)) {
+          const detailMessage = (error.response?.data);
+          processErrorHandle(detailMessage.message);
+          toast.warn(detailMessage.message);
+        }
       throw error;
     }
   );

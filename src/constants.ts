@@ -64,7 +64,7 @@ const SortOptions = {
 } as const;
 
 const CommentLengthLimit = {
-  MIN: 50,
+  MIN: 5,
   MAX: 300
 } as const;
 

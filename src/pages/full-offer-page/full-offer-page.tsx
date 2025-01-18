@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { UserProfileAttributes } from '../../style-options';
-import { AuthorizationStatus, NEAR_BY_OFFERS_LIMITED, PageNames } from '../../constants';
+import { AuthorizationStatus, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -12,11 +12,12 @@ import UserProfile from '../../components/user-profile/user-profile';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useParams } from 'react-router-dom';
-import { selectFullOffer, selectNearByOffers, selectReviewList } from '../../store/selectors';
+import { selectAuthorizationStatus, selectFullOffer, selectIsFullOfferLoading, selectIsNearByOffersLoading, selectIsReviewsListLoading, selectNearByOffers, selectReviewList } from '../../store/selectors';
 import {fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffesNearAction } from '../../store/api-actions';
 import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import LoadingScreen from '../page-loading/page-loading';
+import { adaptFullOfferToOfferList } from '../../utils';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -32,7 +33,7 @@ function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
 
 function FullOfferPage(): JSX.Element{
   const {offerId} = useParams() || null;
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (!offerId) {
@@ -45,17 +46,13 @@ function FullOfferPage(): JSX.Element{
         dispatch(fetchOffesNearAction(offerId));
       });
   },[offerId, dispatch]);
-  const offers = useAppSelector((state) => state.offersList);
   const fullOffer = useAppSelector(selectFullOffer);
-  const isFullOfferLoading = useAppSelector((state) => state.isFullOfferLoading);
-  const nearByOffers = useAppSelector(selectNearByOffers).slice().slice(
-    0,
-    NEAR_BY_OFFERS_LIMITED
-  );
-  const isNearByOffersLoading = useAppSelector((state) => state.isNearByOffersLoading);
-  const mapMarkOffersNearBy = [...nearByOffers].concat(offers.filter((offer) => offer.id === offerId));
+  const isFullOfferLoading = useAppSelector(selectIsFullOfferLoading);
+  const nearByOffers = useAppSelector(selectNearByOffers);
+  const isNearByOffersLoading = useAppSelector(selectIsNearByOffersLoading);
+  const mapMarkOffersNearBy = [...nearByOffers, ...adaptFullOfferToOfferList(fullOffer)];
   const reviewList = useAppSelector(selectReviewList);
-  const isReviewsListLoading = useAppSelector((state) => state.isReviewsListLoading);
+  const isReviewsListLoading = useAppSelector(selectIsReviewsListLoading);
 
   if(isFullOfferLoading || isNearByOffersLoading || isReviewsListLoading){
     return <LoadingScreen/>;
@@ -64,17 +61,10 @@ function FullOfferPage(): JSX.Element{
     return <NotFoundPage/>;
   }
   const {
-    images,
-    isPremium,
-    rating,
-    type,
-    bedrooms,
-    maxAdults,
-    price,
-    goods,
-    description,
-    host,
+    images, isPremium, rating, type, bedrooms,
+    maxAdults, price, goods, description, host,
   } = fullOffer;
+  const fullOfferImagesSlice = images.slice(0,6).map((imageGallery) => <OfferGallery key={imageGallery} imageGallery={imageGallery}/>);
   return (
     <div className="page">
       <Helmet>
@@ -85,7 +75,7 @@ function FullOfferPage(): JSX.Element{
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {images.slice(0,6).map((imageGallery) => <OfferGallery key={crypto.randomUUID()} imageGallery={imageGallery}/>)}
+              {fullOfferImagesSlice}
             </div>
           </div>
           <div className="offer__container container">
@@ -123,7 +113,7 @@ function FullOfferPage(): JSX.Element{
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&#39; inside</h2>
                 <ul className="offer__inside-list">
-                  {goods.map((offerGood) => <OfferGoodItem key={crypto.randomUUID()} offerGoodItem={offerGood}/>)}
+                  {goods.map((offerGood) => <OfferGoodItem key={offerGood} offerGoodItem={offerGood}/>)}
                 </ul>
               </div>
             </div>
@@ -137,7 +127,7 @@ function FullOfferPage(): JSX.Element{
               </div>
             </div>
             <section className="offer__reviews reviews">
-              {reviewList.length !== 0 && <ReviewsList fullOfferComments = {reviewList}/>}
+              {reviewList.length && <ReviewsList fullOfferComments = {reviewList}/>}
               {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews offerId = {offerId === undefined ? null : offerId}/> : ''}
             </section>
           </div>
@@ -147,7 +137,7 @@ function FullOfferPage(): JSX.Element{
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearByOffers.length !== 0 && <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/>}
+              {nearByOffers.length && <PlaceCardsList offers = {nearByOffers} pageNames= {PageNames.NearPlaces}/>}
             </div>
           </section>
         </div>

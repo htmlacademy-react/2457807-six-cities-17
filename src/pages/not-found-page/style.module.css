@@ -1,7 +1,6 @@
 
 .backgroundImageContainer{  
-  margin: 0 auto;
-  /* background-image: url("https://static-sl.insales.ru/images/products/1/7353/453229753/3.jpg"); */
+  margin: 0 auto;  
   background-image: url(../img/giraffe.jpg);
   background-repeat: no-repeat;
   background-position: center;

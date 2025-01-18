@@ -26,13 +26,13 @@ function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationF
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">Password</label>
+        <label >минимум 1 буква латиницей и 1 цифра</label>
         <input
           ref = {passwordRef}
           className="login__input form__input"
           type="password"
           name="password"
-          placeholder="Password:  минимум 1 буква латиницей и 1 цифра"
+          placeholder="Password"
           required
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d).*$'
           title="2 символa минимум: в том числе 1 буква латиницей  и 1 цифра"

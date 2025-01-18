@@ -1,3 +1,5 @@
+import { AuthorizationStatus } from '../constants';
+
 type UserType = {
     'name': string;
     'avatarUrl': string;
@@ -17,4 +19,6 @@ type AuthorizedUserType = AuthorizationType & UserType;
   password: string;
 };
 
-export type { AuthorizedUserType, UserType, AuthorizationType, AuthData };
+type AuthorizationStatusType = typeof AuthorizationStatus[keyof typeof AuthorizationStatus]
+
+export type { AuthorizedUserType, UserType, AuthorizationType, AuthData, AuthorizationStatusType };

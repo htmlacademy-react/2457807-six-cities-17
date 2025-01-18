@@ -1,6 +1,6 @@
 import { createReducer} from '@reduxjs/toolkit';
 import { CityKeys, ListOfferType, SortOptionsType} from '../types/offers';
-import { AuthorizedUserType } from '../types/authorized-user';
+import { AuthorizationStatusType, AuthorizedUserType } from '../types/authorized-user';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType } from '../types/comment';
 import { AuthorizationStatus, DEFAULT_ACTIVE_LOCATION, SortOptions } from '../constants';
@@ -11,7 +11,7 @@ type InitialState = {
   currentLocations: CityKeys;
   currentSort: SortOptionsType;
   offersList: ListOfferType[];
-  authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+  authorizationStatus: AuthorizationStatusType;
   error: null | string;
   isDataLoading: boolean;
   user: null | AuthorizedUserType;
@@ -21,6 +21,9 @@ type InitialState = {
   isNearByOffersLoading: boolean;
   reviewsList: CommentType[];
   isReviewsListLoading: boolean;
+  isSubmitReviewLoading: boolean;
+  isError: boolean;
+  errorMessage: string;
 }
 
 
@@ -38,19 +41,22 @@ const initialState:InitialState = {
   isNearByOffersLoading: false,
   reviewsList: [],
   isReviewsListLoading: false,
+  isSubmitReviewLoading: false,
+  isError: false,
+  errorMessage: '',
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(submitToOfferReviewAction.pending, (state) => {
-      state.isReviewsListLoading = true;
+      state.isSubmitReviewLoading = true;
     })
     .addCase(submitToOfferReviewAction.fulfilled, (state, action) => {
       state.reviewsList = [...state.reviewsList, action.payload];
-      state.isReviewsListLoading = false;
+      state.isSubmitReviewLoading = false;
     })
     .addCase(submitToOfferReviewAction.rejected, (state) => {
-      state.isReviewsListLoading = false;
+      state.isSubmitReviewLoading = false;
     })
     .addCase(fetchOfferReviewListAction.pending, (state) => {
       state.isReviewsListLoading = true;
@@ -124,6 +130,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
     .addCase(setError, (state, action) => {
+      state.isError = true;
       state.error = action.payload;
     })
     .addCase(setDataLoadingStatus, (state, action) => {

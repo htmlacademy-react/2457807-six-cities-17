@@ -2,6 +2,7 @@ import { TypesPage } from './types/offers';
 
 const TIMEOUT_SHOW_ERROR = 2000;
 const NEAR_BY_OFFERS_LIMITED = 3;
+const PERCENTAGE_FILLING_ONE_STAR = 20;
 
 const starsTitle = [
   'terrible','badly', 'not bad', 'good', 'perfect'
@@ -80,4 +81,5 @@ const DATE_NOW = new Date().toISOString();
 export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
   SortOptions, AppRoute, AuthorizationStatus, starsTitle,
-  DateFormat, DATE_NOW, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED};
+  DateFormat, DATE_NOW, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED,
+  PERCENTAGE_FILLING_ONE_STAR};

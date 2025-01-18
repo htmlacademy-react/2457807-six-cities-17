@@ -5,7 +5,7 @@ import { CommentLengthLimit } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { submitToOfferReviewAction } from '../../store/api-actions';
 import { selectIsSubmitReviewLoading } from '../../store/selectors';
-import { setError } from '../../store/action';
+import { processErrorHandle } from '../../services/process-error-handle';
 
 
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
@@ -55,7 +55,8 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
       .then(() => {
         setFormData(initialState);
       })
-      .catch(({message}) => dispatch(setError(String(message))));
+      .catch(
+        ({message}) => processErrorHandle(String(message)));
   };
   return(
     <form

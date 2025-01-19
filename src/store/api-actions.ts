@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { ListOfferType } from '../types/offers';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
-import { AppRoute} from '../constants';
+import { AppRoute, NameSpace} from '../constants';
 import { redirectToRoute} from './action';
 import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
@@ -17,7 +17,7 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 }>();
 
 export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
-  'offers/fetchOffers',
+  `${NameSpace.Offers}/fetchOffers`,
   async(_arg, { extra: api}) => {
     const {data} = await api.get<ListOfferType[]>(AppRoute.Offers);
     return data;
@@ -25,7 +25,7 @@ export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>
 );
 
 export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, string | null>(
-  'offer/fetchOfferInfo',
+  `${NameSpace.Offers}/fetchOfferInfo`,
   async(id, {extra: api}) => {
     const path = generatePath(AppRoute.Offer, {offerId: id});
     const {data} = await api.get<FullOfferType>(path);

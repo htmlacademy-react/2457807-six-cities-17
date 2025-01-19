@@ -3,13 +3,14 @@ import { HeaderLogoAttributes } from '../../style-options';
 import HeaderNavigation from '../header-navigation/header-navigation';
 import Logo from '../logo/logo';
 import { useAppSelector } from '../../hooks';
+import { selectOffers } from '../../store/selectors';
 
 type HeaderProps = {
   pageNames: string;
 }
 
 function Header({pageNames }:HeaderProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offersList);
+  const offers = useAppSelector(selectOffers);
   const headerNavigationEmpty = pageNames === PageNames.Login ?
     '' : <HeaderNavigation Offers = {offers}/>;
   return (

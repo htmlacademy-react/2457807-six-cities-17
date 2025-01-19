@@ -19,9 +19,9 @@ function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
       <span className={`${classNameType}__user-name`}>
         {name}
       </span>
-      <span className={`${classNameType}__user-status`}>
+      {/* <span className={`${classNameType}__user-status`}>
         {isPro && 'Pro'}
-      </span>
+      </span> */}
     </div>
   );
 }

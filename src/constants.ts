@@ -28,6 +28,12 @@ const PageNames:TypesPage = {
   NearPlaces: 'near-places',
 } as const;
 
+const NameSpace = {
+  Offers: 'offers',
+  User: 'user',
+  ActiveMain:'activeMain',
+} as const;
+
 const AuthorizationStatus = {
   Auth: 'auth',
   NoAuth: 'no-auth',
@@ -64,7 +70,7 @@ const SortOptions = {
 } as const;
 
 const CommentLengthLimit = {
-  MIN: 5,
+  MIN: 50,
   MAX: 300
 } as const;
 
@@ -80,6 +86,6 @@ const DATE_NOW = new Date().toISOString();
 
 export {LOCATIONS, APARTMENT_NAMES, PLACES_OPTIONS,
   CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , DEFAULT_PLACES_OPTIONS, PageNames,
-  SortOptions, AppRoute, AuthorizationStatus, starsTitle,
+  SortOptions, AppRoute, NameSpace, AuthorizationStatus, starsTitle,
   DateFormat, DATE_NOW, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED,
   PERCENTAGE_FILLING_ONE_STAR};

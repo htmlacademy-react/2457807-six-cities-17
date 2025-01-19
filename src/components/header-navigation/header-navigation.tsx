@@ -3,6 +3,7 @@ import { AppRoute, AuthorizationStatus } from '../../constants';
 import { ListOfferType } from '../../types/offers';
 import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { selectAuthorizationStatus, selectUser } from '../../store/selectors';
 
 type headerNavigationProps = {
   Offers: ListOfferType[];
@@ -14,7 +15,7 @@ type UserAuthorizedProps = {
 }
 
 function UserAuthorized({Offers, authorizationStatus}:UserAuthorizedProps): JSX.Element {
-  const email = useAppSelector((state) => state.user?.email);
+  const email = useAppSelector(selectUser)?.email;
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <>
@@ -54,7 +55,7 @@ function Item(): JSX.Element {
 }
 
 function HeaderNavigation({Offers}:headerNavigationProps):JSX.Element{
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">

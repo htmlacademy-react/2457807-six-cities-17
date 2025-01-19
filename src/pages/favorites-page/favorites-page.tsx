@@ -6,7 +6,7 @@ import Logo from '../../components/logo/logo';
 import FavoritesList from '../../components/favorites-card-list/favorites-card-list';
 import { FooterLogoAttributes } from '../../style-options';
 import { useAppSelector } from '../../hooks';
-import { selectOffers } from '../../store/selectors';
+import { selectFavorites } from '../../store/selectors';
 
 function FavoriteEmpty(): JSX.Element {
   return (
@@ -26,9 +26,8 @@ function FavoriteEmpty(): JSX.Element {
 
 function FavoritesPage(): JSX.Element{
   const pageNames:string = PageNames.Favorites;
-  const offers = useAppSelector(selectOffers);
-  const offersFavorite = offers.filter((offer) => offer.isFavorite).sort((firsCity, secondCity) => firsCity.city.name.localeCompare(secondCity.city.name));
-  const offersFavoriteCount = offersFavorite.length;
+  const offersFavorite = useAppSelector(selectFavorites) && [];
+  const offersFavoriteCount = offersFavorite?.length;
   return (
     <div className= {offersFavoriteCount !== 0 ? 'page' : 'page page--favorites-empty'}>
       <Helmet>
@@ -36,7 +35,7 @@ function FavoritesPage(): JSX.Element{
       </Helmet>
       <Header pageNames={pageNames}/>
       {
-        offersFavoriteCount === 0 ? <FavoriteEmpty/> :
+        !offersFavorite?.length ? <FavoriteEmpty/> :
           <main className="page__main page__main--favorites">
             <div className="page__favorites-container container">
               <section className="favorites">

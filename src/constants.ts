@@ -13,6 +13,7 @@ const AppRoute = {
   Login: '/login',
   Logout: '/logout',
   Favorites: '/favorites',
+  Favorite: '/favorite/:offerId/:status',
   Offers: 'offers',
   Offer: '/offers/:offerId',
   NearbyOffers: '/offers/:offerId/nearby',

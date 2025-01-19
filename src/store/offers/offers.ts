@@ -3,7 +3,8 @@ import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
 import { setDataLoadingStatus } from '../action';
-import { fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction, fetchOffesNearAction, submitToOfferReviewAction } from '../api-actions';
+import { fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
+  fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
 import { NameSpace } from '../../constants';
 
 
@@ -17,6 +18,8 @@ type OffersState = {
   reviewsList: CommentType[];
   isReviewsListLoading: boolean;
   isSubmitReviewLoading: boolean;
+  favorites: ListOfferType[];
+  isFavoriteLoading: boolean;
 }
 
 const initialState:OffersState = {
@@ -29,6 +32,8 @@ const initialState:OffersState = {
   reviewsList: [],
   isReviewsListLoading: false,
   isSubmitReviewLoading: false,
+  favorites: [],
+  isFavoriteLoading: false,
 };
 
 export const offersSlice = createSlice({
@@ -37,6 +42,19 @@ export const offersSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(toggleFavorite.pending, (state) => {
+        state.isFavoriteLoading = true;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favorites.push(action.payload);
+        } else {
+          state.favorites = state.favorites.filter((item) => item.id !== action.payload.id);
+        }
+      })
+      .addCase(toggleFavorite.rejected, (state) => {
+        state.isFavoriteLoading = false;
+      })
       .addCase(submitToOfferReviewAction.pending, (state) => {
         state.isSubmitReviewLoading = true;
       })

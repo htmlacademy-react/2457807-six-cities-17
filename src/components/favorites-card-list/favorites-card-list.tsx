@@ -13,7 +13,7 @@ function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.
     <ul className="favorites__list">
       {Object.keys(groupByList).map((key) => (
         <FavoritesCardItem
-          key = {crypto.randomUUID()}
+          key = {key}
           offersFavorite = {groupByList[key]}
           pageNames = {pageNames}
         />))}

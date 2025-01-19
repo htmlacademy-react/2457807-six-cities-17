@@ -1,9 +1,12 @@
-import { Link, generatePath } from 'react-router-dom';
+import { Link, generatePath, useNavigate } from 'react-router-dom';
 import { ListOfferType } from '../../types/offers';
-import { AppRoute } from '../../constants';
+import { AppRoute, AuthorizationStatus } from '../../constants';
 import { PlaceCardAttributes } from '../../style-options';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import Rating from '../rating/rating';
+import { selectAuthorizationStatus } from '../../store/selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { toggleFavorite } from '../../store/api-actions';
 
 type PlaceCardItemProps = {
     cardPlace: ListOfferType;
@@ -24,7 +27,15 @@ function Mark({markClass}: MarkProps):JSX.Element{
 }
 
 function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardItemProps): JSX.Element {
-
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
+  const navigate = useNavigate();
+  const handleToggleFavoriteClick = () =>{
+    if (authorizationStatus !== AuthorizationStatus.Auth){
+      return navigate(AppRoute.Login);
+    }
+    dispatch(toggleFavorite({offerId: cardPlace.id, isFavorite: cardPlace.isFavorite ? 0 : 1}));
+  };
   return (
     <article
       className={`${pageNames}__card place-card`}
@@ -48,7 +59,10 @@ function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardIt
             <b className='place-card__price-value'>&euro;{cardPlace.price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <BookmarkButton bookmarkClass='place-card' cardPlace = {cardPlace}/>
+          <BookmarkButton bookmarkClass='place-card'
+            cardPlace = {cardPlace}
+            onToogleClick = {handleToggleFavoriteClick}
+          />
         </div>
         <Rating
           ratingClass='place-card'

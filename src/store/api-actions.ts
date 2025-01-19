@@ -10,11 +10,26 @@ import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
 
+type ToggleFavoritePayload = {
+  offerId: string;
+  isFavorite: number;
+}
+
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: State;
   dispatch: AppDispatch;
   extra: AxiosInstance;
 }>();
+
+
+export const toggleFavorite = createAppAsyncThunk<ListOfferType, ToggleFavoritePayload>(
+  'favorite/toggleFavorite',
+  async({offerId: id, isFavorite}, { extra: api}) => {
+    const path = generatePath(AppRoute.Favorite, {offerId: id, status: String(isFavorite)});
+    const {data} = await api.post<ListOfferType>(path, {});
+    return data;
+  }
+);
 
 export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
   `${NameSpace.Offers}/fetchOffers`,
@@ -88,3 +103,4 @@ export const logOutAction = createAppAsyncThunk<void, undefined>(
     dispatch(redirectToRoute(AppRoute.Login));
   }
 );
+

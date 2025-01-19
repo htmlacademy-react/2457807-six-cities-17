@@ -5,20 +5,13 @@ import { ListOfferType } from '../../types/offers';
 type BookmarkButtonProps = {
   bookmarkClass: string;
   cardPlace?: ListOfferType;
+  onToogleClick: () => void;
 }
 
-function BookmarkButton({bookmarkClass, cardPlace}: BookmarkButtonProps): JSX.Element{
+function BookmarkButton({bookmarkClass, cardPlace, onToogleClick}: BookmarkButtonProps): JSX.Element{
   const isSelectedFavorite = cardPlace?.isFavorite;
-  const handleButtonBookmarkClick = (cardPlaceFavorite:ListOfferType|undefined):void =>{
-    if(cardPlaceFavorite !== undefined && cardPlaceFavorite?.isFavorite) {
-      cardPlaceFavorite.isFavorite = false;
-    }
-    if(cardPlaceFavorite !== undefined && !cardPlaceFavorite.isFavorite === false){
-      cardPlaceFavorite.isFavorite = true;
-    }
-  };
   return (
-    <button onClick = {() => handleButtonBookmarkClick(cardPlace)} className={`${bookmarkClass}__bookmark-button ${isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
+    <button onClick = {onToogleClick} className={`${bookmarkClass}__bookmark-button ${isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button">
       <svg className={`${bookmarkClass}__bookmark-icon`} width={BookmarkAttributes[bookmarkClass].width} height={BookmarkAttributes[bookmarkClass].height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

@@ -1,4 +1,3 @@
-import { NEAR_BY_OFFERS_LIMITED } from '../constants';
 import { AuthorizationStatusType, AuthorizedUserType } from '../types/authorized-user';
 import { CommentType } from '../types/comment';
 import { FullOfferType } from '../types/full-offer';
@@ -7,10 +6,7 @@ import { State } from '../types/state';
 import { NameSpace } from '../constants';
 
 export const selectFullOffer = (state: State):FullOfferType | null => state[NameSpace.Offers].fullOffer;
-export const selectNearByOffers = (state: State):ListOfferType[] => state[NameSpace.Offers].nearByOffers.slice(
-  0,
-  NEAR_BY_OFFERS_LIMITED
-);
+export const selectNearByOffers = (state: State):ListOfferType[] => state[NameSpace.Offers].nearByOffers;
 export const selectReviewList = (state: State):CommentType[] => state[NameSpace.Offers].reviewsList;
 export const selectOffers = (state:State) : ListOfferType[] => state[NameSpace.Offers].offersList;
 export const selectIsNearByOffersLoading = (state : State) : boolean => state[NameSpace.Offers].isNearByOffersLoading;

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { UserProfileAttributes } from '../../style-options';
-import { AuthorizationStatus, PageNames } from '../../constants';
+import { AuthorizationStatus, NEAR_BY_OFFERS_LIMITED, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -48,7 +48,10 @@ function FullOfferPage(): JSX.Element{
   },[offerId, dispatch]);
   const fullOffer = useAppSelector(selectFullOffer);
   const isFullOfferLoading = useAppSelector(selectIsFullOfferLoading);
-  const nearByOffers = useAppSelector(selectNearByOffers);
+  const nearByOffers = useAppSelector(selectNearByOffers).slice(
+    0,
+    NEAR_BY_OFFERS_LIMITED
+  );
   const isNearByOffersLoading = useAppSelector(selectIsNearByOffersLoading);
   const mapMarkOffersNearBy = [...nearByOffers, ...adaptFullOfferToOfferList(fullOffer)];
   const reviewList = useAppSelector(selectReviewList);

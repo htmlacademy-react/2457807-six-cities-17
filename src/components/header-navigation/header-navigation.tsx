@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { ListOfferType } from '../../types/offers';
-import { logoutAction } from '../../store/api-actions';
+import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { selectAuthorizationStatus, selectUser } from '../../store/selectors';
 
 type headerNavigationProps = {
   Offers: ListOfferType[];
@@ -14,7 +15,7 @@ type UserAuthorizedProps = {
 }
 
 function UserAuthorized({Offers, authorizationStatus}:UserAuthorizedProps): JSX.Element {
-  const email = useAppSelector((state) => state.email);
+  const email = useAppSelector(selectUser)?.email;
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <>
@@ -42,7 +43,7 @@ function Item(): JSX.Element {
     <li className="header__nav-item">
       <Link
         onClick={() => {
-          dispatch(logoutAction());
+          dispatch(logOutAction());
         }}
         className="header__nav-link"
         to={AppRoute.Login}
@@ -54,7 +55,7 @@ function Item(): JSX.Element {
 }
 
 function HeaderNavigation({Offers}:headerNavigationProps):JSX.Element{
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">

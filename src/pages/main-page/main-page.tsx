@@ -9,12 +9,13 @@ import PlaceCardsList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeLocation } from '../../store/action';
+import { selectLocation, selectOffers } from '../../store/selectors';
 
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offersList);
-  const currentCity = useAppSelector((state) => state.currentLocations);
+  const offers = useAppSelector(selectOffers);
+  const currentCity = useAppSelector(selectLocation);
   const [isActiveOffer, setiIsActiveOffer] = useState<string | null>(null);
 
   const handleActiveOfferChange = (id:string | null) =>{

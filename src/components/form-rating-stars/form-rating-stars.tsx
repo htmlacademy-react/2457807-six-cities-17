@@ -3,10 +3,11 @@ import { starsTitle } from '../../constants';
 
 type IndexRatingStars = {
     index: number;
+    rating: 1 | 2 | 3 | 4 | 5 | null;
     onRatingChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   }
 
-function FormRatingStars({index, onRatingChange}:IndexRatingStars):JSX.Element{
+function FormRatingStars({index, onRatingChange, rating}:IndexRatingStars):JSX.Element{
   return(
     <>
       <input
@@ -16,6 +17,7 @@ function FormRatingStars({index, onRatingChange}:IndexRatingStars):JSX.Element{
         value={index}
         id= {`${index}-stars`}
         type="radio"
+        checked = {index === rating}
       />
       <label
         htmlFor={`${index}-stars`}

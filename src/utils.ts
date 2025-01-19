@@ -1,5 +1,21 @@
+import { toast } from 'react-toastify';
 import { SortOptions } from './constants';
 import { ListOfferType, SortOptionsType } from './types/offers';
+import { FullOfferType } from './types/full-offer';
+
+const notify = (message: string) => toast.warn(message);
+
+const adaptFullOfferToOfferList = (fullOffer:FullOfferType | null):ListOfferType[] | [] => {
+  if (fullOffer === null) {
+    return [];
+  }
+  const {id, title, type, price, city, location, isFavorite,
+    isPremium, rating, previewImage} = fullOffer;
+  return [{
+    id, title, type, price, city, location,
+    isFavorite, isPremium, rating, previewImage,
+  }];
+};
 
 const getRandomArrayElement = <T>(items : T[]) : T => items[Math.floor(Math.random() * items.length)];
 
@@ -19,4 +35,4 @@ const sortBy = {
 };
 const sortOffers = (offers:ListOfferType[], sortOptionsType:SortOptionsType) => sortBy[sortOptionsType](offers);
 
-export {getRandomArrayElement, getRandomInteger, getRandomDate, sortOffers};
+export {getRandomArrayElement, getRandomInteger, getRandomDate, sortOffers, notify, adaptFullOfferToOfferList};

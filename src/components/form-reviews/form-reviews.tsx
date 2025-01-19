@@ -2,6 +2,11 @@ import { ChangeEvent} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { submitToOfferReviewAction } from '../../store/api-actions';
+import { selectIsSubmitReviewLoading } from '../../store/selectors';
+import { processErrorHandle } from '../../services/process-error-handle';
+
 
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
@@ -14,10 +19,15 @@ const initialState: FormDataType = {
   rating: null,
   review: ''
 };
+type FormReviewsProps = {
+  offerId: string | null;
+}
 
-function FormReviews():JSX.Element{
+function FormReviews({offerId}:FormReviewsProps):JSX.Element{
   const [formData, setFormData] = useState<FormDataType>(initialState);
   const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
+  const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
+  const dispatch = useAppDispatch();
   const handleValueFormChange =
   ({
     target
@@ -34,8 +44,19 @@ function FormReviews():JSX.Element{
   };
   const handleFormSubmit = (evt:ChangeEvent<HTMLFormElement>) =>{
     evt.preventDefault();
-    setFormData(initialState);
     setIsButtonSubmitDisabled(true);
+    dispatch(
+      submitToOfferReviewAction({
+        offerId,
+        comment: formData.review,
+        rating: formData.rating,
+      })
+    ).unwrap()
+      .then(() => {
+        setFormData(initialState);
+      })
+      .catch(
+        ({message}) => processErrorHandle(String(message)));
   };
   return(
     <form
@@ -49,6 +70,7 @@ function FormReviews():JSX.Element{
           <FormRatingStars
             key={value}
             index = {5 - index}
+            rating = {formData.rating}
             onRatingChange ={handleValueFormChange}
           />))}
       </div>
@@ -58,12 +80,18 @@ function FormReviews():JSX.Element{
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange = {handleValueFormChange}
         value = {formData.review}
+        disabled = {isSubmitReviewLoading}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button disabled = {isButtonSubmitDisabled} className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button
+          disabled = {isButtonSubmitDisabled || isSubmitReviewLoading}
+          className="reviews__submit form__submit button" type="submit"
+        >
+          Submit
+        </button>
       </div>
     </form>
   );

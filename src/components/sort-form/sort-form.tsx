@@ -1,11 +1,12 @@
 import { useAppSelector } from '../../hooks';
+import { selectCurrentSort } from '../../store/selectors';
 import SortOffersList from '../sort-offers-list/sort-offers-list';
 import { useEffect, useRef, useState } from 'react';
 
 function SortForm():JSX.Element{
   const sortSpanRef = useRef<HTMLElement>(null);
   const [isMenuOpened, setMenuOpened] = useState(false);
-  const currentSort = useAppSelector((state) => state.currentSort);
+  const currentSort = useAppSelector(selectCurrentSort);
   useEffect(() =>{
     const hideSortList = (evt: MouseEvent) => {
       if(evt.target instanceof HTMLElement && sortSpanRef.current && !sortSpanRef.current.contains(evt.target)){

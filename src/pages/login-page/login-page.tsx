@@ -5,10 +5,12 @@ import LocationsItemLink from '../../components/locations-item-link/locations-it
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useRef } from 'react';
-import { loginAction } from '../../store/api-actions';
+import { logInAction } from '../../store/api-actions';
+import { selectLocation } from '../../store/selectors';
+
 
 function LoginPage(): JSX.Element {
-  const location = useAppSelector((state) => state.currentLocations);
+  const currentCity = useAppSelector(selectLocation);
   const pageNames:string = PageNames.Login;
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -17,12 +19,13 @@ function LoginPage(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
+      dispatch(logInAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }));
     }
   };
+
   return (
     <div className="page page--gray page--login">
       <Helmet>
@@ -41,7 +44,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <LocationsItemLink location={location} pageNames={pageNames} />
+              <LocationsItemLink location={currentCity} pageNames={pageNames} />
             </div>
           </section>
         </div>

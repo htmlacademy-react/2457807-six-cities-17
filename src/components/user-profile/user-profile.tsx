@@ -8,7 +8,7 @@ type UserProfileProps = {
   }
 
 function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
-  const {userName, avatarUrl, isPro} = userDate;
+  const {name, avatarUrl, isPro} = userDate;
   const {className, width, height} = userProfileStyle;
   const classNameType = className === 'reviews' ? 'reviews' : 'offer';
   return(
@@ -17,11 +17,11 @@ function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
         <img className={`${classNameType}__avatar user__avatar`} src={avatarUrl} width={width} height={height} alt={`${className.charAt(0).toUpperCase() + className.charAt(0)} avatar`}/>
       </div>
       <span className={`${classNameType}__user-name`}>
-        {userName}
+        {name}
       </span>
-      <span className={`${classNameType}__user-status`}>
+      {/* <span className={`${classNameType}__user-status`}>
         {isPro && 'Pro'}
-      </span>
+      </span> */}
     </div>
   );
 }

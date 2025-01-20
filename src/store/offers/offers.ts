@@ -3,9 +3,10 @@ import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
 import { setDataLoadingStatus } from '../action';
-import { fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
+import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
   fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
 import { NameSpace } from '../../constants';
+import { toast } from 'react-toastify';
 
 
 type OffersState = {
@@ -42,6 +43,18 @@ export const offersSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(fetchFavoriteOffersAction.pending, (state) => {
+        state.isFavoriteLoading = true;
+      })
+      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+        state.isFavoriteLoading = false;
+      })
+      .addCase(fetchFavoriteOffersAction.rejected, (state) => {
+        state.isFavoriteLoading = false;
+        state.favorites = [];
+        toast.warn('Error while loading offers');
+      })
       .addCase(toggleFavorite.pending, (state) => {
         state.isFavoriteLoading = true;
       })
@@ -107,6 +120,7 @@ export const offersSlice = createSlice({
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offersList = [];
         state.isDataLoading = false;
+        toast.warn('Error while loading offers');
       })
       .addCase(setDataLoadingStatus, (state, action) => {
         state.isDataLoading = action.payload;

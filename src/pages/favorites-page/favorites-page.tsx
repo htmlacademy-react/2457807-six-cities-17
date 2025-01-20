@@ -26,7 +26,7 @@ function FavoriteEmpty(): JSX.Element {
 
 function FavoritesPage(): JSX.Element{
   const pageNames:string = PageNames.Favorites;
-  const offersFavorite = useAppSelector(selectFavorites) && [];
+  const offersFavorite = useAppSelector(selectFavorites);
   const offersFavoriteCount = offersFavorite?.length;
   return (
     <div className= {offersFavoriteCount !== 0 ? 'page' : 'page page--favorites-empty'}>

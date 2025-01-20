@@ -22,4 +22,5 @@ export const selectError = (state: State): null | string => state[NameSpace.User
 export const selectErrorMessage = (state: State): string => state[NameSpace.User].errorMessage;
 export const selectUser = (state: State): AuthorizedUserType | null => state[NameSpace.User].user;
 export const selectCurrentSort = (state: State): SortOptionsType => state[NameSpace.ActiveMain].currentSort;
-
+export const selectFavoriteByOfferId = (state: State, offerId: string) =>
+  state[NameSpace.Offers].favorites.findIndex((offer) => offer.id === offerId) !== -1;

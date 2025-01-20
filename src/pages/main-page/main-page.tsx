@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { LOCATIONS, PageNames } from '../../constants';
 import { CityKeys } from '../../types/offers';
 import MainPageEmpty from '../main-empty-page/main-empty-page';
@@ -21,13 +21,13 @@ function MainPage(): JSX.Element {
   const handleActiveOfferChange = (id:string | null) =>{
     setiIsActiveOffer(id);
   };
-  const handleCurrentCityChange = (city:CityKeys):void =>{
+  const handleCurrentCityChange = useCallback((city:CityKeys):void =>{
     if(city === currentCity) {
       return;
     }
     dispatch(changeLocation(city));
-  };
-  const filteredOfferByCity = offers.filter((offer) => offer.city.name === currentCity);
+  }, [dispatch, currentCity]);
+  const filteredOfferByCity = useMemo(() => offers.filter((offer) => offer.city.name === currentCity), [currentCity, offers]);
   const offersCount = filteredOfferByCity.length;
   return (
     <div className="page page--gray page--main">

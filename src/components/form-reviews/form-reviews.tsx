@@ -11,12 +11,12 @@ import { processErrorHandle } from '../../services/process-error-handle';
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
 type FormDataType = {
-  rating: 1 | 2 | 3 | 4 | 5 | null;
+  rating: 1 | 2 | 3 | 4 | 5 | 0;
   review: string;
 }
 
 const initialState: FormDataType = {
-  rating: null,
+  rating: 0,
   review: ''
 };
 type FormReviewsProps = {

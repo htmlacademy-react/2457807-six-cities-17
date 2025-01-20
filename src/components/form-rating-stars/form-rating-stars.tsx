@@ -3,7 +3,7 @@ import { starsTitle } from '../../constants';
 
 type IndexRatingStars = {
     index: number;
-    rating: 1 | 2 | 3 | 4 | 5 | null;
+    rating: 1 | 2 | 3 | 4 | 5 | 0;
     onRatingChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   }
 

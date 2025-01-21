@@ -48,7 +48,6 @@ function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardIt
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
           <BookmarkButton bookmarkClass='place-card'
-            cardPlace = {cardPlace}
             offerId = {cardPlace.id}
           />
         </div>

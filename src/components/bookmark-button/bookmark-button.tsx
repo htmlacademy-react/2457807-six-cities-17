@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { BookmarkAttributes } from '../../style-options';
-import { ListOfferType } from '../../types/offers';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
@@ -10,11 +9,10 @@ import { selectAuthorizationStatus, selectFavoriteByOfferId } from '../../store/
 
 type BookmarkButtonProps = {
   bookmarkClass: string;
-  cardPlace?: ListOfferType;
   offerId: string;
 }
 
-const BookmarkButton = memo(({bookmarkClass, cardPlace, offerId}: BookmarkButtonProps): JSX.Element =>{
+const BookmarkButton = memo(({bookmarkClass, offerId}: BookmarkButtonProps): JSX.Element =>{
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const navigate = useNavigate();

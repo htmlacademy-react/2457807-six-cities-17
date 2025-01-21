@@ -8,7 +8,7 @@ import SortForm from '../../components/sort-form/sort-form';
 import PlaceCardsList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { changeLocation } from '../../store/action';
+import { changeLocation } from '../../store/active-main/active-main';
 import { selectLocation, selectOffers } from '../../store/selectors';
 
 

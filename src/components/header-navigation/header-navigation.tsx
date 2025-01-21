@@ -3,6 +3,7 @@ import { AppRoute, AuthorizationStatus } from '../../constants';
 import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectAuthorizationStatus, selectFavorites, selectUser } from '../../store/selectors';
+import { memo } from 'react';
 
 type UserAuthorizedProps = {
   authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
@@ -49,7 +50,7 @@ function Item(): JSX.Element {
   );
 }
 
-function HeaderNavigation():JSX.Element{
+const HeaderNavigation = memo(():JSX.Element =>{
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   return (
     <nav className="header__nav">
@@ -64,6 +65,9 @@ function HeaderNavigation():JSX.Element{
     </nav>
   );
 }
+);
+
+HeaderNavigation.displayName = 'HeaderNavigation';
 
 export default HeaderNavigation;
 

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {PageNames } from '../../constants';
 import { HeaderLogoAttributes } from '../../style-options';
 import HeaderNavigation from '../header-navigation/header-navigation';
@@ -8,7 +9,7 @@ type HeaderProps = {
   pageNames: string;
 }
 
-function Header({pageNames }:HeaderProps): JSX.Element {
+const Header = memo(({pageNames }:HeaderProps): JSX.Element => {
   const headerNavigationEmpty = pageNames === PageNames.Login ?
     '' : <HeaderNavigation />;
   return (
@@ -24,6 +25,10 @@ function Header({pageNames }:HeaderProps): JSX.Element {
     </header>
   );
 }
+);
+
+Header.displayName = 'Header';
 
 export default Header;
+
 

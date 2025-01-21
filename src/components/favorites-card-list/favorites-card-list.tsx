@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { ListOfferType } from '../../types/offers';
 import FavoritesCardItem from '../favorites-card-item/favorites-card-item';
 
@@ -7,7 +8,7 @@ type OffersFavoriteProps = {
   pageNames: string;
 }
 
-function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.Element {
+const FavoritesCardList = memo(({offersFavorite, pageNames}:OffersFavoriteProps):JSX.Element => {
   const groupByList = Object.groupBy(offersFavorite, ({city}) => city.name);
   return (
     <ul className="favorites__list">
@@ -19,6 +20,8 @@ function FavoritesCardList({offersFavorite, pageNames}:OffersFavoriteProps):JSX.
         />))}
     </ul>
   );
-}
+});
+
+FavoritesCardList.displayName = 'FavoritesCardItem';
 
 export default FavoritesCardList;

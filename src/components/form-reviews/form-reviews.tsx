@@ -1,4 +1,4 @@
-import { ChangeEvent} from 'react';
+import { ChangeEvent, memo} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
@@ -23,7 +23,7 @@ type FormReviewsProps = {
   offerId: string | null;
 }
 
-function FormReviews({offerId}:FormReviewsProps):JSX.Element{
+const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
   const [formData, setFormData] = useState<FormDataType>(initialState);
   const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
   const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
@@ -96,5 +96,8 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
     </form>
   );
 }
+);
+
+FormReviews.displayName = 'FormReviews';
 
 export default FormReviews;

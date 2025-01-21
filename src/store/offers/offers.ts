@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
-import { setDataLoadingStatus } from '../action';
 import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
   fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
 import { NameSpace } from '../../constants';
@@ -122,9 +121,6 @@ export const offersSlice = createSlice({
         state.offersList = [];
         state.isDataLoading = false;
         toast.warn('Error while loading offers');
-      })
-      .addCase(setDataLoadingStatus, (state, action) => {
-        state.isDataLoading = action.payload;
       });
   }
 });

@@ -24,7 +24,7 @@ const BookmarkButton = memo(({bookmarkClass, cardPlace, offerId}: BookmarkButton
       if (authorizationStatus !== AuthorizationStatus.Auth){
         return navigate(AppRoute.Login);
       }
-      dispatch(toggleFavorite({offerId: offerId, isFavorite: cardPlace?.isFavorite}));
+      dispatch(toggleFavorite({offerId: offerId, isFavorite: isSelectedFavorite}));
     }}
     className={`${bookmarkClass}__bookmark-button ${authorizationStatus === AuthorizationStatus.Auth && isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button"
     >

@@ -24,7 +24,6 @@ function Mark({markClass}: MarkProps):JSX.Element{
 }
 
 function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardItemProps): JSX.Element {
-
   return (
     <article
       className={`${pageNames}__card place-card`}
@@ -48,7 +47,9 @@ function PlaceCardItem({ cardPlace, pageNames, onActiveOfferChange}: PlaceCardIt
             <b className='place-card__price-value'>&euro;{cardPlace.price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <BookmarkButton bookmarkClass='place-card' cardPlace = {cardPlace}/>
+          <BookmarkButton bookmarkClass='place-card'
+            offerId = {cardPlace.id}
+          />
         </div>
         <Rating
           ratingClass='place-card'

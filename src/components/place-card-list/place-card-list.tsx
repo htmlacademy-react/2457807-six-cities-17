@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useAppSelector } from '../../hooks';
 import { selectCurrentSort } from '../../store/selectors';
 import { ListOfferType } from '../../types/offers';
@@ -10,7 +11,7 @@ type placeCardProps = {
   onActiveOfferChange?: (id: string | null) => void;
 }
 
-function PlaceCardsList({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element {
+function PlaceCardsListTemplate({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element {
   const currentSort = useAppSelector(selectCurrentSort);
   const sortedOfferCards = sortOffers(offers, currentSort);
   return (
@@ -25,5 +26,6 @@ function PlaceCardsList({pageNames, offers, onActiveOfferChange}:placeCardProps)
     </>
   );
 }
+const PlaceCardsList = memo(PlaceCardsListTemplate);
 
 export default PlaceCardsList;

@@ -1,4 +1,4 @@
-import { ChangeEvent} from 'react';
+import { ChangeEvent, memo} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
@@ -11,19 +11,19 @@ import { processErrorHandle } from '../../services/process-error-handle';
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
 type FormDataType = {
-  rating: 1 | 2 | 3 | 4 | 5 | null;
+  rating: 1 | 2 | 3 | 4 | 5 | 0;
   review: string;
 }
 
 const initialState: FormDataType = {
-  rating: null,
+  rating: 0,
   review: ''
 };
 type FormReviewsProps = {
   offerId: string | null;
 }
 
-function FormReviews({offerId}:FormReviewsProps):JSX.Element{
+const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
   const [formData, setFormData] = useState<FormDataType>(initialState);
   const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
   const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
@@ -96,5 +96,8 @@ function FormReviews({offerId}:FormReviewsProps):JSX.Element{
     </form>
   );
 }
+);
+
+FormReviews.displayName = 'FormReviews';
 
 export default FormReviews;

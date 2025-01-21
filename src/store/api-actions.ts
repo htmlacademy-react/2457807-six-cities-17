@@ -9,12 +9,42 @@ import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+type ToggleFavoritePayload = {
+  offerId: string;
+  isFavorite: boolean | undefined;
+}
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: State;
   dispatch: AppDispatch;
   extra: AxiosInstance;
 }>();
+
+
+export const toggleFavorite = createAppAsyncThunk<ListOfferType, ToggleFavoritePayload>(
+  'favorite/toggleFavorite',
+  async({offerId: id, isFavorite}, { getState, extra: api}) => {
+    const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite ? 0 : 1}`});
+    const {data} = await api.post<ListOfferType>(path);
+    const {offersList} = getState().offers;
+    const currentOffer = offersList.find((offer) => offer.id === data.id);
+    if(!currentOffer){
+      toast.warn(`No such offer with given id: ${data.id}`);
+      throw new Error(`No such offer with giver id: ${data.id}`);
+    }
+    return {...currentOffer, isFavorite: data.isFavorite};
+  }
+);
+
+export const fetchFavoriteOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
+  `${NameSpace.Offers}/fetchFavoriteOffers`,
+  async(_arg, { extra: api}) => {
+    const {data} = await api.get<ListOfferType[]>(AppRoute.FavoritesLoad);
+    return data;
+  }
+);
 
 export const fetchOffersAction = createAppAsyncThunk<ListOfferType[], undefined>(
   `${NameSpace.Offers}/fetchOffers`,
@@ -88,3 +118,4 @@ export const logOutAction = createAppAsyncThunk<void, undefined>(
     dispatch(redirectToRoute(AppRoute.Login));
   }
 );
+

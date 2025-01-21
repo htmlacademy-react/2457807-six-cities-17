@@ -1,7 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CityKeys, SortOptionsType} from '../../types/offers';
 import { DEFAULT_ACTIVE_LOCATION, SortOptions } from '../../constants';
-import { changeLocation, changeSorting } from '../action';
 import { NameSpace } from '../../constants';
 
 type ActiveMain = {
@@ -17,14 +16,14 @@ const initialState:ActiveMain = {
 export const activeMainSlice = createSlice({
   name: NameSpace.ActiveMain,
   initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(changeLocation, (state, action) => {
-        state.currentLocations = action.payload;
-      })
-      .addCase(changeSorting, (state, action) => {
-        state.currentSort = action.payload;
-      });
-  }
+  reducers: {
+    changeLocation (state, action: PayloadAction<CityKeys>){
+      state.currentLocations = action.payload;
+    },
+    changeSorting (state, action: PayloadAction<SortOptionsType>){
+      state.currentSort = action.payload;
+    },
+  },
 });
+
+export const {changeLocation, changeSorting} = activeMainSlice.actions;

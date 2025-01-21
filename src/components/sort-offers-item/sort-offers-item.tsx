@@ -1,4 +1,4 @@
-import { changeSorting } from '../../store/action';
+import { changeSorting } from '../../store/active-main/active-main';
 import { useAppDispatch } from '../../hooks';
 import { SortOptionsType } from '../../types/offers';
 

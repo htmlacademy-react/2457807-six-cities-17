@@ -2,9 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
-import { setDataLoadingStatus } from '../action';
-import { fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction, fetchOffesNearAction, submitToOfferReviewAction } from '../api-actions';
+import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
+  fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
 import { NameSpace } from '../../constants';
+import { toast } from 'react-toastify';
 
 
 type OffersState = {
@@ -17,6 +18,8 @@ type OffersState = {
   reviewsList: CommentType[];
   isReviewsListLoading: boolean;
   isSubmitReviewLoading: boolean;
+  favorites: ListOfferType[];
+  isFavoriteLoading: boolean;
 }
 
 const initialState:OffersState = {
@@ -29,6 +32,8 @@ const initialState:OffersState = {
   reviewsList: [],
   isReviewsListLoading: false,
   isSubmitReviewLoading: false,
+  favorites: [],
+  isFavoriteLoading: false,
 };
 
 export const offersSlice = createSlice({
@@ -37,6 +42,32 @@ export const offersSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(fetchFavoriteOffersAction.pending, (state) => {
+        state.isFavoriteLoading = true;
+      })
+      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+        state.isFavoriteLoading = false;
+      })
+      .addCase(fetchFavoriteOffersAction.rejected, (state) => {
+        state.isFavoriteLoading = false;
+        state.favorites = [];
+        toast.warn('Error while loading offers');
+      })
+      .addCase(toggleFavorite.pending, (state) => {
+        state.isFavoriteLoading = true;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favorites.push(action.payload);
+        } else {
+          const favoriteIndex = state.favorites.findIndex((favoriteOffer) => favoriteOffer.id === action.payload.id);
+          state.favorites.splice(favoriteIndex, 1);
+        }
+      })
+      .addCase(toggleFavorite.rejected, (state) => {
+        state.isFavoriteLoading = false;
+      })
       .addCase(submitToOfferReviewAction.pending, (state) => {
         state.isSubmitReviewLoading = true;
       })
@@ -89,9 +120,7 @@ export const offersSlice = createSlice({
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offersList = [];
         state.isDataLoading = false;
-      })
-      .addCase(setDataLoadingStatus, (state, action) => {
-        state.isDataLoading = action.payload;
+        toast.warn('Error while loading offers');
       });
   }
 });

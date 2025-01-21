@@ -9,17 +9,28 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
 import LoadingScreen from '../../pages/page-loading/page-loading';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import { selectAuthorizationStatus, selectIsDataLoading } from '../../store/selectors';
+import { useEffect } from 'react';
+import { fetchFavoriteOffersAction } from '../../store/api-actions';
 
 function App(): JSX.Element {
+  const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const isDataLoading = useAppSelector(selectIsDataLoading);
+  useEffect(() => {
+    if(authorizationStatus === AuthorizationStatus.Auth){
+      dispatch(fetchFavoriteOffersAction());
+    }
+
+  }, [authorizationStatus, dispatch]);
   if(authorizationStatus === AuthorizationStatus.Unknown || isDataLoading){
     return <LoadingScreen />;
   }
+
+
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>

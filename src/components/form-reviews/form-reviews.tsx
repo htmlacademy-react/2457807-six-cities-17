@@ -1,4 +1,4 @@
-import { ChangeEvent, memo} from 'react';
+import { ChangeEvent, memo, useCallback} from 'react';
 import { useState } from 'react';
 import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
@@ -28,21 +28,21 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
   const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
   const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
   const dispatch = useAppDispatch();
-  const handleValueFormChange =
-  ({
-    target
-  }: | ChangeEvent<HTMLTextAreaElement>
+  const handleValueFormChange = useCallback(
+    ({
+      target
+    }: | ChangeEvent<HTMLTextAreaElement>
      | ChangeEvent<HTMLInputElement>):void => {
-    setFormData((prev) => ({
-      ...prev,
-      [target.name]:
+      setFormData((prev) => ({
+        ...prev,
+        [target.name]:
         target.name === 'review' ? target.value : Number(target.value),
-    }));
-    if (formData.review.length > CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating !== null){
-      setIsButtonSubmitDisabled(false);
-    }
-  };
-  const handleFormSubmit = (evt:ChangeEvent<HTMLFormElement>) =>{
+      }));
+      if (formData.review.length > CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating !== null){
+        setIsButtonSubmitDisabled(false);
+      }
+    }, [formData]);
+  const handleFormSubmit = useCallback((evt:ChangeEvent<HTMLFormElement>) =>{
     evt.preventDefault();
     setIsButtonSubmitDisabled(true);
     dispatch(
@@ -57,7 +57,7 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
       })
       .catch(
         ({message}) => processErrorHandle(String(message)));
-  };
+  }, [dispatch, offerId, formData]);
   return(
     <form
       onSubmit = {handleFormSubmit}

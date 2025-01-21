@@ -11,7 +11,7 @@ type placeCardProps = {
   onActiveOfferChange?: (id: string | null) => void;
 }
 
-function PlaceCardsListTemplate({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element {
+const PlaceCardsList = memo(({pageNames, offers, onActiveOfferChange}:placeCardProps): JSX.Element => {
   const currentSort = useAppSelector(selectCurrentSort);
   const sortedOfferCards = sortOffers(offers, currentSort);
   return (
@@ -25,7 +25,8 @@ function PlaceCardsListTemplate({pageNames, offers, onActiveOfferChange}:placeCa
         />))}
     </>
   );
-}
-const PlaceCardsList = memo(PlaceCardsListTemplate);
+});
+
+PlaceCardsList.displayName = 'PlaceCardsList';
 
 export default PlaceCardsList;

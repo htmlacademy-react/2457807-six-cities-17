@@ -43,7 +43,7 @@ export const createAPI = () : AxiosInstance => {
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
       if(!error.response){
-        toast.warn(`${error.message}: Ошибка интернета`);
+        toast.warn(`${error.message}: Нет интернета, талоны кончились`);
         processErrorHandle(error.message);
       }else
         if (error.response && shouldDisplayError(error.response)) {

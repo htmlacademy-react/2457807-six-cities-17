@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 type ToggleFavoritePayload = {
   offerId: string;
-  isFavorite: number;
+  isFavorite: boolean | undefined;
 }
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
@@ -26,7 +26,7 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 export const toggleFavorite = createAppAsyncThunk<ListOfferType, ToggleFavoritePayload>(
   'favorite/toggleFavorite',
   async({offerId: id, isFavorite}, { getState, extra: api}) => {
-    const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite}`});
+    const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite ? 0 : 1}`});
     const {data} = await api.post<ListOfferType>(path);
     const {offersList} = getState().offers;
     const currentOffer = offersList.find((offer) => offer.id === data.id);

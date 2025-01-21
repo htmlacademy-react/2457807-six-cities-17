@@ -1,7 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationStatusType, AuthorizedUserType } from '../../types/authorized-user';
 import { AuthorizationStatus } from '../../constants';
-import { setError, setUser } from '../action';
 import { checkAuthAction, logInAction, logOutAction } from '../api-actions';
 import { NameSpace } from '../../constants';
 
@@ -25,7 +24,12 @@ const initialState:UserState = {
 export const userSlice = createSlice({
   name: NameSpace.User,
   initialState,
-  reducers: {},
+  reducers: {
+    setError (state, action: PayloadAction<string | null>){
+      state.isError = true;
+      state.error = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(checkAuthAction.fulfilled, (state, action) => {
@@ -49,14 +53,8 @@ export const userSlice = createSlice({
       })
       .addCase(logOutAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
-      })
-      .addCase(setError, (state, action) => {
-        state.isError = true;
-        state.error = action.payload;
-      })
-      .addCase(setUser, (state, action) => {
-        state.user = action.payload;
       });
   }
 });
 
+export const {setError} = userSlice.actions;

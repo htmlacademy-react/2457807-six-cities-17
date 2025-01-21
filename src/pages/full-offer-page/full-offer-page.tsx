@@ -130,7 +130,7 @@ function FullOfferPage(): JSX.Element{
               </div>
             </div>
             <section className="offer__reviews reviews">
-              {reviewList.length && <ReviewsList fullOfferComments = {reviewList}/>}
+              {reviewList.length === 0 ? '' : <ReviewsList fullOfferComments = {reviewList}/>}
               {authorizationStatus === AuthorizationStatus.Auth ? <FormReviews offerId = {offerId === undefined ? null : offerId}/> : ''}
             </section>
           </div>

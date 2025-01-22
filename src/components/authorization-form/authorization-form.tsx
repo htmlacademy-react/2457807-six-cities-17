@@ -1,4 +1,6 @@
 import { ChangeEvent, MutableRefObject } from 'react';
+import { useAppSelector } from '../../hooks';
+import { selectIsSubmitUserAuth } from '../../store/user/user-selector';
 
 type AuthorizationFormProps = {
   loginRef: MutableRefObject<HTMLInputElement | null>;
@@ -7,6 +9,7 @@ type AuthorizationFormProps = {
 }
 
 function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationFormProps) {
+  const isSubmitUserAuth = useAppSelector(selectIsSubmitUserAuth);
   return (
     <form
       onSubmit={onLogInSubmit}
@@ -38,7 +41,9 @@ function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationF
           title="2 символa минимум: в том числе 1 буква латиницей  и 1 цифра"
         />
       </div>
-      <button className="login__submit form__submit button" type="submit">
+      <button className="login__submit form__submit button" type="submit"
+        disabled = {!isSubmitUserAuth}
+      >
           Sign in
       </button>
     </form>

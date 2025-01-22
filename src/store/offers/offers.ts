@@ -64,6 +64,7 @@ export const offersSlice = createSlice({
           const favoriteIndex = state.favorites.findIndex((favoriteOffer) => favoriteOffer.id === action.payload.id);
           state.favorites.splice(favoriteIndex, 1);
         }
+        state.isFavoriteLoading = false;
       })
       .addCase(toggleFavoriteAction.rejected, (state) => {
         state.isFavoriteLoading = false;

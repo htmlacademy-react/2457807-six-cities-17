@@ -16,4 +16,5 @@ export const selectIsDataLoading = (state:State):boolean => state[NameSpace.Offe
 export const selectIsSubmitReviewLoading = (state: State): boolean => state[NameSpace.Offers].isSubmitReviewLoading;
 export const selectFavoriteByOfferId = (state: State, offerId: string) =>
   state[NameSpace.Offers].favorites.findIndex((offer) => offer.id === offerId) !== -1;
+export const selectIsFavoriteLoading = (state:State):boolean => state[NameSpace.Offers].isFavoriteLoading;
 

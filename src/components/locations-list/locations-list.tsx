@@ -34,7 +34,7 @@ function LocationsList({locations, pageNames, currentCity, onCurrentCityChange}:
       {
         locations.map((location) => (
           <LocationsItem
-            key={crypto.randomUUID()}
+            key={location}
             pageNames={pageNames}
             location={location}
             isActive={location === currentCity}

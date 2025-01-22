@@ -7,7 +7,6 @@ import { NameSpace } from '../../constants';
 type UserState = {
   authorizationStatus: AuthorizationStatusType;
   user: null | AuthorizedUserType;
-  isError: boolean;
   error: null | string;
   errorMessage: string;
 }
@@ -15,9 +14,8 @@ type UserState = {
 
 const initialState:UserState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  error:  null,
   user: null,
-  isError: false,
+  error:  null,
   errorMessage: '',
 };
 
@@ -26,7 +24,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setError (state, action: PayloadAction<string | null>){
-      state.isError = true;
       state.error = action.payload;
     },
   },

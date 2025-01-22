@@ -11,7 +11,7 @@ import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-type ToggleFavoritePayload = {
+type toggleFavoriteActionPayload = {
   offerId: string;
   isFavorite: boolean | undefined;
 }
@@ -23,7 +23,7 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 }>();
 
 
-export const toggleFavorite = createAppAsyncThunk<ListOfferType, ToggleFavoritePayload>(
+export const toggleFavoriteAction = createAppAsyncThunk<ListOfferType, toggleFavoriteActionPayload>(
   `${NameSpace.Offers}/toggleFavorite`,
   async({offerId: id, isFavorite}, { getState, extra: api}) => {
     const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite ? 0 : 1}`});

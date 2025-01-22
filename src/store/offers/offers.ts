@@ -3,7 +3,7 @@ import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
 import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
-  fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
+  fetchOffesNearAction, submitToOfferReviewAction, toggleFavoriteAction } from '../api-actions';
 import { NameSpace } from '../../constants';
 import { toast } from 'react-toastify';
 
@@ -54,10 +54,10 @@ export const offersSlice = createSlice({
         state.favorites = [];
         toast.warn('Error while loading offers');
       })
-      .addCase(toggleFavorite.pending, (state) => {
+      .addCase(toggleFavoriteAction.pending, (state) => {
         state.isFavoriteLoading = true;
       })
-      .addCase(toggleFavorite.fulfilled, (state, action) => {
+      .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
         if (action.payload.isFavorite) {
           state.favorites.push(action.payload);
         } else {
@@ -65,7 +65,7 @@ export const offersSlice = createSlice({
           state.favorites.splice(favoriteIndex, 1);
         }
       })
-      .addCase(toggleFavorite.rejected, (state) => {
+      .addCase(toggleFavoriteAction.rejected, (state) => {
         state.isFavoriteLoading = false;
       })
       .addCase(submitToOfferReviewAction.pending, (state) => {

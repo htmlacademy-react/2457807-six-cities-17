@@ -3,7 +3,7 @@ import { BookmarkAttributes } from '../../style-options';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
-import { toggleFavorite } from '../../store/api-actions';
+import { toggleFavoriteAction } from '../../store/api-actions';
 import { selectFavoriteByOfferId } from '../../store/offers/offers-selectors';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
 
@@ -22,7 +22,7 @@ const BookmarkButton = memo(({bookmarkClass, offerId}: BookmarkButtonProps): JSX
       if (authorizationStatus !== AuthorizationStatus.Auth){
         return navigate(AppRoute.Login);
       }
-      dispatch(toggleFavorite({offerId: offerId, isFavorite: isSelectedFavorite}));
+      dispatch(toggleFavoriteAction({offerId: offerId, isFavorite: isSelectedFavorite}));
     }}
     className={`${bookmarkClass}__bookmark-button ${authorizationStatus === AuthorizationStatus.Auth && isSelectedFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button"
     >

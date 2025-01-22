@@ -6,7 +6,7 @@ import AuthorizationForm from '../../components/authorization-form/authorization
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { FormEvent, useCallback, useRef } from 'react';
 import { logInAction } from '../../store/api-actions';
-import { selectLocation } from '../../store/selectors';
+import { selectLocation } from '../../store/active-main/active-main-selectors';
 
 
 function LoginPage(): JSX.Element {

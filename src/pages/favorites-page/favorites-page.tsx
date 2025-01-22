@@ -6,7 +6,7 @@ import Logo from '../../components/logo/logo';
 import FavoritesList from '../../components/favorites-card-list/favorites-card-list';
 import { FooterLogoAttributes } from '../../style-options';
 import { useAppSelector } from '../../hooks';
-import { selectFavorites } from '../../store/selectors';
+import { selectFavorites } from '../../store/offers/offers-selectors';
 
 function FavoriteEmpty(): JSX.Element {
   return (

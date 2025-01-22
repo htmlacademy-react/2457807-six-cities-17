@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks';
-import { selectError } from '../../store/selectors';
+import { selectError } from '../../store/user/user-selector';
 import './error-message.css';
 
 function ErrorMessage():JSX.Element | null {

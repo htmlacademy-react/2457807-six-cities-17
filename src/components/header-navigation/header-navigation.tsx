@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectAuthorizationStatus, selectFavorites, selectUser } from '../../store/selectors';
+import { selectFavorites } from '../../store/offers/offers-selectors';
+import { selectAuthorizationStatus, selectUser } from '../../store/user/user-selector';
 import { memo } from 'react';
 
 type UserAuthorizedProps = {

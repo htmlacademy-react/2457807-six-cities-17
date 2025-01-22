@@ -1,7 +1,7 @@
 import SortOffersItem from '../sort-offers-item/sort-offers-item';
 import { PLACES_OPTIONS } from '../../constants';
 import { useAppSelector } from '../../hooks';
-import { selectCurrentSort } from '../../store/selectors';
+import { selectCurrentSort } from '../../store/active-main/active-main-selectors';
 
 type isMenuOpenedProps = {
   isMenuOpened: boolean;

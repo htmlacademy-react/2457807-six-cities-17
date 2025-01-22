@@ -4,7 +4,7 @@ import FormRatingStars from '../form-rating-stars/form-rating-stars';
 import { CommentLengthLimit } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { submitToOfferReviewAction } from '../../store/api-actions';
-import { selectIsSubmitReviewLoading } from '../../store/selectors';
+import { selectIsSubmitReviewLoading } from '../../store/offers/offers-selectors';
 import { processErrorHandle } from '../../services/process-error-handle';
 
 

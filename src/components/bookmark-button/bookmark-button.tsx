@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { toggleFavorite } from '../../store/api-actions';
-import { selectAuthorizationStatus, selectFavoriteByOfferId } from '../../store/selectors';
-
+import { selectFavoriteByOfferId } from '../../store/offers/offers-selectors';
+import { selectAuthorizationStatus } from '../../store/user/user-selector';
 
 type BookmarkButtonProps = {
   bookmarkClass: string;

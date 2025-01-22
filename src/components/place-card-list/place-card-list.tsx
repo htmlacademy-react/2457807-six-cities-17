@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useAppSelector } from '../../hooks';
-import { selectCurrentSort } from '../../store/selectors';
+import { selectCurrentSort } from '../../store/active-main/active-main-selectors';
 import { ListOfferType } from '../../types/offers';
 import { sortOffers } from '../../utils';
 import PlaceCardItem from '../places-card-item/places-card-item';

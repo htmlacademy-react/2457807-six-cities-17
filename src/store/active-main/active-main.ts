@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CityKeys, SortOptionsType} from '../../types/offers';
-import { DEFAULT_ACTIVE_LOCATION, SortOptions } from '../../constants';
-import { NameSpace } from '../../constants';
+import { DEFAULT_ACTIVE_LOCATION, SortOptions, NameSpace } from '../../constants';
 
 type ActiveMain = {
   currentLocations: CityKeys;

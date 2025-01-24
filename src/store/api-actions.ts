@@ -1,15 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
+import { generatePath } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
-import { ListOfferType } from '../types/offers';
-import { AuthData, AuthorizedUserType} from '../types/authorized-user';
-import { AppRoute, NameSpace} from '../constants';
 import { redirectToRoute} from './action';
 import { dropToken, saveToken } from '../services/token';
+import { AppDispatch, State } from '../types/state';
+import { ListOfferType } from '../types/offers';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
-import { generatePath } from 'react-router-dom';
-
+import { AuthData, AuthorizedUserType} from '../types/authorized-user';
+import { AppRoute, NameSpace} from '../constants';
 
 type toggleFavoriteActionPayload = {
   offerId: string;

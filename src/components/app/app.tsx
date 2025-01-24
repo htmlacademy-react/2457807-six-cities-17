@@ -1,4 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 import { PrivateRoute } from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../constants';
@@ -7,14 +10,11 @@ import FullOfferPage from '../../pages/full-offer-page/full-offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
 import LoadingScreen from '../../pages/page-loading/page-loading';
+import { ScrollToTop } from '../scroll-to-top/scroll-to-top';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import { selectIsDataLoading } from '../../store/offers/offers-selectors';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
-import { useEffect } from 'react';
 import { fetchFavoriteOffersAction } from '../../store/api-actions';
 
 function App(): JSX.Element {

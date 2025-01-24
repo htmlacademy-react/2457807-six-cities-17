@@ -7,18 +7,18 @@ import { NameSpace } from '../../constants';
 type UserState = {
   authorizationStatus: AuthorizationStatusType;
   user: null | AuthorizedUserType;
-  isError: boolean;
   error: null | string;
   errorMessage: string;
+  isSubmitUserAuth: boolean;
 }
 
 
 const initialState:UserState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  error:  null,
   user: null,
-  isError: false,
+  error:  null,
   errorMessage: '',
+  isSubmitUserAuth: true,
 };
 
 export const userSlice = createSlice({
@@ -26,7 +26,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setError (state, action: PayloadAction<string | null>){
-      state.isError = true;
       state.error = action.payload;
     },
   },
@@ -39,17 +38,23 @@ export const userSlice = createSlice({
       .addCase(checkAuthAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
+      .addCase(logInAction.pending, (state) => {
+        state.isSubmitUserAuth = false;
+      })
       .addCase(logInAction.fulfilled, (state, action) => {
         state.user = action.payload;
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.isSubmitUserAuth = true;
       })
       .addCase(logInAction.rejected, (state) => {
         state.user = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.isSubmitUserAuth = true;
       })
       .addCase(logOutAction.fulfilled, (state) => {
         state.user = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.isSubmitUserAuth = true;
       })
       .addCase(logOutAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.Auth;

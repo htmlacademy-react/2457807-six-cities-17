@@ -9,7 +9,8 @@ import PlaceCardsList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { changeLocation } from '../../store/active-main/active-main';
-import { selectLocation, selectOffers } from '../../store/selectors';
+import {selectOffers } from '../../store/offers/offers-selectors';
+import { selectLocation } from '../../store/active-main/active-main-selectors';
 
 
 function MainPage(): JSX.Element {

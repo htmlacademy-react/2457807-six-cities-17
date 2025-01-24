@@ -3,7 +3,7 @@ import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
 import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
-  fetchOffesNearAction, submitToOfferReviewAction, toggleFavorite } from '../api-actions';
+  fetchOffesNearAction, submitToOfferReviewAction, toggleFavoriteAction } from '../api-actions';
 import { NameSpace } from '../../constants';
 import { toast } from 'react-toastify';
 
@@ -54,18 +54,25 @@ export const offersSlice = createSlice({
         state.favorites = [];
         toast.warn('Error while loading offers');
       })
-      .addCase(toggleFavorite.pending, (state) => {
+      .addCase(toggleFavoriteAction.pending, (state) => {
         state.isFavoriteLoading = true;
       })
-      .addCase(toggleFavorite.fulfilled, (state, action) => {
+      .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+        const currentOffer = state.offersList.find((offer) => offer.id === action.payload.id);
+        if(!currentOffer){
+          toast.warn(`No such offer with given id: ${action.payload.id}`);
+          throw new Error(`No such offer with giver id: ${action.payload.id}`);
+        }
+        currentOffer.isFavorite = action.payload.isFavorite;
         if (action.payload.isFavorite) {
           state.favorites.push(action.payload);
         } else {
           const favoriteIndex = state.favorites.findIndex((favoriteOffer) => favoriteOffer.id === action.payload.id);
           state.favorites.splice(favoriteIndex, 1);
         }
+        state.isFavoriteLoading = false;
       })
-      .addCase(toggleFavorite.rejected, (state) => {
+      .addCase(toggleFavoriteAction.rejected, (state) => {
         state.isFavoriteLoading = false;
       })
       .addCase(submitToOfferReviewAction.pending, (state) => {

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { CitiesType, CityKeys, TypesPage } from '../../types/offers';
 import LocationsItemLink from '../locations-item-link/locations-item-link';
 
@@ -28,22 +29,22 @@ function LocationsItem(props: LocationItemProps): JSX.Element {
   );
 }
 
-function LocationsList({locations, pageNames, currentCity, onCurrentCityChange}:LocationsListProps): JSX.Element {
-  return (
-    <ul className="locations__list tabs__list">
-      {
-        locations.map((location) => (
-          <LocationsItem
-            key={crypto.randomUUID()}
-            pageNames={pageNames}
-            location={location}
-            isActive={location === currentCity}
-            onCurrentCityChange={onCurrentCityChange}
-          />
-        ))
-      }
-    </ul>
-  );
-}
+const LocationsList = memo(({locations, pageNames, currentCity, onCurrentCityChange}:LocationsListProps): JSX.Element => (
+  <ul className="locations__list tabs__list">
+    {
+      locations.map((location) => (
+        <LocationsItem
+          key={location}
+          pageNames={pageNames}
+          location={location}
+          isActive={location === currentCity}
+          onCurrentCityChange={onCurrentCityChange}
+        />
+      ))
+    }
+  </ul>
+));
+
+LocationsList.displayName = 'LocationList';
 
 export default LocationsList;

@@ -1,0 +1,9 @@
+.authorization-form{        
+        text-align: right; /* Выравниваем по правому краю */
+        float: left; /* Выстраиваем элементы рядом */
+        margin-right: 10px; /* Расстояние от текста до текстового поля */
+        line-height: 30px; /* Выравниваем по высоте */
+        color: #B4886B;
+        font-weight: bold;
+       display: block;  
+}

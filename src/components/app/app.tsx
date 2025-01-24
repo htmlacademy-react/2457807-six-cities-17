@@ -12,7 +12,8 @@ import LoadingScreen from '../../pages/page-loading/page-loading';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
-import { selectAuthorizationStatus, selectIsDataLoading } from '../../store/selectors';
+import { selectIsDataLoading } from '../../store/offers/offers-selectors';
+import { selectAuthorizationStatus } from '../../store/user/user-selector';
 import { useEffect } from 'react';
 import { fetchFavoriteOffersAction } from '../../store/api-actions';
 

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks';
-import { selectCurrentSort } from '../../store/selectors';
+import { selectCurrentSort } from '../../store/active-main/active-main-selectors';
 import SortOffersList from '../sort-offers-list/sort-offers-list';
 import { useEffect, useRef, useState } from 'react';
 

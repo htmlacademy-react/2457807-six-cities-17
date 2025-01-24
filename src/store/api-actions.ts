@@ -9,9 +9,9 @@ import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-type ToggleFavoritePayload = {
+
+type toggleFavoriteActionPayload = {
   offerId: string;
   isFavorite: boolean | undefined;
 }
@@ -23,18 +23,12 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 }>();
 
 
-export const toggleFavorite = createAppAsyncThunk<ListOfferType, ToggleFavoritePayload>(
-  'favorite/toggleFavorite',
-  async({offerId: id, isFavorite}, { getState, extra: api}) => {
+export const toggleFavoriteAction = createAppAsyncThunk<ListOfferType, toggleFavoriteActionPayload>(
+  `${NameSpace.Offers}/toggleFavorite`,
+  async({offerId: id, isFavorite}, {extra: api}) => {
     const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite ? 0 : 1}`});
     const {data} = await api.post<ListOfferType>(path);
-    const {offersList} = getState().offers;
-    const currentOffer = offersList.find((offer) => offer.id === data.id);
-    if(!currentOffer){
-      toast.warn(`No such offer with given id: ${data.id}`);
-      throw new Error(`No such offer with giver id: ${data.id}`);
-    }
-    return {...currentOffer, isFavorite: data.isFavorite};
+    return data;
   }
 );
 
@@ -64,7 +58,7 @@ export const fetchOfferInfoByIDAction = createAppAsyncThunk<FullOfferType, strin
 );
 
 export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string | null>(
-  'offer/fetchOffersNear',
+  `${NameSpace.Offers}/fetchOffersNear`,
   async(id, { extra: api}) => {
     const path = generatePath(AppRoute.NearbyOffers, {offerId: id});
     const {data} = await api.get<ListOfferType[]>(path);
@@ -73,7 +67,7 @@ export const fetchOffesNearAction = createAppAsyncThunk<ListOfferType[], string 
 );
 
 export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], string | null>(
-  'offer/fetchOfferReviewList',
+  `${NameSpace.Offers}/fetchOfferReviewList`,
   async(id, { extra: api}) => {
     const path = generatePath(AppRoute.Comments, {offerId: id});
     const {data} = await api.get<CommentType[]>(path);
@@ -82,7 +76,7 @@ export const fetchOfferReviewListAction = createAppAsyncThunk<CommentType[], str
 );
 
 export const submitToOfferReviewAction = createAppAsyncThunk<CommentType, OfferReviewType>(
-  'offer/postOfferReview',
+  `${NameSpace.Offers}/postOfferReview`,
   async({offerId: id, comment, rating}, { extra: api}) => {
     const path = generatePath(AppRoute.Comments, {offerId: id});
     const {data} = await api.post<CommentType>(path, {comment, rating});
@@ -91,7 +85,7 @@ export const submitToOfferReviewAction = createAppAsyncThunk<CommentType, OfferR
 );
 
 export const checkAuthAction = createAppAsyncThunk<AuthorizedUserType, undefined>(
-  'user/checkAuth',
+  `${NameSpace.User}/checkAuth`,
   async (_arg, {extra: api}) => {
     const {data} = await api.get<AuthorizedUserType>(AppRoute.Login);
     return data;
@@ -99,7 +93,7 @@ export const checkAuthAction = createAppAsyncThunk<AuthorizedUserType, undefined
 );
 
 export const logInAction = createAppAsyncThunk<AuthorizedUserType, AuthData>(
-  'user/login',
+  `${NameSpace.User}/login`,
   async({login: email, password}, {dispatch, extra: api}) => {
 
     const {data: user} = await api.post<AuthorizedUserType>(AppRoute.Login, {email, password});
@@ -111,7 +105,7 @@ export const logInAction = createAppAsyncThunk<AuthorizedUserType, AuthData>(
 );
 
 export const logOutAction = createAppAsyncThunk<void, undefined>(
-  'user/logout',
+  `${NameSpace.User}/logout`,
   async(_arg, {dispatch, extra: api}) => {
     await api.delete(AppRoute.Logout);
     dropToken();

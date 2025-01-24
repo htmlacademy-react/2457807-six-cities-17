@@ -4,9 +4,9 @@ import Header from '../../components/header/header';
 import LocationsItemLink from '../../components/locations-item-link/locations-item-link';
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useCallback, useRef } from 'react';
 import { logInAction } from '../../store/api-actions';
-import { selectLocation } from '../../store/selectors';
+import { selectLocation } from '../../store/active-main/active-main-selectors';
 
 
 function LoginPage(): JSX.Element {
@@ -16,7 +16,7 @@ function LoginPage(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (loginRef.current !== null && passwordRef.current !== null) {
       dispatch(logInAction({
@@ -24,7 +24,7 @@ function LoginPage(): JSX.Element {
         password: passwordRef.current.value,
       }));
     }
-  };
+  }, [dispatch]);
 
   return (
     <div className="page page--gray page--login">

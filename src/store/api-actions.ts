@@ -9,7 +9,7 @@ import { dropToken, saveToken } from '../services/token';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { generatePath } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 
 type toggleFavoriteActionPayload = {
   offerId: string;
@@ -25,16 +25,10 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 
 export const toggleFavoriteAction = createAppAsyncThunk<ListOfferType, toggleFavoriteActionPayload>(
   `${NameSpace.Offers}/toggleFavorite`,
-  async({offerId: id, isFavorite}, { getState, extra: api}) => {
+  async({offerId: id, isFavorite}, {extra: api}) => {
     const path = generatePath(AppRoute.Favorite, {offerId: id, status: `${isFavorite ? 0 : 1}`});
     const {data} = await api.post<ListOfferType>(path);
-    const {offersList} = getState().offers;
-    const currentOffer = offersList.find((offer) => offer.id === data.id);
-    if(!currentOffer){
-      toast.warn(`No such offer with given id: ${data.id}`);
-      throw new Error(`No such offer with giver id: ${data.id}`);
-    }
-    return {...currentOffer, isFavorite: data.isFavorite};
+    return data;
   }
 );
 

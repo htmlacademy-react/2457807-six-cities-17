@@ -58,6 +58,12 @@ export const offersSlice = createSlice({
         state.isFavoriteLoading = true;
       })
       .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+        const currentOffer = state.offersList.find((offer) => offer.id === action.payload.id);
+        if(!currentOffer){
+          toast.warn(`No such offer with given id: ${action.payload.id}`);
+          throw new Error(`No such offer with giver id: ${action.payload.id}`);
+        }
+        currentOffer.isFavorite = action.payload.isFavorite;
         if (action.payload.isFavorite) {
           state.favorites.push(action.payload);
         } else {

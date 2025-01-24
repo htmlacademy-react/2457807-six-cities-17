@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { CommentType } from '../../types/comment';
 import ReviewsItem from '../reviews-item/reviews-item';
 
@@ -5,7 +6,7 @@ type CommentListProps = {
   fullOfferComments: CommentType[];
 }
 
-function ReviewsList({fullOfferComments}:CommentListProps):JSX.Element{
+const ReviewsList = memo(({fullOfferComments}:CommentListProps):JSX.Element =>{
 
   const fullSortComments = fullOfferComments.toSorted((firstComment, secondComment) => new Date(secondComment.date).getTime() - new Date(firstComment.date).getTime())
     .slice(0, 10);
@@ -18,6 +19,8 @@ function ReviewsList({fullOfferComments}:CommentListProps):JSX.Element{
       </ul>
     </>
   );
-}
+});
+
+ReviewsList.displayName = 'ReviewsList';
 
 export default ReviewsList;

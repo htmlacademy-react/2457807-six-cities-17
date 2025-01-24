@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import { selectFullOffer, selectIsFullOfferLoading, selectIsNearByOffersLoading, selectIsReviewsListLoading, selectNearByOffers, selectReviewList } from '../../store/offers/offers-selectors';
 import { selectAuthorizationStatus} from '../../store/user/user-selector';
 import {fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffesNearAction } from '../../store/api-actions';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import LoadingScreen from '../page-loading/page-loading';
 import { adaptFullOfferToOfferList } from '../../utils';
@@ -24,13 +24,11 @@ type OfferGoodItemProps = {
   offerGoodItem: string;
 }
 
-function OfferGoodItem({offerGoodItem}:OfferGoodItemProps):JSX.Element{
-  return (
-    <li className="offer__inside-item">
-      {offerGoodItem}
-    </li>
-  );
-}
+const OfferGoodItem = memo(({offerGoodItem}:OfferGoodItemProps):JSX.Element =>(
+  <li className="offer__inside-item">
+    {offerGoodItem}
+  </li>
+));
 
 function FullOfferPage(): JSX.Element{
   const {offerId} = useParams() || null;
@@ -151,5 +149,7 @@ function FullOfferPage(): JSX.Element{
     </div>
   );
 }
+
+OfferGoodItem.displayName = 'OfferGoodItem';
 
 export default FullOfferPage;

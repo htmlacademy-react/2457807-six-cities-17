@@ -1,5 +1,6 @@
 import { UserType } from '../../types/authorized-user';
 import { UserProfileAttributes } from '../../style-options';
+import { memo } from 'react';
 
 
 type UserProfileProps = {
@@ -7,7 +8,7 @@ type UserProfileProps = {
     userProfileStyle: typeof UserProfileAttributes[keyof typeof UserProfileAttributes];
   }
 
-function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
+const UserProfile = memo(({userDate, userProfileStyle}:UserProfileProps):JSX.Element =>{
   const {name, avatarUrl, isPro} = userDate;
   const {className, width, height} = userProfileStyle;
   const classNameType = className === 'reviews' ? 'reviews' : 'offer';
@@ -19,11 +20,10 @@ function UserProfile({userDate, userProfileStyle}:UserProfileProps):JSX.Element{
       <span className={`${classNameType}__user-name`}>
         {name}
       </span>
-      {/* <span className={`${classNameType}__user-status`}>
-        {isPro && 'Pro'}
-      </span> */}
     </div>
   );
-}
+});
+
+UserProfile.displayName = 'UserProfile';
 
 export default UserProfile;

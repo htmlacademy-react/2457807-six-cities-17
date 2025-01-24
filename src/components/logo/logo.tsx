@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../constants';
+import { memo } from 'react';
 
 type LogoAttributesType = {
   className: string;
@@ -11,7 +12,7 @@ type LogoAttributesType = {
       logoAttributes: LogoAttributesType;
     }
 
-function Logo({logoAttributes}:LogoProps):JSX.Element{
+const Logo = memo(({logoAttributes}:LogoProps):JSX.Element =>{
   const {className, width, height} = logoAttributes;
   return(
     <Link className={`${className}-link`} to = {AppRoute.Root}>
@@ -20,6 +21,7 @@ function Logo({logoAttributes}:LogoProps):JSX.Element{
       />
     </Link>
   );
-}
+});
+Logo.displayName = 'Logo';
 
 export default Logo;

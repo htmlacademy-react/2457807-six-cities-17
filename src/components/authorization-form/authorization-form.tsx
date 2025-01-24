@@ -1,6 +1,7 @@
 import { ChangeEvent, MutableRefObject } from 'react';
 import { useAppSelector } from '../../hooks';
 import { selectIsSubmitUserAuth } from '../../store/user/user-selector';
+import './authorization-form.css';
 
 type AuthorizationFormProps = {
   loginRef: MutableRefObject<HTMLInputElement | null>;
@@ -29,7 +30,7 @@ function AuthorizationForm({loginRef, passwordRef, onLogInSubmit}:AuthorizationF
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
-        <label >минимум 1 буква латиницей и 1 цифра</label>
+        <label className="authorization-form">Минимум 1 буква латиницей и 1 цифра</label>
         <input
           ref = {passwordRef}
           className="login__input form__input"

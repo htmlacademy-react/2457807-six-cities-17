@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../constants';
+import { AppRoute, PageNames } from '../../constants';
 import { memo } from 'react';
 
 type LogoAttributesType = {
@@ -10,12 +10,13 @@ type LogoAttributesType = {
 
     type LogoProps = {
       logoAttributes: LogoAttributesType;
+      pageNames: string;
     }
 
-const Logo = memo(({logoAttributes}:LogoProps):JSX.Element =>{
+const Logo = memo(({logoAttributes, pageNames}:LogoProps):JSX.Element =>{
   const {className, width, height} = logoAttributes;
   return(
-    <Link className={`${className}-link`} to = {AppRoute.Root}>
+    <Link className={`${className}-link ${pageNames === PageNames.Main ? 'header__logo-link--active' : ''} `} to = {AppRoute.Root}>
       <img className="header__logo" src="img/logo.svg" alt="6 cities logo"
         width={width} height={height}
       />

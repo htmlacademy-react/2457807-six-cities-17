@@ -1,6 +1,6 @@
 import { TypesPage } from './types/offers';
 
-const TIMEOUT_SHOW_ERROR = 2000;
+const TIMEOUT_SHOW_ERROR = 3000;
 const NEAR_BY_OFFERS_LIMITED = 3;
 const PERCENTAGE_FILLING_ONE_STAR = 20;
 const DATE_FORMATE = 'MMMM YYYY';

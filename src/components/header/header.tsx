@@ -17,7 +17,10 @@ const Header = memo(({pageNames }:HeaderProps): JSX.Element => {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo logoAttributes = {HeaderLogoAttributes} />
+            <Logo
+              logoAttributes = {HeaderLogoAttributes}
+              pageNames = {pageNames}
+            />
           </div>
           {headerNavigationEmpty}
         </div>

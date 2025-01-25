@@ -49,7 +49,7 @@ function FavoritesPage(): JSX.Element{
           </main>
       }
       <Footer>
-        <Logo logoAttributes={FooterLogoAttributes} />
+        <Logo logoAttributes={FooterLogoAttributes} pageNames={pageNames} />
       </Footer>
     </div>
   );

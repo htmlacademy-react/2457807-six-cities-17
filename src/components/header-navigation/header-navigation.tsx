@@ -15,22 +15,18 @@ function UserAuthorized({authorizationStatus}:UserAuthorizedProps): JSX.Element 
   const offersFavoriteCount = useAppSelector(selectFavorites)?.length;
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
-      <>
+      <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-        <Link className="header__nav-link" to={AppRoute.Favorites}>
-          <span className="header__user-name user__name">{email}</span>
-          <span className="header__favorite-count">{offersFavoriteCount}</span>
-        </Link>
-      </>
+        <span className="header__user-name user__name">{email}</span>
+        <span className="header__favorite-count">{offersFavoriteCount}</span>
+      </Link>
     );
   }
   return (
-    <>
+    <Link className="header__nav-link" to={AppRoute.Login}>
       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-      <Link className="header__nav-link" to={AppRoute.Login}>
-        <span className="header__login">Sign in</span>
-      </Link>
-    </>
+      <span className="header__login">Sign in</span>
+    </Link>
   );
 }
 

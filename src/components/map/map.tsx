@@ -72,7 +72,7 @@ function Map(props: MapProps): JSX.Element {
 
   return (
     <section
-      className = {mapClass}
+      className = {`${mapClass} map`}
       style={{height: `${mapClass === PageNames.Offer ? MapSize.Offer : MapSize.MainPage}`}}
       ref={mapRef}
     >

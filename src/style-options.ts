@@ -14,8 +14,8 @@ const Layer = {
 const Pin = {
   DefaultUrl: '/img/pin.svg',
   CurrentUrl: '/img/pin-active.svg',
-  Size: [28, 40] as [number, number],
-  Anchor: [14, 40] as [number, number],
+  Size: [37, 53] as [number, number],
+  Anchor: [13, 39] as [number, number],
 } as const;
 
 const HeaderLogoAttributes = {

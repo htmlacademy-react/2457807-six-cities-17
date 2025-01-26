@@ -59,7 +59,7 @@ function FullOfferPage(): JSX.Element{
   if(isFullOfferLoading || isNearByOffersLoading || isReviewsListLoading){
     return <LoadingScreen/>;
   }
-  if(!fullOffer){
+  if(fullOffer === null){
     return <NotFoundPage/>;
   }
   const {

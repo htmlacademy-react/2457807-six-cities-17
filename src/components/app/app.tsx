@@ -30,8 +30,6 @@ function App(): JSX.Element {
   if(authorizationStatus === AuthorizationStatus.Unknown || isDataLoading){
     return <LoadingScreen />;
   }
-
-
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>

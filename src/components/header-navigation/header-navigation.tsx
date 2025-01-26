@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus} from '../../constants';
+import { AppRoute, AuthorizationStatus, PageNames} from '../../constants';
 import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectFavorites } from '../../store/offers/offers-selectors';
@@ -8,6 +8,10 @@ import { memo } from 'react';
 
 type UserAuthorizedProps = {
   authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+}
+
+type HeaderNavigationProps = {
+  pageNames: string;
 }
 
 function UserAuthorized({authorizationStatus}:UserAuthorizedProps): JSX.Element {
@@ -30,7 +34,7 @@ function UserAuthorized({authorizationStatus}:UserAuthorizedProps): JSX.Element 
   );
 }
 
-function Item(): JSX.Element {
+function Item(pageNames:string): JSX.Element {
   const dispatch = useAppDispatch();
   return (
     <li className="header__nav-item">
@@ -39,7 +43,7 @@ function Item(): JSX.Element {
           dispatch(logOutAction());
         }}
         className="header__nav-link"
-        to={AppRoute.Login}
+        to={pageNames === PageNames.Favorites ? AppRoute.Login : ''}
       >
         <span className="header__signout">Sign out</span>
       </Link>
@@ -47,7 +51,7 @@ function Item(): JSX.Element {
   );
 }
 
-const HeaderNavigation = memo(():JSX.Element =>{
+const HeaderNavigation = memo(({pageNames} : HeaderNavigationProps):JSX.Element =>{
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   return (
     <nav className="header__nav">
@@ -57,7 +61,7 @@ const HeaderNavigation = memo(():JSX.Element =>{
             authorizationStatus = {authorizationStatus}
           />
         </li>
-        {authorizationStatus === AuthorizationStatus.Auth && Item()}
+        {authorizationStatus === AuthorizationStatus.Auth && Item(pageNames)}
       </ul>
     </nav>
   );

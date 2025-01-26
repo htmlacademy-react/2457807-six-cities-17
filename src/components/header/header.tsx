@@ -11,7 +11,7 @@ type HeaderProps = {
 
 const Header = memo(({pageNames }:HeaderProps): JSX.Element => {
   const headerNavigationEmpty = pageNames === PageNames.Login ?
-    '' : <HeaderNavigation />;
+    '' : <HeaderNavigation pageNames = {pageNames}/>;
   return (
     <header className="header">
       <div className="container">

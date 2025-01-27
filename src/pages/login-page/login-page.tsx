@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { PageNames } from '../../constants';
+import { LOCATIONS, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import LocationsItemLink from '../../components/locations-item-link/locations-item-link';
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
@@ -25,6 +25,7 @@ function LoginPage(): JSX.Element {
       }));
     }
   }, [dispatch]);
+  const randomCityIndex = Math.floor(Math.random() * LOCATIONS.length);
 
   return (
     <div className="page page--gray page--login">
@@ -44,7 +45,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <LocationsItemLink location={currentCity} pageNames={pageNames} />
+              <LocationsItemLink location={LOCATIONS[randomCityIndex]} pageNames={pageNames} />
             </div>
           </section>
         </div>

@@ -3,7 +3,7 @@
         float: left; /* Выстраиваем элементы рядом */
         margin-right: 10px; /* Расстояние от текста до текстового поля */
         line-height: 30px; /* Выравниваем по высоте */
-        color: #B4886B;
+        color: #6b8fb4;
         font-weight: bold;
        display: block;  
 }

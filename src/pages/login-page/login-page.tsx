@@ -3,14 +3,11 @@ import { LOCATIONS, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import LocationsItemLink from '../../components/locations-item-link/locations-item-link';
 import AuthorizationForm from '../../components/authorization-form/authorization-form';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { FormEvent, useCallback, useRef } from 'react';
 import { logInAction } from '../../store/api-actions';
-import { selectLocation } from '../../store/active-main/active-main-selectors';
-
 
 function LoginPage(): JSX.Element {
-  const currentCity = useAppSelector(selectLocation);
   const pageNames:string = PageNames.Login;
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);

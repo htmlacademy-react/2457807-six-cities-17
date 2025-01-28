@@ -8,8 +8,7 @@ type PrivateRouteProps = {
     appRoute: typeof AppRoute[keyof typeof AppRoute];
   }
 
-function PrivateRoute(props: PrivateRouteProps): JSX.Element {
-  const {authorizationStatus, children, appRoute} = props;
+function PrivateRoute({authorizationStatus, children, appRoute}: PrivateRouteProps): JSX.Element {
   if(appRoute === AppRoute.Favorites){
     return (
       authorizationStatus === AuthorizationStatus.Auth

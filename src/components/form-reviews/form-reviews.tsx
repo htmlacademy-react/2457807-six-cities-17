@@ -38,7 +38,7 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
         [target.name]:
         target.name === 'review' ? target.value : Number(target.value),
       }));
-      if (formData.review.length >= CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating > 0 && formData.rating !== null){
+      if (formData.rating > 0 && formData.rating !== null && formData.review.length >= CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX){
         setIsButtonSubmitDisabled(false);
       }
     }, [formData]);

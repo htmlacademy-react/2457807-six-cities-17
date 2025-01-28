@@ -12,15 +12,20 @@ const starsTitle = [
 const AppRoute = {
   Root: '/',
   Login: '/login',
-  Logout: '/logout',
   Favorites: '/favorites',
-  FavoritesLoad: '/favorite',
-  Favorite: '/favorite/:offerId/:status',
+  Offer: '/offer/:offerId',
+  NotFound: '*',
+} as const;
+
+const APIRoute = {
   Offers: 'offers',
   Offer: '/offers/:offerId',
   NearbyOffers: '/offers/:offerId/nearby',
   Comments:'/comments/:offerId',
-  NotFound: '*',
+  Login: '/login',
+  Logout: '/logout',
+  FavoritesLoad: '/favorite',
+  Favorite: '/favorite/:offerId/:status',
 } as const;
 
 const PageNames:TypesPage = {
@@ -72,6 +77,6 @@ const CommentLengthLimit = {
 
 export {LOCATIONS, PLACES_OPTIONS,
   CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , PageNames,
-  SortOptions, AppRoute, NameSpace, AuthorizationStatus, starsTitle,
+  SortOptions, AppRoute, APIRoute, NameSpace, AuthorizationStatus, starsTitle,
   DATE_FORMATE, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED,
   PERCENTAGE_FILLING_ONE_STAR};

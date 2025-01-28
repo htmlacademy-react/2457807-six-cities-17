@@ -64,7 +64,7 @@ function FullOfferPage(): JSX.Element{
   }
   const {
     images, isPremium, rating, type, bedrooms,
-    maxAdults, price, goods, description, host, id
+    maxAdults, price, goods, description, host, id, title
   } = fullOffer;
   const fullOfferImagesSlice = images.slice(0,6).map((imageGallery) => <OfferGallery key={imageGallery} imageGallery={imageGallery}/>);
   return (
@@ -88,7 +88,7 @@ function FullOfferPage(): JSX.Element{
               </div>}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-              Beautiful & luxurious studio at great location
+                  {title}
                 </h1>
                 <BookmarkButton offerId = {id} bookmarkClass={PageNames.Offer}/>
               </div>

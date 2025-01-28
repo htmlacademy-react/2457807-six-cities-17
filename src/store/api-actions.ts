@@ -8,7 +8,7 @@ import { ListOfferType } from '../types/offers';
 import { FullOfferType } from '../types/full-offer';
 import { CommentType, OfferReviewType } from '../types/comment';
 import { AuthData, AuthorizedUserType} from '../types/authorized-user';
-import { APIRoute, AppRoute, NameSpace} from '../constants';
+import { APIRoute, AppRoute, NameSpace, PageNames} from '../constants';
 
 type toggleFavoriteActionPayload = {
   offerId: string;
@@ -103,11 +103,15 @@ export const logInAction = createAppAsyncThunk<AuthorizedUserType, AuthData>(
   }
 );
 
-export const logOutAction = createAppAsyncThunk<void, undefined>(
+export const logOutAction = createAppAsyncThunk<void, string>(
   `${NameSpace.User}/logout`,
-  async(_arg, {extra: api}) => {
+  async(pageNames, { dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+
+    if(pageNames === PageNames.Favorites){
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
   }
 );
 

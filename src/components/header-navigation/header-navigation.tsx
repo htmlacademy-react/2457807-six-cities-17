@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, PageNames} from '../../constants';
+import { AppRoute, AuthorizationStatus} from '../../constants';
 import { logOutAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectFavorites } from '../../store/offers/offers-selectors';
@@ -32,10 +32,10 @@ const HeaderNavigation = memo(({pageNames} : HeaderNavigationProps):JSX.Element 
           <li className="header__nav-item">
             <Link
               onClick={() => {
-                dispatch(logOutAction());
+                dispatch(logOutAction(pageNames));
               }}
               className="header__nav-link"
-              to={pageNames === PageNames.Favorites ? AppRoute.Login : ''}
+              to={ ''}
             >
               <span className="header__signout">Sign out</span>
             </Link>

@@ -4,7 +4,7 @@ import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
 import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
   fetchOffesNearAction, submitToOfferReviewAction, toggleFavoriteAction } from '../api-actions';
-import { NameSpace } from '../../constants';
+import { NameSpace, Status } from '../../constants';
 import { toast } from 'react-toastify';
 
 
@@ -20,6 +20,7 @@ type OffersState = {
   isSubmitReviewLoading: boolean;
   favorites: ListOfferType[];
   isFavoriteLoading: boolean;
+  uploadFavoritesStatus: typeof Status[keyof typeof Status];
 }
 
 const initialState:OffersState = {
@@ -34,6 +35,7 @@ const initialState:OffersState = {
   isSubmitReviewLoading: false,
   favorites: [],
   isFavoriteLoading: false,
+  uploadFavoritesStatus: Status.Idle
 };
 
 export const offersSlice = createSlice({
@@ -56,8 +58,10 @@ export const offersSlice = createSlice({
       })
       .addCase(toggleFavoriteAction.pending, (state) => {
         state.isFavoriteLoading = true;
+        state.uploadFavoritesStatus = Status.Loading;
       })
       .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+        state.uploadFavoritesStatus = Status.Success;
         const currentOffer = state.offersList.find((offer) => offer.id === action.payload.id);
         if(!currentOffer){
           toast.warn(`No such offer with given id: ${action.payload.id}`);
@@ -74,6 +78,8 @@ export const offersSlice = createSlice({
       })
       .addCase(toggleFavoriteAction.rejected, (state) => {
         state.isFavoriteLoading = false;
+        state.uploadFavoritesStatus = Status.Error;
+        state.uploadFavoritesStatus = Status.Idle;
       })
       .addCase(submitToOfferReviewAction.pending, (state) => {
         state.isSubmitReviewLoading = true;

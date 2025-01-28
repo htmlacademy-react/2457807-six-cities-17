@@ -74,6 +74,12 @@ const CommentLengthLimit = {
   MAX: 300
 } as const;
 
+export enum Status {
+  Idle = 'IDLE',
+  Loading = 'LOADING',
+  Success = 'SUCCESS',
+  Error = 'ERROR'
+}
 
 export {LOCATIONS, PLACES_OPTIONS,
   CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , PageNames,

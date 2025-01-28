@@ -1,13 +1,14 @@
 import { ChangeEvent, memo } from 'react';
 import { starsTitle } from '../../constants';
 
-type IndexRatingStars = {
+type IndexRatingStarsProps = {
     index: number;
-    rating: 1 | 2 | 3 | 4 | 5 | 0;
+    rating: 0 | 1 | 2 | 3 | 4 | 5 ;
+    isSubmitReviewLoading: boolean;
     onRatingChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   }
 
-const FormRatingStars = memo(({index, onRatingChange, rating}:IndexRatingStars):JSX.Element =>(
+const FormRatingStars = memo(({index, onRatingChange, rating, isSubmitReviewLoading}:IndexRatingStarsProps):JSX.Element =>(
   <>
     <input
       onChange = {onRatingChange}
@@ -17,6 +18,7 @@ const FormRatingStars = memo(({index, onRatingChange, rating}:IndexRatingStars):
       id= {`${index}-stars`}
       type="radio"
       checked = {index === rating}
+      disabled = {isSubmitReviewLoading}
     />
     <label
       htmlFor={`${index}-stars`}

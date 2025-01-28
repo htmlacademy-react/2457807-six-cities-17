@@ -11,7 +11,7 @@ import { processErrorHandle } from '../../services/process-error-handle';
 const RATING_VALUES = ['one', 'two', 'three', 'four', 'five'] as const;
 
 type FormDataType = {
-  rating: 1 | 2 | 3 | 4 | 5 | 0;
+  rating: 0 | 1 | 2 | 3 | 4 | 5 ;
   review: string;
 }
 
@@ -38,7 +38,7 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
         [target.name]:
         target.name === 'review' ? target.value : Number(target.value),
       }));
-      if (formData.review.length > CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating !== null){
+      if (formData.review.length >= CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX && formData.rating > 0 && formData.rating !== null){
         setIsButtonSubmitDisabled(false);
       }
     }, [formData]);
@@ -69,9 +69,10 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
         {RATING_VALUES.map((value, index) =>(
           <FormRatingStars
             key={value}
-            index = {5 - index}
             rating = {formData.rating}
+            index = {5 - index}
             onRatingChange ={handleValueFormChange}
+            isSubmitReviewLoading = {isSubmitReviewLoading}
           />))}
       </div>
       <textarea

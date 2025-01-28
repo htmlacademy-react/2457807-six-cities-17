@@ -105,9 +105,10 @@ export const logInAction = createAppAsyncThunk<AuthorizedUserType, AuthData>(
 
 export const logOutAction = createAppAsyncThunk<void, undefined>(
   `${NameSpace.User}/logout`,
-  async(_arg, {extra: api}) => {
+  async(_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dispatch(redirectToRoute(AppRoute.Login));
   }
 );
 

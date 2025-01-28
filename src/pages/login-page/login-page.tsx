@@ -6,6 +6,7 @@ import AuthorizationForm from '../../components/authorization-form/authorization
 import { useAppDispatch } from '../../hooks';
 import { FormEvent, useCallback, useRef } from 'react';
 import { logInAction } from '../../store/api-actions';
+import { changeLocation } from '../../store/active-main/active-main';
 
 function LoginPage(): JSX.Element {
   const pageNames:string = PageNames.Login;
@@ -23,6 +24,7 @@ function LoginPage(): JSX.Element {
     }
   }, [dispatch]);
   const randomCityIndex = Math.floor(Math.random() * LOCATIONS.length);
+  dispatch(changeLocation(LOCATIONS[randomCityIndex]));
 
   return (
     <div className="page page--gray page--login">

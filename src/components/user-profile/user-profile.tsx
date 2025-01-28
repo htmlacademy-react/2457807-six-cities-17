@@ -20,9 +20,7 @@ const UserProfile = memo(({userDate, userProfileStyle}:UserProfileProps):JSX.Ele
       <span className={`${classNameType}__user-name`}>
         {name}
       </span>
-      <span className={`${classNameType}__user-status`}>
-        {userProfileStyle.className === 'host' && isPro && 'Pro'}
-      </span>
+      {userProfileStyle.className === 'host' && isPro && <span className={`${classNameType}__user-status`}>Pro</span>}
     </div>
   );
 });

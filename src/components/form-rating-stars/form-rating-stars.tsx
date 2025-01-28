@@ -3,7 +3,7 @@ import { starsTitle } from '../../constants';
 
 type IndexRatingStarsProps = {
     index: number;
-    rating: 1 | 2 | 3 | 4 | 5 | 0;
+    rating: 0 | 1 | 2 | 3 | 4 | 5 ;
     isSubmitReviewLoading: boolean;
     onRatingChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   }

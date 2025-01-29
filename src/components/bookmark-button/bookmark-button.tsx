@@ -24,6 +24,7 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
   return (
     <button onClick = {() => {
       if (authorizationStatus === AuthorizationStatus.Auth){
+        setDisableButton(true);
         dispatch(toggleFavoriteAction({offerId: offerId, isFavorite: isFavorite}))
           .unwrap()
           .then(() => {

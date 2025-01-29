@@ -81,9 +81,6 @@ export const offersSlice = createSlice({
         if(!currentOffer){
           throw new Error(`No such offer with giver id: ${action.payload.id}`);
         }
-        if (state.fullOffer && state.fullOffer.id === action.payload.id) {
-          state.fullOffer.isFavorite = action.payload.isFavorite;
-        }
         currentOffer.isFavorite = action.payload.isFavorite;
         if (action.payload.isFavorite) {
           state.favorites.push(action.payload);

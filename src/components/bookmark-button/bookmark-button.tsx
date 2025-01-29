@@ -7,6 +7,7 @@ import { toggleFavoriteAction } from '../../store/api-actions';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
 import { OfferUpdate } from '../../types/state';
 import { updateFullOfferStatus, updateNearByOffersStatus, updateOfferStatus } from '../../store/offers/offers';
+import { processErrorHandle } from '../../services/process-error-handle';
 
 
 type BookmarkButtonProps = {
@@ -33,6 +34,8 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
             dispatch(updateFullOfferStatus(updated));
             dispatch(updateNearByOffersStatus(updated));
           })
+          .catch(
+            ({message}) => processErrorHandle(String(message)))
           .finally(() => {
             setDisableButton(false);
           });

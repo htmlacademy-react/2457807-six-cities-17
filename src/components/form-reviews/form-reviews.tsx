@@ -25,9 +25,9 @@ type FormReviewsProps = {
 
 const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
   const [formData, setFormData] = useState<FormDataType>(initialState);
-  const [isButtonSubmitDisabled, setIsButtonSubmitDisabled] = useState(true);
   const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
   const dispatch = useAppDispatch();
+  const isButtonSubmitDisabled = formData.rating === 0 || formData.rating === null || formData.review.length < CommentLengthLimit.MIN || formData.review.length > CommentLengthLimit.MAX;
   const handleValueFormChange = useCallback(
     ({
       target
@@ -38,13 +38,10 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
         [target.name]:
         target.name === 'review' ? target.value : Number(target.value),
       }));
-      if (formData.rating > 0 && formData.rating !== null && formData.review.length >= CommentLengthLimit.MIN && formData.review.length <= CommentLengthLimit.MAX){
-        setIsButtonSubmitDisabled(false);
-      }
-    }, [formData]);
+    }, []);
   const handleFormSubmit = useCallback((evt:ChangeEvent<HTMLFormElement>) =>{
     evt.preventDefault();
-    setIsButtonSubmitDisabled(true);
+
     dispatch(
       submitToOfferReviewAction({
         offerId,

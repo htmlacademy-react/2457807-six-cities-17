@@ -1,9 +1,6 @@
-import { toast } from 'react-toastify';
 import { SortOptions } from './constants';
 import { ListOfferType, SortOptionsType } from './types/offers';
 import { FullOfferType } from './types/full-offer';
-
-const notify = (message: string) => toast.warn(message);
 
 const adaptFullOfferToOfferList = (fullOffer:FullOfferType | null):ListOfferType[] | [] => {
   if (fullOffer === null) {
@@ -17,15 +14,6 @@ const adaptFullOfferToOfferList = (fullOffer:FullOfferType | null):ListOfferType
   }];
 };
 
-const getRandomArrayElement = <T>(items : T[]) : T => items[Math.floor(Math.random() * items.length)];
-
-const getRandomInteger = (startNumber : number, endNumber : number) : number=> {
-  const lower = Math.ceil(Math.min(startNumber, endNumber));
-  const upper = Math.floor(Math.max(startNumber, endNumber));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-const getRandomDate = (startDate : Date, endDate : Date) : Date => new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
 
 const sortBy = {
   [SortOptions.Popular] : (offers: ListOfferType[]) =>[... offers],
@@ -35,4 +23,4 @@ const sortBy = {
 };
 const sortOffers = (offers:ListOfferType[], sortOptionsType:SortOptionsType) => sortBy[sortOptionsType](offers);
 
-export {getRandomArrayElement, getRandomInteger, getRandomDate, sortOffers, notify, adaptFullOfferToOfferList};
+export { sortOffers, adaptFullOfferToOfferList};

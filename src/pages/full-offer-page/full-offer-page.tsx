@@ -19,6 +19,7 @@ import { memo, useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import LoadingScreen from '../page-loading/page-loading';
 import { adaptFullOfferToOfferList } from '../../utils';
+import { processErrorHandle } from '../../services/process-error-handle';
 
 type OfferGoodItemProps = {
   offerGoodItem: string;
@@ -43,7 +44,9 @@ function FullOfferPage(): JSX.Element{
       .then(() => {
         dispatch(fetchOfferReviewListAction(offerId));
         dispatch(fetchOffesNearAction(offerId));
-      });
+      })
+      .catch(
+        ({message}) => processErrorHandle(String(message)));
   },[offerId, dispatch]);
   const fullOffer = useAppSelector(selectFullOffer);
   const isFullOfferLoading = useAppSelector(selectIsFullOfferLoading);

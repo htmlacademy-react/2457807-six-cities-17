@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { toggleFavoriteAction } from '../../store/api-actions';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
+import { OfferUpdate } from '../../types/state';
+import { updateOfferStatus } from '../../store/offers/offers';
 
 
 type BookmarkButtonProps = {
@@ -23,6 +25,11 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
     <button onClick = {() => {
       if (authorizationStatus === AuthorizationStatus.Auth){
         dispatch(toggleFavoriteAction({offerId: offerId, isFavorite: isFavorite}))
+          .unwrap()
+          .then(() => {
+            const updated: OfferUpdate = {id: offerId, isFavorite: !isFavorite};
+            dispatch(updateOfferStatus(updated));
+          })
           .finally(() => {
             setDisableButton(false);
           });

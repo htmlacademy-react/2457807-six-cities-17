@@ -6,7 +6,7 @@ const PERCENTAGE_FILLING_ONE_STAR = 20;
 const DATE_FORMATE = 'MMMM YYYY';
 
 const starsTitle = [
-  'terrible','badly', 'not bad', 'good', 'perfect'
+  'terribly','badly', 'not bad', 'good', 'perfect'
 ] as const;
 
 const AppRoute = {

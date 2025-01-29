@@ -5,7 +5,6 @@ import { CommentType } from '../../types/comment';
 import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewListAction, fetchOffersAction,
   fetchOffesNearAction, submitToOfferReviewAction, toggleFavoriteAction } from '../api-actions';
 import { NameSpace, Status } from '../../constants';
-import { toast } from 'react-toastify';
 import { OfferUpdate } from '../../types/state';
 
 
@@ -77,7 +76,6 @@ export const offersSlice = createSlice({
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.isFavoriteLoading = false;
         state.favorites = [];
-        toast.warn('Error while loading offers');
       })
       .addCase(toggleFavoriteAction.pending, (state) => {
         state.isFavoriteLoading = true;
@@ -154,7 +152,6 @@ export const offersSlice = createSlice({
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offersList = [];
         state.isDataLoading = false;
-        toast.warn('Error while loading offers');
       });
   }
 });

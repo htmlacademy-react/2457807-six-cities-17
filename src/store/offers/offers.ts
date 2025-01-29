@@ -51,6 +51,11 @@ export const offersSlice = createSlice({
         state.offersList[indexUpdateOffer].isFavorite = action.payload.isFavorite;
       }
     },
+    updateFullOfferStatus(state, action: PayloadAction<OfferUpdate>) {
+      if (state.fullOffer && state.fullOffer.id === action.payload.id) {
+        state.fullOffer.isFavorite = action.payload.isFavorite;
+      }
+    }
   },
   extraReducers(builder) {
     builder
@@ -149,4 +154,4 @@ export const offersSlice = createSlice({
   }
 });
 
-export const {updateOfferStatus} = offersSlice.actions;
+export const {updateOfferStatus, updateFullOfferStatus} = offersSlice.actions;

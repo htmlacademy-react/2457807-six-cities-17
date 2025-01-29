@@ -14,5 +14,4 @@ export const selectIsReviewsListLoading = (state:State):boolean => state[NameSpa
 export const selectIsFullOfferLoading = (state:State):boolean => state[NameSpace.Offers].isFullOfferLoading;
 export const selectIsDataLoading = (state:State):boolean => state[NameSpace.Offers].isDataLoading;
 export const selectIsSubmitReviewLoading = (state: State): boolean => state[NameSpace.Offers].isSubmitReviewLoading;
-export const selectIsFavoriteLoading = (state:State):boolean => state[NameSpace.Offers].isFavoriteLoading;
 

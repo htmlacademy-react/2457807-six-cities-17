@@ -48,7 +48,7 @@ const PlaceCardItem = memo(({ cardPlace, pageNames, onActiveOfferChange}: PlaceC
           <span className='place-card__price-text'>&#47;&nbsp;night</span>
         </div>
         <BookmarkButton bookmarkClass='place-card'
-          offerId = {cardPlace.id}
+          offerId = {cardPlace.id} isFavorite = {cardPlace.isFavorite}
         />
       </div>
       <Rating

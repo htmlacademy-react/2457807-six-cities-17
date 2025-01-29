@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ListOfferType} from '../../types/offers';
 import { FullOfferType } from '../../types/full-offer';
 import { CommentType } from '../../types/comment';
@@ -6,6 +6,7 @@ import { fetchFavoriteOffersAction, fetchOfferInfoByIDAction, fetchOfferReviewLi
   fetchOffesNearAction, submitToOfferReviewAction, toggleFavoriteAction } from '../api-actions';
 import { NameSpace, Status } from '../../constants';
 import { toast } from 'react-toastify';
+import { OfferUpdate } from '../../types/state';
 
 
 type OffersState = {
@@ -41,7 +42,17 @@ const initialState:OffersState = {
 export const offersSlice = createSlice({
   name: NameSpace.Offers,
   initialState,
-  reducers: {},
+  reducers: {
+    updateOfferStatus(state, action: PayloadAction<OfferUpdate>) {
+      const indexUpdateOffer = state.offersList.findIndex(
+        ({ id }) => id === action.payload.id
+      );
+
+      if (indexUpdateOffer !== -1) {
+        state.offersList[indexUpdateOffer].isFavorite = action.payload.isFavorite;
+      }
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
@@ -64,15 +75,16 @@ export const offersSlice = createSlice({
         state.uploadFavoritesStatus = Status.Success;
         const currentOffer = state.offersList.find((offer) => offer.id === action.payload.id);
         if(!currentOffer){
-          toast.warn(`No such offer with given id: ${action.payload.id}`);
           throw new Error(`No such offer with giver id: ${action.payload.id}`);
+        }
+        if (state.fullOffer && state.fullOffer.id === action.payload.id) {
+          state.fullOffer.isFavorite = action.payload.isFavorite;
         }
         currentOffer.isFavorite = action.payload.isFavorite;
         if (action.payload.isFavorite) {
           state.favorites.push(action.payload);
         } else {
-          const favoriteIndex = state.favorites.findIndex((favoriteOffer) => favoriteOffer.id === action.payload.id);
-          state.favorites.splice(favoriteIndex, 1);
+          state.favorites = state.favorites.filter((offer) => offer.id !== action.payload.id);
         }
         state.isFavoriteLoading = false;
       })
@@ -138,4 +150,4 @@ export const offersSlice = createSlice({
   }
 });
 
-
+export const {updateOfferStatus} = offersSlice.actions;

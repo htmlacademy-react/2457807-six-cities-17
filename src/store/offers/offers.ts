@@ -47,7 +47,6 @@ export const offersSlice = createSlice({
       const indexUpdateOffer = state.offersList.findIndex(
         ({ id }) => id === action.payload.id
       );
-
       if (indexUpdateOffer !== -1) {
         state.offersList[indexUpdateOffer].isFavorite = action.payload.isFavorite;
       }

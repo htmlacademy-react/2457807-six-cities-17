@@ -30,7 +30,7 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
           .then(() => {
             const updated: OfferUpdate = {id: offerId, isFavorite: !isFavorite};
             dispatch(updateOfferStatus(updated));
-            dispatch(updateFullOfferStatus);
+            dispatch(updateFullOfferStatus(updated));
           })
           .finally(() => {
             setDisableButton(false);

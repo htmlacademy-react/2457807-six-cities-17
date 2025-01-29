@@ -149,3 +149,5 @@ export const offersSlice = createSlice({
       });
   }
 });
+
+export const {updateOfferStatus} = offersSlice.actions;

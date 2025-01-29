@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { toggleFavoriteAction } from '../../store/api-actions';
-import { selectFavoriteByOfferId } from '../../store/offers/offers-selectors';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
+
 
 type BookmarkButtonProps = {
   bookmarkClass: string;
@@ -17,7 +17,6 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const navigate = useNavigate();
-  // const isSelectedFavorite = useAppSelector((state) => selectFavoriteByOfferId(state, offerId));
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const text = isFavorite ? 'In' : 'To';
   return (

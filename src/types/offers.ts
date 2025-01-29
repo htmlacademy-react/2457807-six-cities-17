@@ -9,8 +9,6 @@ declare global {
   }
 }
 
-type OfferType = 'room' | 'house' | 'hotel' | 'apartment';
-
 type LocationType = {
     'latitude': number;
     'longitude': number;
@@ -49,6 +47,6 @@ type LocationType = {
   };
 
 export type { ListOfferType, CityType, CitiesType, CityKeys,
-  LocationType, TypesPage, OfferType, SortOptionsType };
+  LocationType, TypesPage, SortOptionsType };
 
 

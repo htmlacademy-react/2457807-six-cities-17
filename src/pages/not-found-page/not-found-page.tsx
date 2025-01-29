@@ -16,7 +16,7 @@ function NotFoundPage(): JSX.Element {
       </div>
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Жираф - это лошадь выполненная по всем требованиям заказчика!</h1>
-        <h1 className={styles.title}>Error 404. Page not found: С Днем потерянных страниц, сайтоделы!</h1>
+        <h1 className={styles.title}>404: С Днем потерянных страниц, сайтоделы!</h1>
         <Link
           className={styles.link}
           to={AppRoute.Root}

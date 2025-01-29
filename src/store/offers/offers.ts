@@ -55,6 +55,14 @@ export const offersSlice = createSlice({
       if (state.fullOffer && state.fullOffer.id === action.payload.id) {
         state.fullOffer.isFavorite = action.payload.isFavorite;
       }
+    },
+    updateNearByOffersStatus(state, action: PayloadAction<OfferUpdate>) {
+      const indexUpdateOffer = state.nearByOffers.findIndex(
+        ({ id }) => id === action.payload.id
+      );
+      if (indexUpdateOffer !== -1) {
+        state.nearByOffers[indexUpdateOffer].isFavorite = action.payload.isFavorite;
+      }
     }
   },
   extraReducers(builder) {
@@ -151,4 +159,4 @@ export const offersSlice = createSlice({
   }
 });
 
-export const {updateOfferStatus, updateFullOfferStatus} = offersSlice.actions;
+export const {updateOfferStatus, updateFullOfferStatus, updateNearByOffersStatus} = offersSlice.actions;

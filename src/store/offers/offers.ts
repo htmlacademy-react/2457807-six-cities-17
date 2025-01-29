@@ -43,6 +43,14 @@ export const offersSlice = createSlice({
   name: NameSpace.Offers,
   initialState,
   reducers: {
+    updatefavoritesStatus(state, action: PayloadAction<OfferUpdate>) {
+      const indexUpdateOffer = state.favorites.findIndex(
+        ({ id }) => id === action.payload.id
+      );
+      if (indexUpdateOffer !== -1) {
+        state.favorites[indexUpdateOffer].isFavorite = action.payload.isFavorite;
+      }
+    },
     updateOfferStatus(state, action: PayloadAction<OfferUpdate>) {
       const indexUpdateOffer = state.offersList.findIndex(
         ({ id }) => id === action.payload.id
@@ -159,4 +167,4 @@ export const offersSlice = createSlice({
   }
 });
 
-export const {updateOfferStatus, updateFullOfferStatus, updateNearByOffersStatus} = offersSlice.actions;
+export const {updateOfferStatus, updateFullOfferStatus, updateNearByOffersStatus, updatefavoritesStatus} = offersSlice.actions;

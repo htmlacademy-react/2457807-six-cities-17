@@ -6,7 +6,7 @@ import { AppRoute, AuthorizationStatus } from '../../constants';
 import { toggleFavoriteAction } from '../../store/api-actions';
 import { selectAuthorizationStatus } from '../../store/user/user-selector';
 import { OfferUpdate } from '../../types/state';
-import { updateFullOfferStatus, updateOfferStatus } from '../../store/offers/offers';
+import { updateFullOfferStatus, updateNearByOffersStatus, updateOfferStatus } from '../../store/offers/offers';
 
 
 type BookmarkButtonProps = {
@@ -31,6 +31,7 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
             const updated: OfferUpdate = {id: offerId, isFavorite: !isFavorite};
             dispatch(updateOfferStatus(updated));
             dispatch(updateFullOfferStatus(updated));
+            dispatch(updateNearByOffersStatus(updated));
           })
           .finally(() => {
             setDisableButton(false);

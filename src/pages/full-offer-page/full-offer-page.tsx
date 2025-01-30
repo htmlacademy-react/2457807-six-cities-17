@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { UserProfileAttributes } from '../../style-options';
-import { AuthorizationStatus, NEAR_BY_OFFERS_LIMITED, PageNames } from '../../constants';
+import { AuthorizationStatus, NEAR_BY_OFFERS_LIMITED, NUMBER_IMAGES_IN_GALLERY, PageNames } from '../../constants';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Rating from '../../components/rating/rating';
@@ -69,7 +69,7 @@ function FullOfferPage(): JSX.Element{
     images, isPremium, rating, type, bedrooms,
     maxAdults, price, goods, description, host, id, title, isFavorite
   } = fullOffer;
-  const fullOfferImagesSlice = images.slice(0,6).map((imageGallery) => <OfferGallery key={imageGallery} imageGallery={imageGallery}/>);
+  const fullOfferImagesSlice = images.slice(0,NUMBER_IMAGES_IN_GALLERY).map((imageGallery) => <OfferGallery key={imageGallery} imageGallery={imageGallery}/>);
   return (
     <div className="page">
       <Helmet>
@@ -101,7 +101,7 @@ function FullOfferPage(): JSX.Element{
               />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  {type}
+                  {`${type.charAt(0).toUpperCase() + type.slice(1)}`}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   {bedrooms} {bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}

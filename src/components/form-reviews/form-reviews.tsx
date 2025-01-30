@@ -27,7 +27,7 @@ const FormReviews = memo(({offerId}:FormReviewsProps):JSX.Element =>{
   const [formData, setFormData] = useState<FormDataType>(initialState);
   const isSubmitReviewLoading = useAppSelector(selectIsSubmitReviewLoading);
   const dispatch = useAppDispatch();
-  const isButtonSubmitDisabled = formData.rating === 0 || formData.rating === null || formData.review.length < CommentLengthLimit.MIN || formData.review.length > CommentLengthLimit.MAX;
+  const isButtonSubmitDisabled = formData.rating === 0 || formData.rating === null || formData.review.length < CommentLengthLimit.Min || formData.review.length > CommentLengthLimit.Max;
   const handleValueFormChange = useCallback(
     ({
       target

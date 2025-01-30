@@ -3,9 +3,11 @@ import { TypesPage } from './types/offers';
 const TIMEOUT_SHOW_ERROR = 3000;
 const NEAR_BY_OFFERS_LIMITED = 3;
 const PERCENTAGE_FILLING_ONE_STAR = 20;
+const NUMBER_IMAGES_IN_GALLERY = 6;
+const NUMBER_OF_VISIBLE_COMMENTS = 10;
 const DATE_FORMATE = 'MMMM YYYY';
 
-const starsTitle = [
+const MEANING_STARS = [
   'terribly','badly', 'not bad', 'good', 'perfect'
 ] as const;
 
@@ -28,7 +30,7 @@ const APIRoute = {
   Favorite: '/favorite/:offerId/:status',
 } as const;
 
-const PageNames:TypesPage = {
+const PageName:TypesPage = {
   Main: 'cities',
   Offer: 'offer',
   Favorites: 'favorites',
@@ -62,7 +64,7 @@ const PLACES_OPTIONS = [
   'Top rated first',
 ] as const;
 
-const SortOptions = {
+const SortOption = {
   Popular: 'Popular',
   LowToHigh:'Price: low to high',
   HighToLow:'Price: high to low',
@@ -70,19 +72,19 @@ const SortOptions = {
 } as const;
 
 const CommentLengthLimit = {
-  MIN: 50,
-  MAX: 300
+  Min: 50,
+  Max: 300
 } as const;
 
-export enum Status {
-  Idle = 'IDLE',
-  Loading = 'LOADING',
-  Success = 'SUCCESS',
-  Error = 'ERROR'
-}
+const Status = {
+  Idle: 'IDLE',
+  Loading: 'LOADING',
+  Success: 'SUCCESS',
+  Error: 'ERROR'
+} as const;
 
-export {LOCATIONS, PLACES_OPTIONS,
-  CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , PageNames,
-  SortOptions, AppRoute, APIRoute, NameSpace, AuthorizationStatus, starsTitle,
+export {LOCATIONS, PLACES_OPTIONS as PLACES_OPTIONS,
+  CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , PageName as PageNames,
+  SortOption as SortOptions, AppRoute, APIRoute, NameSpace, AuthorizationStatus, MEANING_STARS as starsTitle,
   DATE_FORMATE, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED,
-  PERCENTAGE_FILLING_ONE_STAR};
+  PERCENTAGE_FILLING_ONE_STAR, Status, NUMBER_IMAGES_IN_GALLERY, NUMBER_OF_VISIBLE_COMMENTS};

@@ -35,8 +35,8 @@ const PlaceCardItem = memo(({ cardPlace, pageNames, onActiveOfferChange}: PlaceC
     <div className={`${pageNames}__image-wrapper place-card__image-wrapper`}>
       <Link to={generatePath(AppRoute.Offer, {offerId: cardPlace.id})}>
         <img className='place-card__image' src={cardPlace.previewImage}
-          width={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].width : PlaceCardAttributes['cities'].width}
-          height={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].height : PlaceCardAttributes['cities'].height}
+          width={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].Width : PlaceCardAttributes['cities'].Width}
+          height={pageNames === 'favorites' ? PlaceCardAttributes['favorites'].Height : PlaceCardAttributes['cities'].Height}
           alt="Place image"
         />
       </Link>
@@ -58,7 +58,7 @@ const PlaceCardItem = memo(({ cardPlace, pageNames, onActiveOfferChange}: PlaceC
       <h2 className='place-card__name'>
         <Link to={generatePath(AppRoute.Offer, {offerId: cardPlace.id})}>{cardPlace.title}</Link>
       </h2>
-      <p className='place-card__type'>{cardPlace.type}</p>
+      <p className='place-card__type'>{`${cardPlace.type.charAt(0).toUpperCase() + cardPlace.type.slice(1)}`}</p>
     </div>
   </article>
 )

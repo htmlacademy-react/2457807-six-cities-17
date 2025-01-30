@@ -1,4 +1,4 @@
-import { BookmarkAttributesType, RatingAttributesType, UserProfileType } from './types/full-offer';
+import { BookmarkAttributeType, RatingAttributeType, UserProfileType } from './types/full-offer';
 
 const MapSize = {
   MainPage: '100%',
@@ -18,78 +18,78 @@ const Pin = {
   Anchor: [13, 39] as [number, number],
 } as const;
 
-const HeaderLogoAttributes = {
-  className: 'header__logo',
-  width: 81,
-  height: 41,
+const HeaderLogoAttribute = {
+  ClassName: 'header__logo',
+  Width: 81,
+  Height: 41,
 } as const;
 
-const FooterLogoAttributes = {
-  className: 'footer__logo',
-  width: 64,
-  height: 33,
+const FooterLogoAttribute = {
+  ClassName: 'footer__logo',
+  Width: 64,
+  Height: 33,
 } as const;
 
-const PlaceCardAttributes = {
+const PlaceCardAttribute = {
   'cities': {
-    width: 260,
-    height: 200,
+    Width: 260,
+    Height: 200,
   },
   'near-places': {
-    width: 260,
-    height: 200,
+    Width: 260,
+    Height: 200,
   },
   'favorites': {
-    width: 150,
-    height: 110,
+    Width: 150,
+    Height: 110,
   },
 } as const;
 
-const BookmarkAttributes:BookmarkAttributesType = {
+const BookmarkAttribute:BookmarkAttributeType = {
   'place-card': {
-    width: 18,
-    height: 19,
+    Width: 18,
+    Height: 19,
   },
   'offer': {
-    width: 31,
-    height: 33,
+    Width: 31,
+    Height: 33,
   },
 } as const;
 
-const RatingAttributes: RatingAttributesType = {
+const RatingAttribute: RatingAttributeType = {
   'offer': {
-    style: {
-      width: '80%'
+    Style: {
+      Width: '80%'
     },
-    ratingVisibility: true
+    RatingVisibility: true
   },
   'reviews': {
-    style: {
-      width: '80%'
+    Style: {
+      Width: '80%'
     },
-    ratingVisibility: false
+    RatingVisibility: false
   },
   'place-card': {
-    style: {
-      width: '100%'
+    Style: {
+      Width: '100%'
     },
-    ratingVisibility: false
+    RatingVisibility: false
   }
 } as const;
 
-const UserProfileAttributes:UserProfileType = {
+const UserProfileAttribute:UserProfileType = {
   'host': {
-    className: 'host',
-    width: 74,
-    height: 74
+    ClassName: 'host',
+    Width: 74,
+    Height: 74
   },
   'reviews': {
-    className: 'reviews',
-    width: 54,
-    height: 54
+    ClassName: 'reviews',
+    Width: 54,
+    Height: 54
   }
 } as const;
 
-export { HeaderLogoAttributes, PlaceCardAttributes, BookmarkAttributes,
-  RatingAttributes, FooterLogoAttributes, UserProfileAttributes, Pin, Layer,
+export { HeaderLogoAttribute as HeaderLogoAttributes, PlaceCardAttribute as PlaceCardAttributes, BookmarkAttribute as BookmarkAttributes,
+  RatingAttribute as RatingAttributes, FooterLogoAttribute as FooterLogoAttributes, UserProfileAttribute as UserProfileAttributes, Pin, Layer,
   MapSize };

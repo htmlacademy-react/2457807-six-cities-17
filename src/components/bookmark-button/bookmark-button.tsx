@@ -46,7 +46,7 @@ const BookmarkButton = memo(({bookmarkClass, offerId, isFavorite}: BookmarkButto
     className={`${bookmarkClass}__bookmark-button ${authorizationStatus === AuthorizationStatus.Auth && isFavorite ? `${bookmarkClass}__bookmark-button--active` : ''} button`} type="button"
     disabled = {disableButton}
     >
-      <svg className={`${bookmarkClass}__bookmark-icon`} width={BookmarkAttributes[bookmarkClass].width} height={BookmarkAttributes[bookmarkClass].height}>
+      <svg className={`${bookmarkClass}__bookmark-icon`} width={BookmarkAttributes[bookmarkClass].Width} height={BookmarkAttributes[bookmarkClass].Height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{`${text} bookmarks`}</span>

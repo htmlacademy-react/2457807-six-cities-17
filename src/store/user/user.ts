@@ -7,7 +7,6 @@ type UserState = {
   authorizationStatus: AuthorizationStatusType;
   user: null | AuthorizedUserType;
   error: null | string;
-  errorMessage: string;
   isSubmitUserAuth: boolean;
 }
 
@@ -16,7 +15,6 @@ const initialState:UserState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
   error:  null,
-  errorMessage: '',
   isSubmitUserAuth: true,
 };
 

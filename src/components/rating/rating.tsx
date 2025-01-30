@@ -13,7 +13,7 @@ const Rating = memo(({ratingClass, ratingValue}: RatingProps):JSX.Element =>(
       <span style={{width: `${Math.round(ratingValue === null ? 0 : ratingValue) * PERCENTAGE_FILLING_ONE_STAR}%` }} />
       <span className="visually-hidden">Rating</span>
     </div>
-    {RatingAttributes[ratingClass].ratingVisibility &&
+    {RatingAttributes[ratingClass].RatingVisibility &&
         <span className="offer__rating-value rating__value">{ratingValue}</span>}
   </div>
 ));

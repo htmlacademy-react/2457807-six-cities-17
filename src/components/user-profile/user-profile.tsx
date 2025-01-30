@@ -10,7 +10,7 @@ type UserProfileProps = {
 
 const UserProfile = memo(({userDate, userProfileStyle}:UserProfileProps):JSX.Element =>{
   const {name, avatarUrl, isPro} = userDate;
-  const {className, width, height} = userProfileStyle;
+  const {ClassName: className, Width: width, Height: height} = userProfileStyle;
   const classNameType = className === 'reviews' ? 'reviews' : 'offer';
   return(
     <div className={`${className === 'reviews' ? 'reviews__' : 'offer__host-'}user user`}>
@@ -20,7 +20,7 @@ const UserProfile = memo(({userDate, userProfileStyle}:UserProfileProps):JSX.Ele
       <span className={`${classNameType}__user-name`}>
         {name}
       </span>
-      {userProfileStyle.className === 'host' && isPro && <span className={`${classNameType}__user-status`}>Pro</span>}
+      {userProfileStyle.ClassName === 'host' && isPro && <span className={`${classNameType}__user-status`}>Pro</span>}
     </div>
   );
 });

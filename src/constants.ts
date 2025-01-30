@@ -57,7 +57,7 @@ const LOCATIONS = [
 
 const DEFAULT_ACTIVE_LOCATION = LOCATIONS[0];
 
-const PLACES_OPTION = [
+const PLACES_OPTIONS = [
   'Popular',
   'Price: low to high',
   'Price: high to low',
@@ -83,7 +83,7 @@ const Status = {
   Error: 'ERROR'
 } as const;
 
-export {LOCATIONS, PLACES_OPTION as PLACES_OPTIONS,
+export {LOCATIONS, PLACES_OPTIONS as PLACES_OPTIONS,
   CommentLengthLimit, DEFAULT_ACTIVE_LOCATION , PageName as PageNames,
   SortOption as SortOptions, AppRoute, APIRoute, NameSpace, AuthorizationStatus, MEANING_STARS as starsTitle,
   DATE_FORMATE, TIMEOUT_SHOW_ERROR, NEAR_BY_OFFERS_LIMITED,

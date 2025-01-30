@@ -10,7 +10,7 @@ type FullOfferType = ListOfferType&{
 'maxAdults': number;
   };
 
-  type BookmarkAttributesType = {
+  type BookmarkAttributeType = {
     [key: string]: {Width: number; Height: number};
   }
 
@@ -22,9 +22,9 @@ type FullOfferType = ListOfferType&{
     Width: string;
   }
 
-  type RatingAttributesType = {
+  type RatingAttributeType = {
     [key: string]: {Style: StyleType; RatingVisibility: boolean};
   }
 
-export type {FullOfferType, BookmarkAttributesType,
-  RatingAttributesType, UserProfileType};
+export type {FullOfferType, BookmarkAttributeType,
+  RatingAttributeType, UserProfileType};

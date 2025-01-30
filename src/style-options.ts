@@ -1,4 +1,4 @@
-import { BookmarkAttributesType, RatingAttributesType, UserProfileType } from './types/full-offer';
+import { BookmarkAttributeType, RatingAttributeType, UserProfileType } from './types/full-offer';
 
 const MapSize = {
   MainPage: '100%',
@@ -45,7 +45,7 @@ const PlaceCardAttribute = {
   },
 } as const;
 
-const BookmarkAttribute:BookmarkAttributesType = {
+const BookmarkAttribute:BookmarkAttributeType = {
   'place-card': {
     Width: 18,
     Height: 19,
@@ -56,7 +56,7 @@ const BookmarkAttribute:BookmarkAttributesType = {
   },
 } as const;
 
-const RatingAttribute: RatingAttributesType = {
+const RatingAttribute: RatingAttributeType = {
   'offer': {
     Style: {
       Width: '80%'

@@ -1,14 +1,5 @@
 import { LOCATIONS} from '../constants';
 
-declare global {
-  interface ObjectConstructor {
-    groupBy<T, K extends PropertyKey>(
-      array: T[],
-      keyGetter: (item: T) => K
-    ): Record<K, T[]>;
-  }
-}
-
 type LocationType = {
     'latitude': number;
     'longitude': number;

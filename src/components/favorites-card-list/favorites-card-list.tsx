@@ -15,7 +15,7 @@ const FavoritesCardList = memo(({offersFavorite, pageNames}:OffersFavoriteProps)
       {Object.keys(groupByList).map((key) => (
         <FavoritesCardItem
           key = {key}
-          offersFavorite = {groupByList[key]}
+          offersFavorite = {groupByList[key] ?? []}
           pageNames = {pageNames}
         />))}
     </ul>
